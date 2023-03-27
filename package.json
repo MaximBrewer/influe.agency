@@ -19,7 +19,12 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@inertiajs/inertia": "^0.11.1",
+        "moment": "^2.29.4",
+        "react-datetime-picker": "^4.2.0",
         "react-imask": "^6.4.3",
-        "react-select": "^5.7.0"
+        "react-ios-time-picker": "^0.2.2",
+        "react-select": "^5.7.0",
+        "react-time-picker": "^5.2.0"
     }
 }

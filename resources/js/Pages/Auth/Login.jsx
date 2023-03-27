@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Checkbox from '@/Components/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
@@ -7,10 +7,15 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import { IMaskInput, useIMask } from 'react-imask';
+
+
+
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
+        phone: '',
         password: '',
         remember: '',
     });
@@ -48,21 +53,49 @@ export default function Login({ status, canResetPassword }) {
 
                 <form onSubmit={submit}>
                     <div className={` px-6`}>
-                        {/* <InputLabel htmlFor="email" value="Email" /> */}
+                        {/* <InputLabel htmlFor="phone" value="Phone" /> */}
+                        {/* <IMaskInput
+                            mask={`+7 000 000 0000`}
+                            value={data.phone}
+                            unmask={false} // true|false|'typed'
+                            // ref={ref}
+                            // inputRef={inputRef}  // access to nested input
+                            // // DO NOT USE onChange TO HANDLE CHANGES!
+                            // // USE onAccept INSTEAD
+                            onAccept={
+                                // depending on prop above first argument is
+                                // `value` if `unmask=false`,
+                                // `unmaskedValue` if `unmask=true`,
+                                // `typedValue` if `unmask='typed'`
+                                (value, mask) => {
+                                    handleOnChange({
+                                        target: {
+                                            value: value,
+                                            name: `phone`
+                                        }
+                                    })
+                                }
+                            }
+                            className={`rounded-xl bg-blue-400 bg-opacity-20 border-0 ring-0 mt-1 block w-full text-xl`}
+                            // ...and more mask props in a guide
+                            type={`text`}
+                            // input props also available
+                            placeholder='+7 777 777 7777'
+                        /> */}
+
 
                         <TextInput
                             id="email"
                             type="email"
                             name="email"
-                            placeholder={`E-mail`}
                             value={data.email}
+                            placeholder={`E-mail`}
                             className="mt-1 block w-full text-xl"
-                            autoComplete="username"
-                            isFocused={true}
+                            autoComplete="email"
                             onChange={handleOnChange}
                         />
 
-                        <InputError message={errors.email} className="mt-2" />
+                        <InputError message={errors.phone} className="mt-2" />
                     </div>
 
                     <div className="mt-6 px-6">
@@ -89,7 +122,7 @@ export default function Login({ status, canResetPassword }) {
                         </label>
                     </div>
 
-                    <div className="mt-6 text-center text-xl">
+                    {/* <div className="mt-6 text-center text-xl">
                         {canResetPassword && (
                             <Link
                                 href={route('password.request')}
@@ -98,20 +131,20 @@ export default function Login({ status, canResetPassword }) {
                                 Не помню пароль!
                             </Link>
                         )}
-                    </div>
+                    </div> */}
 
                     <div className="mt-6">
                         <PrimaryButton className="w-full justify-center" disabled={processing}>Войти</PrimaryButton>
                     </div>
 
-                    <div className="mt-4 text-center text-xl">
+                    {/* <div className="mt-4 text-center text-xl">
                         <Link
                             href={route('register')}
                             className="underline text-blue-500"
                         >
                             Нет аккаунта
                         </Link>
-                    </div>
+                    </div> */}
                 </form>
             </div>
         </div>

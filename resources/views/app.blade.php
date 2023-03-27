@@ -23,6 +23,7 @@
 
 <body class="font-sans antialiased min-w-[1440px] bg-blue-100 text-gray-800">
     @inertia
+    <div class="row-span-1 row-span-2 row-span-3 row-span-4 row-span-5 hidden"></div>
 </body>
 
 </html>

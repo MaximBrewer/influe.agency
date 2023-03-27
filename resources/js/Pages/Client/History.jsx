@@ -55,7 +55,7 @@ export default (props) => {
                                 </div>
                                 <div>
                                     <div className={`pl-6`}>
-                                        <input name={`name`} placeholder={`ИНН`} className={`placeholder:opacity-50 outline-none border-b w-full border-black py-1 border-opacity-50`} />
+                                        <input name={`name`} placeholder={`ИИН`} className={`placeholder:opacity-50 outline-none border-b w-full border-black py-1 border-opacity-50`} />
                                     </div>
                                     <div className={`pl-6`}>
                                         <input name={`name`} placeholder={`E-mail`} className={`placeholder:opacity-50 outline-none border-b w-full border-black py-1 border-opacity-50`} />

@@ -4,8 +4,9 @@ import '../css/app.css';
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { LayoutProvider } from './Contexts/LayoutContext';
 
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+const appName = window.document.getElementsByTagName('title')[0]?.tinerText || 'Laravel';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -13,7 +14,7 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
 
-        root.render(<App {...props} />);
+        root.render(<LayoutProvider><App {...props} /></LayoutProvider>);
     },
     progress: {
         color: '#4B5563',

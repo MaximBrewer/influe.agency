@@ -2,6 +2,16 @@
 
 namespace App\Providers;
 
+use App\Events\MasseurCreated;
+use App\Events\PatientCreated;
+use App\Events\RecieptionCreated;
+use App\Events\SpecialistCreated;
+use App\Listeners\SendMasseurCreatedNotification;
+use App\Listeners\SendPatientCreatedNotification;
+use App\Listeners\SendRecieptionCreatedNotification;
+use App\Listeners\SendSpecialistCreatedNotification;
+use App\Models\TopUp;
+use App\Observers\TopUp as ObserversTopUp;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -15,9 +25,18 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        SpecialistCreated::class => [
+            SendSpecialistCreatedNotification::class
         ],
+        MasseurCreated::class => [
+            SendMasseurCreatedNotification::class
+        ],
+        RecieptionCreated::class => [
+            SendRecieptionCreatedNotification::class
+        ],
+        PatientCreated::class => [
+            SendPatientCreatedNotification::class
+        ]
     ];
 
     /**
@@ -25,7 +44,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        TopUp::observe(ObserversTopUp::class);
     }
 
     /**

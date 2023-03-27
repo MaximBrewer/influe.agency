@@ -3,3 +3,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.border-b-dashed{
+    border-bottom-style: dashed;
+}
+
+::-webkit-scrollbar {
+    /*Толщина скролла*/
+    width: 6px;
+    height: 6px;
+    position: relative;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    /*Цвет скролла*/
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    /*Закругление ползунка*/
+    background-color: #ccc;
+    /*Цвет ползунка*/
+}
+
+* {
+    scrollbar-color: #ccc transparent;
+    scrollbar-width: thin;
+}
