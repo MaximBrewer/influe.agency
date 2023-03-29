@@ -63,17 +63,7 @@ class User extends Authenticatable
         '18:30' => 'free',
         '18:45' => 'free',
         '19:00' => 'free',
-        '19:15' => 'free',
-        '19:30' => 'free',
-        '19:45' => 'free',
-        '20:00' => 'free',
-        '20:15' => 'free',
-        '20:30' => 'free',
-        '20:45' => 'free',
-        '21:00' => 'free',
-        '21:15' => 'free',
-        '21:30' => 'free',
-        '21:45' => 'free',
+        '19:15' => 'free'
     ];
     /**
      * The attributes that are mass assignable.
@@ -269,5 +259,13 @@ class User extends Authenticatable
     public function sendCreatedNotification()
     {
         $this->notify(new UserCreatedNotification);
+    }
+
+    /**
+     * The users that belong to the role.
+     */
+    public function books(): HasMany
+    {
+        return $this->hasMany(Book::class, 'specialist_id');
     }
 }

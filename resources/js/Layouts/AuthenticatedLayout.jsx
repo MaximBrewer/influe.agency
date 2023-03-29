@@ -19,7 +19,7 @@ import { useLayout } from '@/Contexts/LayoutContext';
 import Notifications from './Notifications';
 import Branch from '@/Components/Branch';
 
-export default function Authenticated({ auth, children, heading = false }) {
+export default function Authenticated({ auth, children, heading = false, scrollpage = false }) {
 
     const [showNotifications, setShowNotifications] = useState(false)
     const { post } = useForm({});
@@ -82,6 +82,9 @@ export default function Authenticated({ auth, children, heading = false }) {
             {
                 title: 'Расписание',
                 route: `recieption.timetable`,
+                params: {
+                    branch: 1
+                },
                 icon: <Calendar className={`w-6 h-auto`} />
             },
             {
@@ -180,7 +183,7 @@ export default function Authenticated({ auth, children, heading = false }) {
                         </div>
                         <ul className={``}>
                             {menuItems[auth.user.role].map((item, index) => <li key={index}>
-                                <Link href={route(item.route)} className={`flex space-x-4 items-center my-6 ${(item.active && route().current().indexOf(item.active) > -1) || item.route === route().current() ? `text-violet-500` : `text-gray-800`}`}>
+                                <Link href={route(item.route, item.params ? item.params : {})} className={`flex space-x-4 items-center my-6 ${(item.active && route().current().indexOf(item.active) > -1) || item.route === route().current() ? `text-violet-500` : `text-gray-800`}`}>
                                     <div className={`w-6 h-6 ${(item.active && route().current().indexOf(item.active) > -1) || item.route === route().current() ? `text-violet-500` : `text-gray-600`} flex items-center justify-center`}>{item.icon}</div>
                                     <span>{item.title}</span>
                                 </Link>
@@ -243,7 +246,7 @@ export default function Authenticated({ auth, children, heading = false }) {
                             {heading ? heading : ``}
                         </div>
                         <div className={`grow my-5 relative`}>
-                            <div className={`absolute top-0 left-0 bottom-0 right-0 overflow-hidden flex flex-col`}>
+                            <div className={`${scrollpage ? `` : `absolute top-0 left-0 bottom-0 right-0 overflow-hidden`} flex flex-col`}>
                                 {children}
                             </div>
                         </div>

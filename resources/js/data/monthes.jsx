@@ -1,50 +1,62 @@
 export default [
     {
         days: 31,
-        title: `Января`
+        title: `Января`,
+        name: `Январь`
     },
     {
         days: 28,
-        title: `Февраля`
+        title: `Февраля`,
+        name: `Февраль`
     },
     {
         days: 31,
-        title: `Марта`
+        title: `Марта`,
+        name: `Март`
     },
     {
         days: 30,
-        title: `Апреля`
+        title: `Апреля`,
+        name: `Апрель`
     },
     {
         days: 31,
-        title: `Мая`
+        title: `Мая`,
+        name: `Май`
     },
     {
         days: 30,
-        title: `Июня`
+        title: `Июня`,
+        name: `Июнь`
     },
     {
         days: 31,
-        title: `Июля`
+        title: `Июля`,
+        name: `Июль`
     },
     {
         days: 31,
-        title: `Августа`
+        title: `Августа`,
+        name: `Август`
     },
     {
         days: 30,
-        title: `Сентября`
+        title: `Сентября`,
+        name: `Сентябрь`
     },
     {
         days: 31,
-        title: `Октября`
+        title: `Октября`,
+        name: `Октябрь`
     },
     {
         days: 30,
-        title: `Ноября`
+        title: `Ноября`,
+        name: `Ноябрь`
     },
     {
         days: 31,
-        title: `Декабря`
+        title: `Декабря`,
+        name: `Декабрь`
     },
 ]

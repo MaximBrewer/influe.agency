@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Recieption;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BookStoreRequest;
 use App\Http\Requests\BookUpdateRequest;
+use App\Http\Requests\PaymentStoreRequest;
 use App\Http\Resources\BookDirection;
 use App\Http\Resources\BookSpecialist;
 use App\Http\Resources\Direction as ResourcesDirection;
@@ -142,6 +143,25 @@ class BookController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    public function status(Request $request, Book $book)
+    {
+        $book->update([
+            'status' => $request->status
+        ]);
+        return redirect()->back();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function payment(PaymentStoreRequest $request, Book $book)
+    {
+        $book->payments()->create($request->all());
+        return redirect()->back();
+    }
+    /**
+     * Show the form for creating a new resource.
+     */
     public function store(BookStoreRequest $request, User $patient, Branch $branch, User $specialist)
     {
         if (!$specialist->schedule || $specialist->schedule === "null") {
@@ -175,7 +195,7 @@ class BookController extends Controller
                     $times = array_filter($specialist->schedule, function ($item) use ($sdate) {
                         return ($sdate->format('H:i') == $item['time']);
                     });
-                    $status = reset($times)['days'][$sdate->format('w')];
+                    $status = reset($times)['days'][$sdate->format('w') - 1];
                     if ($status === 'rest') {
                         DB::rollBack();
                         return redirect()->back()->withErrors(['duration' => 'Выходной!']);
@@ -188,7 +208,7 @@ class BookController extends Controller
         } catch (\Throwable $e) {
             DB::rollBack();
             return redirect()->back()->withErrors([
-                'message' => 'Запись на это время у пациента или специалиста уже есть!',
+                'message' => 'На это время записать нельзя!',
                 'error' => $e->getMessage()
             ]);
         }

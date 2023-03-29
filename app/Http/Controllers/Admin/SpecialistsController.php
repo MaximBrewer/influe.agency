@@ -52,15 +52,7 @@ class SpecialistsController extends Controller
         $data['password'] = Hash::make(Str::random(8));
         $specialist = User::create($data);
         $specialist->directions()->sync($request->directions);
-        $specialist->schedule = [
-            'monday' => User::getDayArray(),
-            'tuesday' => User::getDayArray(),
-            'wednesday' => User::getDayArray(),
-            'thursday' => User::getDayArray(),
-            'friday' => User::getDayArray(),
-            'saturday' => User::getDayArray(),
-            'sunday' => User::getDayArray(),
-        ];
+        $specialist->schedule = User::getDayArray();
         event(new SpecialistCreated($specialist));
         return redirect()->route('admin.specialists.index');
     }

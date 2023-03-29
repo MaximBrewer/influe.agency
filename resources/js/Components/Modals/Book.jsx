@@ -34,6 +34,8 @@ export default (props) => {
         duration: null,
         service: null,
         year: year,
+        day: day,
+        week: week,
         date: date
     });
 

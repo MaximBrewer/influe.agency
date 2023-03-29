@@ -2,17 +2,17 @@
 
 namespace App\Listeners;
 
-class SendMasseurCreatedNotification
+class SendSpecialistCreatedNotification
 {
     /**
      * Handle the event.
      *
-     * @param  \App\Events\MasseurCreated  $event
+     * @param  \App\Events\SpecialistCreated  $event
      * @return void
      */
-    public function handle(\App\Events\MasseurCreated $event)
+    public function handle(\App\Events\SpecialistCreated $event)
     {
-        if ($event->user->role === 'masseur') {
+        if ($event->user->role === 'specialist') {
             $event->user->sendCreatedNotification();
         }
     }

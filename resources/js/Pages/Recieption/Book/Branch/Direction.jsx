@@ -139,7 +139,7 @@ export default (props) => {
                         gridTemplateColumns: `5.25rem repeat(${specialists.data.length}, minmax(154px, max-content))`
                     }}>
                         <div className={`sticky left-0 z-10 flex items-center justify-center`}>
-                            <div className={`absolute px-3 bg-white -translate-y-full`}>22:00</div>
+                            <div className={`absolute px-3 bg-white -translate-y-full`}>19:30</div>
                             <div>&nbsp;<br />&nbsp;</div>
                         </div>
                         {specialists.data.map(specialist => <div key={specialist.id} className={`h-8`}></div>)}

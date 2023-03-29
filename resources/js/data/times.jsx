@@ -167,46 +167,6 @@ export default {
         {
             value: '19:15',
             label: '19:15'
-        },
-        {
-            value: '19:30',
-            label: '19:30'
-        },
-        {
-            value: '19:45',
-            label: '19:45'
-        },
-        {
-            value: '20:00',
-            label: '20:00'
-        },
-        {
-            value: '20:15',
-            label: '20:15'
-        },
-        {
-            value: '20:30',
-            label: '20:30'
-        },
-        {
-            value: '20:45',
-            label: '20:45'
-        },
-        {
-            value: '21:00',
-            label: '21:00'
-        },
-        {
-            value: '21:15',
-            label: '21:15'
-        },
-        {
-            value: '21:30',
-            label: '21:30'
-        },
-        {
-            value: '21:45',
-            label: '21:45'
-        },
+        }
     ]
 }

@@ -147,7 +147,7 @@ export default (props) => {
                 </div>
                 <div className={`grid grid-cols-[5.25rem_1fr_1fr_1fr_1fr_1fr_1fr_1fr] leading-tight`}>
                     <div className={`relative flex items-center justify-center`}>
-                        <div className={`absolute px-3 bg-white -translate-y-full`}>22:00</div>
+                        <div className={`absolute px-3 bg-white -translate-y-full`}>19:30</div>
                         <div>&nbsp;<br />&nbsp;</div>
                     </div>
                     {[0, 1, 2, 3, 4, 5, 6].map(day => <div key={day} className={`h-8`}></div>)}

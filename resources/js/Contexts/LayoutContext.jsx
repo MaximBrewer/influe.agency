@@ -84,7 +84,10 @@ const LayoutProvider = (props) => {
         {
 
             modal ? <div className={`flex items-center justify-center fixed overflow-y-auto top-0 left-0 w-full h-full bg-black bg-opacity-50 z-100`} onClick={() => setModal(null)} >
-                <div className={`mx-2 relative mx-auto max-h-screen py-8 px-8 bg-white rounded-2xl flex flex-col justify-center`} onClick={(e) => e.stopPropagation()}>
+                <div className={`mx-2 relative mx-auto max-h-screen py-8 px-8 bg-white rounded-2xl flex flex-col justify-center`} onClick={(e) => {
+                    document.dispatchEvent(new Event('clickinmodal'))
+                    e.stopPropagation()
+                }}>
                     <div>
                         {modal}
                     </div>

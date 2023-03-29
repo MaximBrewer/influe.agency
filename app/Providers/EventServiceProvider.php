@@ -10,7 +10,9 @@ use App\Listeners\SendMasseurCreatedNotification;
 use App\Listeners\SendPatientCreatedNotification;
 use App\Listeners\SendRecieptionCreatedNotification;
 use App\Listeners\SendSpecialistCreatedNotification;
+use App\Models\Payment;
 use App\Models\TopUp;
+use App\Observers\Payment as ObserversPayment;
 use App\Observers\TopUp as ObserversTopUp;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -45,6 +47,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         TopUp::observe(ObserversTopUp::class);
+        Payment::observe(ObserversPayment::class);
     }
 
     /**
