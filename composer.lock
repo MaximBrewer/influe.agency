@@ -4,8 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1f19f1b7cfe4d34771a33158dcf07aa",
+    "content-hash": "7b35e55ab625430f418690c66e98602d",
     "packages": [
+        {
+            "name": "bigperson/exchange1c",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bigperson/exchange1c.git",
+                "reference": "34b7e7114f41f9d2a7ea11125c1a4f388599d0a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bigperson/exchange1c/zipball/34b7e7114f41f9d2a7ea11125c1a4f388599d0a0",
+                "reference": "34b7e7114f41f9d2a7ea11125c1a4f388599d0a0",
+                "shasum": ""
+            },
+            "require": {
+                "carono/commerceml": "^0.2.3",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "illuminate/session": "^5.7",
+                "phpunit/phpunit": "^7",
+                "symfony/event-dispatcher": "^4.1",
+                "symfony/http-foundation": "^4.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bigperson\\Exchange1C\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Kartsev",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Catalog Loader from 1c - CommerceML protocol",
+            "homepage": "https://github.com/bigperson",
+            "keywords": [
+                "1c",
+                "1c-exchange",
+                "1c-php",
+                "commerceml"
+            ],
+            "support": {
+                "issues": "https://github.com/bigperson/exchange1c/issues",
+                "source": "https://github.com/bigperson/exchange1c/tree/v1.2.0"
+            },
+            "time": "2022-07-21T10:46:02+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.10.2",
@@ -61,6 +115,60 @@
                 }
             ],
             "time": "2022-08-10T22:54:19+00:00"
+        },
+        {
+            "name": "carono/commerceml",
+            "version": "0.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/carono/php-commerceml.git",
+                "reference": "1cde7ba996b2b2ba5b25d7e585c8c4ff18738887"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/carono/php-commerceml/zipball/1cde7ba996b2b2ba5b25d7e585c8c4ff18738887",
+                "reference": "1cde7ba996b2b2ba5b25d7e585c8c4ff18738887",
+                "shasum": ""
+            },
+            "require": {
+                "ext-simplexml": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Zenwalker\\CommerceML\\": "src/",
+                    "Zenwalker\\CommerceML\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxim Poletaev",
+                    "email": "zenwalker2@gmail.com",
+                    "homepage": "http://zenwalker.ru"
+                },
+                {
+                    "name": "Aleksandr Kasyanov",
+                    "email": "info@carono.ru",
+                    "homepage": "http://carono.ru"
+                }
+            ],
+            "description": "Library for parsing CommerceML files",
+            "homepage": "https://github.com/zenwalker/php-commerceml",
+            "keywords": [
+                "1c",
+                "commerceml"
+            ],
+            "support": {
+                "source": "https://github.com/carono/php-commerceml/tree/0.2.6"
+            },
+            "time": "2023-04-30T15:46:32+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -1857,6 +1965,65 @@
                 }
             ],
             "time": "2022-04-17T13:12:02+00:00"
+        },
+        {
+            "name": "maximbrewer/laravel-exchange1c",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MaximBrewer/laravel-exchange1c.git",
+                "reference": "cb48085374c87438b14b3ceb9231da9895af5436"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MaximBrewer/laravel-exchange1c/zipball/cb48085374c87438b14b3ceb9231da9895af5436",
+                "reference": "cb48085374c87438b14b3ceb9231da9895af5436",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^5.4|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "^7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MaximBrewer\\LaravelExchange1C\\Exchange1CServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MaximBrewer\\LaravelExchange1C\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Kartsev",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Catalog Loader from 1c - CommerceML with laravel",
+            "homepage": "https://github.com/maximbrewer",
+            "keywords": [
+                "1c",
+                "commerceml",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/MaximBrewer/laravel-exchange1c/issues",
+                "source": "https://github.com/MaximBrewer/laravel-exchange1c/tree/v1.1.1"
+            },
+            "time": "2023-05-02T16:19:13+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -8082,7 +8249,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
