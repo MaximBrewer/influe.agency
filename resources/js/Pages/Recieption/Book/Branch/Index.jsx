@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 export default (props) => {
 
-    const { pagetitle, branch, specialists, patient, week, directions } = props
+    const { pagetitle, patient, branch, week, specialists, directions } = props
 
     const { moment } = useLayout();
 

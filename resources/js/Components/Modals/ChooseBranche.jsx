@@ -6,7 +6,7 @@ import PrimaryButton from "../PrimaryButton";
 import Select from "react-select"
 import TextInput from "../TextInput";
 import { useState } from "react";
-import { Inertia } from "@inertiajs/inertia";
+import { router } from '@inertiajs/react'
 
 const customStyles = {
     control: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -46,7 +46,8 @@ export default (props) => {
         if (!data.branch)
             setError('branch', "Выберите филиал")
         else {
-            Inertia.get(route('recieption.book.branch', {
+            setModal(null)
+            router.visit(route('recieption.book.branch', {
                 patient: user.id,
                 branch: data.branch.id
             }));
