@@ -94,7 +94,7 @@ export default (props) => {
                         </div>
                         <ArrowDown className={`w-[.875rem] h-auto`} />
                     </a>
-                    {openDirections ? <ul className={`absolute bg-blue-50 z-10 top-full left-0 rounded-lg py-1 w-full overflow-y-auto max-h-[24rem]`}>
+                    {openDirections ? <ul className={`z-20 absolute bg-blue-50 z-10 top-full left-0 rounded-lg py-1 w-full overflow-y-auto max-h-[24rem]`}>
                         {directions.data.map((direction, sdx) => <li key={`direction-${sdx}`} className={``}>
                             <Link
                                 className={`flex space-x-3 pr-4 hover:bg-blue-100 block w-full items-center`}

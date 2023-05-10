@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class UserCreatedNotification extends Notification
+class UserCreatedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

@@ -82,7 +82,7 @@ export default (props) => {
                         </div>
                         <ArrowDown className={`w-[.875rem] h-auto`} />
                     </a>
-                    {openWeeks ? <ul className={`absolute bg-blue-50 z-10 top-full left-0 rounded-lg py-1 w-full`}>
+                    {openWeeks ? <ul className={`z-20 absolute bg-blue-50 z-10 top-full left-0 rounded-lg py-1 w-full`}>
                         {weeks.map((week, wdx) => <li key={wdx} className={`text-justify w-full`}>
                             <Link
                                 className={`flex space-x-3 py-2 px-3 hover:bg-blue-100 block w-full text-justify`}
@@ -110,7 +110,7 @@ export default (props) => {
                         </div>
                         <ArrowDown className={`w-[.875rem] h-auto`} />
                     </a>
-                    {openSpecialists ? <ul className={`absolute bg-blue-50 z-10 top-full left-0 rounded-lg py-1 w-full overflow-y-auto max-h-[24rem]`}>
+                    {openSpecialists ? <ul className={`z-20 absolute bg-blue-50 z-10 top-full left-0 rounded-lg py-1 w-full overflow-y-auto max-h-[24rem]`}>
                         {specialists.map((specialist, sdx) => <li key={sdx} className={``}>
                             <Link
                                 className={`flex space-x-3 pr-4 hover:bg-blue-100 block w-full items-center`}
