@@ -17,7 +17,7 @@ class Client
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || Auth::user()->role !== 'client') return redirect(RouteServiceProvider::LOGIN);
+        if (!Auth::check() || Auth::user()->role->name !== 'client') return redirect(RouteServiceProvider::LOGIN);
         return $next($request);
     }
 }

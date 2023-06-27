@@ -56,7 +56,7 @@ class AdminCommand extends Command
         }
 
         // Ensure that the user is admin
-        $user->role = 'admin';
+        $user->role_id = 1;
         $user->save();
 
         $this->info(__('The user now has full access to your site.'));

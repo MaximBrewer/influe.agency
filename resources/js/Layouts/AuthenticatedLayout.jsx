@@ -182,7 +182,7 @@ export default function Authenticated({ auth, children, heading = false, scrollp
                             </Link>
                         </div>
                         <ul className={``}>
-                            {menuItems[auth.user.role].map((item, index) => <li key={index}>
+                            {menuItems[auth.user.role.name].map((item, index) => <li key={index}>
                                 <Link href={route(item.route, item.params ? item.params : {})} className={`flex space-x-4 items-center my-6 ${(item.active && route().current().indexOf(item.active) > -1) || item.route === route().current() ? `text-violet-500` : `text-gray-800`}`}>
                                     <div className={`w-6 h-6 ${(item.active && route().current().indexOf(item.active) > -1) || item.route === route().current() ? `text-violet-500` : `text-gray-600`} flex items-center justify-center`}>{item.icon}</div>
                                     <span>{item.title}</span>
@@ -220,12 +220,12 @@ export default function Authenticated({ auth, children, heading = false, scrollp
                             </div> */}
                         </div>
                         <div className={`flex flex-col items-end relative`}>
-                            {auth.user.role !== 'admin' ? <div className={`flex space-x-4 mb-2`}>
+                            {auth.user.role.name !== 'admin' ? <div className={`flex space-x-4 mb-2`}>
                                 <span>Баланс</span>
                                 <span className={`text-blue-400`}>{priceFormat(auth.user.balance)}</span>
                             </div> : <div className={`flex mb-2`}>&nbsp;</div>}
                             <div className={`flex space-x-4 items-center`}>
-                                {auth.user.role !== 'admin' ? <a href="#" className={`relative`} onClick={e => {
+                                {auth.user.role.name !== 'admin' ? <a href="#" className={`relative`} onClick={e => {
                                     e.preventDefault();
                                     setShowNotifications(prev => !prev)
                                 }}>
@@ -235,7 +235,7 @@ export default function Authenticated({ auth, children, heading = false, scrollp
                                 <div className={`w-10 h-10 bg-cover rounded bg-center`} style={{ backgroundImage: `url(/storage/avatar.jpeg)` }}></div>
                                 <div className={`leading-tight`}>
                                     <div className={`font-medium`}>{auth.user.name}</div>
-                                    <div>{roles[auth.user.role]}</div>
+                                    <div>{roles[auth.user.role.name]}</div>
                                 </div>
                             </div>
                             {showNotifications ? <Notifications /> : ``}

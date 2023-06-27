@@ -24,7 +24,7 @@ class RecieptionsController extends Controller
      */
     public function index()
     {
-        $data['recieptions'] = User::where('role', 'recieption')->get();
+        $data['recieptions'] = User::where('role_id', 3)->get();
         $data['pagetitle'] = 'Ресепшн';
         return Inertia::render('Admin/Recieptions', $data);
     }

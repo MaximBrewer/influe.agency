@@ -12,7 +12,7 @@ class SendSpecialistCreatedNotification
      */
     public function handle(\App\Events\SpecialistCreated $event)
     {
-        if ($event->user->role === 'specialist') {
+        if ($event->user->role->name === 'specialist') {
             $event->user->sendCreatedNotification();
         }
     }

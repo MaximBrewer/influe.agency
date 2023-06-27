@@ -12,7 +12,7 @@ class SendPatientCreatedNotification
      */
     public function handle(\App\Events\PatientCreated $event)
     {
-        if ($event->user->role === 'patient') {
+        if ($event->user->role->name === 'patient') {
             $event->user->sendCreatedNotification();
         }
     }

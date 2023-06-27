@@ -12,7 +12,7 @@ class SendMasseurCreatedNotification
      */
     public function handle(\App\Events\MasseurCreated $event)
     {
-        if ($event->user->role === 'masseur') {
+        if ($event->user->role->name === 'masseur') {
             $event->user->sendCreatedNotification();
         }
     }

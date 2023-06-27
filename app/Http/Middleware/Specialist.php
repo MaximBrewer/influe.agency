@@ -17,7 +17,7 @@ class Specialist
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || Auth::user()->role !== 'specialist') return redirect(RouteServiceProvider::LOGIN);
+        if (!Auth::check() || Auth::user()->role->name !== 'specialist') return redirect(RouteServiceProvider::LOGIN);
         return $next($request);
     }
 }

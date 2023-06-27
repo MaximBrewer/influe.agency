@@ -17,7 +17,7 @@ class Masseur
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || Auth::user()->role !== 'masseur') return redirect(RouteServiceProvider::LOGIN);
+        if (!Auth::check() || Auth::user()->role->name !== 'masseur') return redirect(RouteServiceProvider::LOGIN);
         return $next($request);
     }
 }

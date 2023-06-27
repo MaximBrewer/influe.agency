@@ -31,7 +31,7 @@ class PatientsController extends Controller
     {
         $this->getCommonData($data);
         $data['pagetitle'] = 'Пациенты';
-        $data['patients'] = User::where('role', 'client')->get();
+        $data['patients'] = User::where('role_id', 2)->get();
         return Inertia::render('Recieption/Patients', $data);
     }
 

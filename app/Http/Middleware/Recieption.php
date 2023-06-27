@@ -17,7 +17,7 @@ class Recieption
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || Auth::user()->role !== 'recieption') return redirect(RouteServiceProvider::LOGIN);
+        if (!Auth::check() || Auth::user()->role->name !== 'recieption') return redirect(RouteServiceProvider::LOGIN);
         return $next($request);
     }
 }

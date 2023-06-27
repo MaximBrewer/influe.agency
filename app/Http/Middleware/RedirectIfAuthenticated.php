@@ -24,12 +24,12 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if (Auth::user()->role === 'admin') return redirect(RouteServiceProvider::HOME_ADMIN);
-                if (Auth::user()->role === 'recieption') return redirect()->route('recieption.timetable', [
+                if (Auth::user()->role->name === 'admin') return redirect(RouteServiceProvider::HOME_ADMIN);
+                if (Auth::user()->role->name === 'recieption') return redirect()->route('recieption.timetable', [
                     "branch" => $branch->id
                 ]);
-                if (Auth::user()->role === 'specialist') return redirect(RouteServiceProvider::HOME_SPECIALST);
-                if (Auth::user()->role === 'masseur') return redirect(RouteServiceProvider::HOME_MASSEUR);
+                if (Auth::user()->role->name === 'specialist') return redirect(RouteServiceProvider::HOME_SPECIALST);
+                if (Auth::user()->role->name === 'masseur') return redirect(RouteServiceProvider::HOME_MASSEUR);
                 return redirect(RouteServiceProvider::HOME_CLIENT);
             }
         }

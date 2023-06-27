@@ -12,7 +12,7 @@ class SendRecieptionCreatedNotification
      */
     public function handle(\App\Events\RecieptionCreated $event)
     {
-        if ($event->user->role === 'recieption') {
+        if ($event->user->role->name === 'recieption') {
             $event->user->sendCreatedNotification();
         }
     }

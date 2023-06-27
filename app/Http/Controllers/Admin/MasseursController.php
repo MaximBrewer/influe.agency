@@ -24,7 +24,7 @@ class MasseursController extends Controller
      */
     public function index()
     {
-        $data['masseurs'] = User::where('role', 'masseur')->get();
+        $data['masseurs'] = User::where('role_id', 5)->get();
         $data['pagetitle'] = 'Массажисты';
         return Inertia::render('Admin/Masseurs', $data);
     }

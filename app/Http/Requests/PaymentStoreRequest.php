@@ -12,7 +12,7 @@ class PaymentStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::check() && in_array(Auth::user()->role, ['recieption']);
+        return Auth::check() && in_array(Auth::user()->role->name, ['recieption']);
     }
 
     /**

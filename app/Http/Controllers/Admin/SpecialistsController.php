@@ -24,7 +24,7 @@ class SpecialistsController extends Controller
      */
     public function index()
     {
-        $data['specialists'] = User::where('role', 'specialist')->get();
+        $data['specialists'] = User::where('role_id', 4)->get();
         $data['pagetitle'] = 'Специалисты';
         return Inertia::render('Admin/Specialists', $data);
     }

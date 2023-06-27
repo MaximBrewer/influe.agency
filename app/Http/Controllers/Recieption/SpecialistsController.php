@@ -15,7 +15,7 @@ class SpecialistsController extends Controller
     public function __invoke(Request $request)
     {
         $data['pagetitle'] = 'Специалисты';
-        $data['specialists'] = User::where('role', 'specialist')->get();
+        $data['specialists'] = User::where('role_id', 4)->get();
         return Inertia::render('Recieption/Specialists', $data);
     }
 

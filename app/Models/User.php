@@ -268,4 +268,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Book::class, 'specialist_id');
     }
+    
+    /**
+     * Return default User Role.
+     */
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
 }
