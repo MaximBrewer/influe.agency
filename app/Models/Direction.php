@@ -43,6 +43,8 @@ class Direction extends Model
      */
     public function specialists(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'user_direction')->where('role', 'specialist');
+        return $this->belongsToMany(User::class, 'user_direction')->whereHas('role',  function (Builder $query) {
+            $query->where('name', 'specialist');
+        });
     }
 }

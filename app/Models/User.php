@@ -79,7 +79,6 @@ class User extends Authenticatable
         'lastname',
         'tin',
         'addon',
-        'role',
         'gender',
         'birthdate',
         'schedule',
