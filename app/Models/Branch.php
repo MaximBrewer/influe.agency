@@ -45,7 +45,7 @@ class Branch extends Model
      */
     public function specialists(): HasMany
     {
-        return $this->hasMany(User::class, 'branch_id')->whereHas('users.role',  function (Builder $query) {
+        return $this->hasMany(User::class, 'branch_id')->whereHas('role',  function (Builder $query) {
             $query->where('name', 'specialist');
         });
     }
