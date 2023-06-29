@@ -48,9 +48,10 @@ class SpecialistsController extends Controller
     public function store(SpecialistStoreRequest $request)
     {
         $data = $request->all();
-        $data['role'] = 'specialist';
         $data['password'] = Hash::make(Str::random(8));
         $specialist = User::create($data);
+        $specialist->role_id = 4;
+        $specialist->save();
         $specialist->directions()->sync($request->directions);
         $specialist->schedule = User::getDayArray();
         event(new SpecialistCreated($specialist));

@@ -48,9 +48,10 @@ class MasseursController extends Controller
     public function store(MasseurStoreRequest $request)
     {
         $data = $request->all();
-        $data['role'] = 'masseur';
         $data['password'] = Hash::make(Str::random(8));
         $masseur = User::create($data);
+        $masseur->role_id = 5;
+        $masseur->save();
         $masseur->directions()->sync($request->directions);
         event(new MasseurCreated($masseur));
         return redirect()->route('admin.masseurs.index');

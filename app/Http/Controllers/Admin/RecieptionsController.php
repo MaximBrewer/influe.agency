@@ -48,9 +48,10 @@ class RecieptionsController extends Controller
     public function store(RecieptionStoreRequest $request)
     {
         $data = $request->all();
-        $data['role_id'] = 3;
         $data['password'] = Hash::make(Str::random(8));
         $recieption = User::create($data);
+        $recieption->role_id = 3;
+        $recieption->save();
         $recieption->directions()->sync($request->directions);
         event(new RecieptionCreated($recieption));
         return redirect()->route('admin.recieptions.index');
