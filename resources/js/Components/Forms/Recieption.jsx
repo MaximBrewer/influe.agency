@@ -30,7 +30,7 @@ export default (props) => {
         birthdate: recieption && recieption.birthdate ? recieption.birthdate : '01.01.1980',
         tin: recieption && recieption.tin ? `${recieption.tin}` : ``,
         email: recieption && recieption.email ? recieption.email : ``,
-        phone: masseur && masseur.phone ? masseur.phone : ``,
+        phone: recieption && recieption.phone ? recieption.phone : ``,
         addon: recieption && recieption.addon ? recieption.addon : ``,
         gender: recieption && recieption.gender ? recieption.gender : `male`,
         locality_id: recieption && recieption.locality_id ? recieption.locality_id : (localities.data.length ? localities.data[0].id : ``),

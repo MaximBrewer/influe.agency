@@ -30,7 +30,7 @@ export default (props) => {
         birthdate: specialist && specialist.birthdate ? specialist.birthdate : '01.01.1980',
         tin: specialist && specialist.tin ? `${specialist.tin}` : ``,
         email: specialist && specialist.email ? specialist.email : ``,
-        phone: masseur && masseur.phone ? masseur.phone : ``,
+        phone: specialist && specialist.phone ? specialist.phone : ``,
         addon: specialist && specialist.addon ? specialist.addon : ``,
         directions: specialist ? specialist.directions : [],
         gender: specialist && specialist.gender ? specialist.gender : `male`,
