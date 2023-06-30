@@ -6,6 +6,9 @@ use Bigperson\Exchange1C\Interfaces\OfferInterface;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Offer extends Model implements OfferInterface
 {
@@ -44,7 +47,8 @@ class Offer extends Model implements OfferInterface
 
     public function getGroup1c()
     {
-        return $this->product->category;
+        return null;
+        // return $this->product->category;
     }
 
     /**
@@ -60,6 +64,9 @@ class Offer extends Model implements OfferInterface
      */
     public function setPrice1c($price)
     {
+        $priceType = PriceType::where('accounting_id', $price->getType()->id)->first();
+        $priceModel = Price::createByMl($price, $this, $priceType);
+        $this->prices()->syncWithoutDetaching($priceModel->id);
     }
 
     /**
@@ -112,5 +119,17 @@ class Offer extends Model implements OfferInterface
      */
     public function setSpecification1c($specification)
     {
+        $specificationModel = Specification::createByMl($specification);
+        $this->specifications()->syncWithoutDetaching([$specificationModel->id => ['value' => (string)$specification->Значение]]);
+    }
+
+    public function prices(): BelongsToMany
+    {
+        return $this->belongsToMany(Price::class, 'offer_price');
+    }
+
+    public function specifications(): BelongsToMany
+    {
+        return $this->belongsToMany(Specification::class, 'offer_specification');
     }
 }

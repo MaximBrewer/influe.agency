@@ -28,7 +28,7 @@ class MasseurStoreRequest extends FormRequest
             'lastname' => ['required', 'string', 'max:255'],
             'surname' => ['max:255'],
             'email' => ['required', 'email:rfc,dns', 'unique:users,email', 'max:255'],
-            'tin' => ['required', 'digits:12'],
+            'tin' => ['digits:12'],
             'birthdate' => ['date']
             // 'phone' => ['string', 'max:255', Rule::unique(User::class)->ignore($this->id)],
         ];

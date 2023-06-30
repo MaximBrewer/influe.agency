@@ -85,7 +85,7 @@ class Product extends Model implements \Bigperson\Exchange1C\Interfaces\ProductI
             $requisite->title = $name;
             $requisite->save();
         }
-        $this->requisites()->syncWithoutDetaching($requisite->id, ['value' => $value]);
+        $this->requisites()->syncWithoutDetaching([$requisite->id => ['value' => $value]]);
     }
 
     /**
@@ -97,9 +97,9 @@ class Product extends Model implements \Bigperson\Exchange1C\Interfaces\ProductI
      */
     public function setGroup1c($group)
     {
-        $category = Category::where('accounting_id', $group->id)->first();
-        $category && $this->category_id = $category->id;
-        $this->save();
+        // $category = Category::where('accounting_id', $group->id)->first();
+        // $category && $this->category_id = $category->id;
+        // $this->save();
     }
 
     /**
@@ -160,7 +160,8 @@ class Product extends Model implements \Bigperson\Exchange1C\Interfaces\ProductI
      */
     public function getGroup1c()
     {
-        return $this->category;
+        return null;
+        // return $this->category;
     }
 
     /**
