@@ -53,9 +53,10 @@ class PatientsController extends Controller
     public function store(PatientStoreRequest $request)
     {
         $data = $request->all();
-        $data['role'] = 'client';
         $data['password'] = Hash::make(Str::random(8));
         $patient = User::create($data);
+        $patient->role_id = 2;
+        $patient->save();
         event(new PatientCreated($patient));
         return redirect()->route('recieption.patient.card', [
             'patient' => $patient->id

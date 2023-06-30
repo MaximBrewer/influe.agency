@@ -30,6 +30,7 @@ export default (props) => {
         birthdate: specialist && specialist.birthdate ? specialist.birthdate : '01.01.1980',
         tin: specialist && specialist.tin ? `${specialist.tin}` : ``,
         email: specialist && specialist.email ? specialist.email : ``,
+        phone: masseur && masseur.phone ? masseur.phone : ``,
         addon: specialist && specialist.addon ? specialist.addon : ``,
         directions: specialist ? specialist.directions : [],
         gender: specialist && specialist.gender ? specialist.gender : `male`,
@@ -71,23 +72,23 @@ export default (props) => {
     return <form onSubmit={submit}>
         <div className={`grid grid-cols-2 gap-16`}>
             <div>
-                <div className="mb-4">
-                    <InputLabel htmlFor="name" value="Имя*" color={`text-gray-200`} weight={`normal`} />
-                    <TextInput
-                        id="name"
-                        type="text"
-                        placeholder="Иван"
-                        name="name"
-                        bg="bg-white"
-                        border="border border-gray-900 border-opacity-[.12]"
-                        rounded="rounded"
-                        value={data.name}
-                        className="mt-1 block w-full"
-                        onChange={handleOnChange}
-                    />
-                    <InputError message={errors.name} className="mt-2" />
-                </div>
                 <div className={`grid grid-cols-2 gap-12`}>
+                    <div className="mb-4">
+                        <InputLabel htmlFor="name" value="Имя*" color={`text-gray-200`} weight={`normal`} />
+                        <TextInput
+                            id="name"
+                            type="text"
+                            placeholder="Иван"
+                            name="name"
+                            bg="bg-white"
+                            border="border border-gray-900 border-opacity-[.12]"
+                            rounded="rounded"
+                            value={data.name}
+                            className="mt-1 block w-full"
+                            onChange={handleOnChange}
+                        />
+                        <InputError message={errors.name} className="mt-2" />
+                    </div>
                     <div className="mb-4">
                         <InputLabel htmlFor="lastname" value="Фамилия*" color={`text-gray-200`} weight={`normal`} />
                         <TextInput
@@ -104,6 +105,8 @@ export default (props) => {
                         />
                         <InputError message={errors.lastname} className="mt-2" />
                     </div>
+                </div>
+                <div className={`grid grid-cols-2 gap-12`}>
                     <div className="mb-4">
                         <InputLabel htmlFor="surname" value="Отчество (если имеется)" color={`text-gray-200`} weight={`normal`} />
                         <TextInput
@@ -119,6 +122,22 @@ export default (props) => {
                             onChange={handleOnChange}
                         />
                         <InputError message={errors.surname} className="mt-2" />
+                    </div>
+                    <div className="mb-4">
+                        <InputLabel htmlFor="phone" value="Phone*" color={`text-gray-200`} weight={`normal`} />
+                        <TextInput
+                            id="phone"
+                            type="text"
+                            name="phone"
+                            bg="bg-white"
+                            placeholder="+77777777777"
+                            border="border border-gray-900 border-opacity-[.12]"
+                            rounded="rounded"
+                            value={data.phone}
+                            className="mt-1 block w-full"
+                            onChange={handleOnChange}
+                        />
+                        <InputError message={errors.phone} className="mt-2" />
                     </div>
                 </div>
                 <div className={`grid grid-cols-2 gap-12`}>

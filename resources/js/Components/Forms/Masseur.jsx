@@ -30,6 +30,7 @@ export default (props) => {
         birthdate: masseur && masseur.birthdate ? masseur.birthdate : '01.01.1980',
         tin: masseur && masseur.tin ? `${masseur.tin}` : ``,
         email: masseur && masseur.email ? masseur.email : ``,
+        phone: masseur && masseur.phone ? masseur.phone : ``,
         addon: masseur && masseur.addon ? masseur.addon : ``,
         gender: masseur && masseur.gender ? masseur.gender : `male`,
         locality_id: masseur && masseur.locality_id ? masseur.locality_id : localities.data[0].id,
@@ -97,26 +98,43 @@ export default (props) => {
                     />
                     <InputError message={errors.lastname} className="mt-2" />
                 </div>
-                <div className="mb-4">
-                    <InputLabel htmlFor="surname" value="Отчество (если имеется)" color={`text-gray-200`} weight={`normal`} />
-                    <TextInput
-                        id="surname"
-                        type="text"
-                        name="surname"
-                        placeholder="Иванович"
-                        bg="bg-white"
-                        border="border border-gray-900 border-opacity-[.12]"
-                        rounded="rounded"
-                        value={data.surname}
-                        className="mt-1 block w-full"
-                        onChange={handleOnChange}
-                    />
-                    <InputError message={errors.surname} className="mt-2" />
+                <div className={`grid grid-cols-2 gap-12`}>
+                    <div className="mb-4">
+                        <InputLabel htmlFor="surname" value="Отчество (если имеется)" color={`text-gray-200`} weight={`normal`} />
+                        <TextInput
+                            id="surname"
+                            type="text"
+                            name="surname"
+                            placeholder="Иванович"
+                            bg="bg-white"
+                            border="border border-gray-900 border-opacity-[.12]"
+                            rounded="rounded"
+                            value={data.surname}
+                            className="mt-1 block w-full"
+                            onChange={handleOnChange}
+                        />
+                        <InputError message={errors.surname} className="mt-2" />
+                    </div>
+                    <div className="mb-4">
+                        <InputLabel htmlFor="phone" value="Phone*" color={`text-gray-200`} weight={`normal`} />
+                        <TextInput
+                            id="phone"
+                            type="text"
+                            name="phone"
+                            bg="bg-white"
+                            placeholder="+77777777777"
+                            border="border border-gray-900 border-opacity-[.12]"
+                            rounded="rounded"
+                            value={data.phone}
+                            className="mt-1 block w-full"
+                            onChange={handleOnChange}
+                        />
+                        <InputError message={errors.phone} className="mt-2" />
+                    </div>
                 </div>
                 <div className={`grid grid-cols-2 gap-12`}>
                     <div className="mb-4">
                         <InputLabel htmlFor="tin" value="ИИН" color={`text-gray-200`} weight={`normal`} />
-
                         <IMaskInput
                             mask={`0000 0000 0000`}
                             value={data.tin}
