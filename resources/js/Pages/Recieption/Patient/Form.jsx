@@ -84,7 +84,7 @@ export default (props) => {
         birthdate: patient && patient.birthdate ? patient.birthdate : '01.01.1980',
         tin: patient && patient.tin ? `${patient.tin}` : ``,
         email: patient && patient.email ? patient.email : ``,
-        phone: recieption && recieption.phone ? recieption.phone : ``,
+        phone: patient && patient.phone ? patient.phone : ``,
         addon: patient && patient.addon ? patient.addon : ``,
         gender: patient && patient.gender ? patient.gender : `male`,
         locality_id: patient && patient.locality_id ? patient.locality_id : localities.data[0].id,
