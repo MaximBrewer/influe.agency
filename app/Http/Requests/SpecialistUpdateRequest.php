@@ -28,11 +28,11 @@ class SpecialistUpdateRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'surname' => ['max:255'],
-            'email' => ['required', 'email:rfc,dns', Rule::unique(User::class)->ignore($this->id), 'max:255'],
+            'email' => ['required', 'email:rfc,dns', 'max:255'],
             //'tin' => ['digits:12'],
             'directions' => ['required', 'exists:directions,id'],
             'birthdate' => ['date'],
-            'phone' => ['string', 'max:255', Rule::unique(User::class)->ignore($this->id)],
+            'phone' => ['string', 'max:255'],
         ];
     }
 

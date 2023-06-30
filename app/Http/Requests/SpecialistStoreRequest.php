@@ -31,7 +31,7 @@ class SpecialistStoreRequest extends FormRequest
             //'tin' => ['digits:12'],
             'directions' => ['required', 'exists:directions,id'],
             'birthdate' => ['date'],
-            'phone' => ['string', 'max:255', Rule::unique(User::class)->ignore($this->id)],
+            'phone' => ['string', 'max:255'],
         ];
     }
 

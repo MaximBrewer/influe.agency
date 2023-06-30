@@ -30,7 +30,7 @@ class PatientStoreRequest extends FormRequest
             'email' => ['required', 'email:rfc,dns', 'unique:users,email', 'max:255'],
             //'tin' => ['digits:12'],
             'birthdate' => ['date'],
-            'phone' => ['string', 'max:255', Rule::unique(User::class)->ignore($this->id)],
+            'phone' => ['string', 'max:255'],
         ];
     }
 
