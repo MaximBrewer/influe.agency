@@ -34,7 +34,6 @@ export default function Authenticated({ auth, children, heading = false, scrollp
     const roles = {
         client: `Пациент`,
         recieption: `Ресепшн`,
-        masseur: `Массажист`,
         specialist: `Специалист`,
         admin: `Администратор`,
     }
@@ -51,12 +50,6 @@ export default function Authenticated({ auth, children, heading = false, scrollp
                 title: 'Специалисты',
                 route: `admin.specialists.index`,
                 active: `admin.specialists`,
-                icon: <Spec className={`w-4 h-auto`} />
-            },
-            {
-                title: 'Массажисты',
-                route: `admin.masseurs.index`,
-                active: `admin.masseurs`,
                 icon: <Spec className={`w-4 h-auto`} />
             },
             {
@@ -122,28 +115,6 @@ export default function Authenticated({ auth, children, heading = false, scrollp
             {
                 title: 'Финансы',
                 route: `specialist.finance`,
-                icon: <Finance className={`w-5 h-auto`} />
-            },
-        ],
-        masseur: [
-            {
-                title: 'Расписание',
-                route: `masseur.timetable`,
-                icon: <Calendar className={`w-6 h-auto`} />
-            },
-            {
-                title: 'Пациенты',
-                route: `masseur.patients`,
-                icon: <Patients className={`w-5 h-auto`} />
-            },
-            {
-                title: 'Специалисты',
-                route: `masseur.specialists`,
-                icon: <Spec className={`w-4 h-auto`} />
-            },
-            {
-                title: 'Финансы',
-                route: `masseur.finance`,
                 icon: <Finance className={`w-5 h-auto`} />
             },
         ],

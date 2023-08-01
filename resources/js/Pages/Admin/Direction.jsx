@@ -1,4 +1,5 @@
-import Masseur from '@/Components/Forms/Masseur';
+import Direction from '@/Components/Forms/Direction';
+import Specialist from '@/Components/Forms/Specialist';
 import PrimaryButton from '@/Components/PrimaryButton';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
@@ -18,7 +19,7 @@ export default (props) => {
             <Head title={pagetitle} />
 
             <div className="pb-12 pt-5">
-                <Masseur {...props} />
+                <Direction {...props} />
             </div>
         </AuthenticatedLayout>
     );

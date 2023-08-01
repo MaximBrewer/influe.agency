@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Client;
-use App\Http\Controllers\Masseur;
 use App\Http\Controllers\Specialist;
 use App\Http\Controllers\Recieption;
 use App\Http\Controllers\Admin;
@@ -34,7 +33,6 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'admin']],  function () {
     Route::resource('recieptions', Admin\RecieptionsController::class);
     Route::resource('specialists', Admin\SpecialistsController::class);
-    Route::resource('masseurs', Admin\MasseursController::class);
     Route::resource('localities', Admin\LocalitiesController::class);
     Route::resource('directions', Admin\DirectionsController::class);
     Route::resource('branches', Admin\BranchesController::class);
@@ -70,13 +68,6 @@ Route::group(['prefix' => 'client', 'as' => 'client.', 'middleware' => ['auth', 
     Route::get('history', Client\HistoryController::class)->name('history');
     Route::get('specialists', Client\SpecialistsController::class)->name('specialists');
     Route::get('finance', Client\FinanceController::class)->name('finance');
-});
-
-Route::group(['prefix' => 'masseur', 'as' => 'masseur.', 'middleware' => ['auth', 'masseur']],  function () {
-    Route::get('timetable/{date?}', Masseur\TimetableController::class)->name('timetable');
-    Route::get('patients', Masseur\PatientsController::class)->name('patients');
-    Route::get('specialists', Masseur\SpecialistsController::class)->name('specialists');
-    Route::get('finance', Masseur\FinanceController::class)->name('finance');
 });
 
 Route::group(['prefix' => 'specialist', 'as' => 'specialist.', 'middleware' => ['auth', 'specialist']],  function () {

@@ -4,10 +4,11 @@ import Plus from '@/Components/Plus';
 import DirectionModal from '@/Components/Modals/Direction';
 import InfoModal from '@/Components/Modals/Info';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 import { useLayout } from '@/Contexts/LayoutContext';
 import Trash from '@/Components/Trash';
 import { useEffect } from 'react';
+import Services from '@/Icons/Services';
 
 
 export default (props) => {
@@ -47,22 +48,21 @@ export default (props) => {
                         <Plus className={`w-6 h-auto ml-3`} />
                     </PrimaryButton>
                 </div>
-                <div className={`rounded-lg shadow-block bg-white px-3 py-4 overflow-y-auto`}>
+                <div className={`rounded-lg shadow-block bg-white px-3 pt-5 overflow-y-auto`}>
 
-                    {directions.map((item, ldx) => <div key={ldx} className="flex space-x-5 items-center mb-5 p-5 rounded-lg bg-blue-50 hover:bg-white hover:shadow-block">
+                    {directions.map((direction, ldx) => <div key={ldx} className="flex space-x-5 items-center mb-5 p-5 rounded-lg bg-blue-50 hover:bg-white hover:shadow-block">
                         <div className="grow">
-                            <div className="font-medium text-violet-500">{item.title}</div>
+                            <div className="font-medium text-violet-500">{direction.title}</div>
                         </div>
                         <div className={`flex items-center space-x-4`}>
-                            <a href="#" className={`text-violet-500`} onClick={e => {
-                                e.preventDefault()
-                                setModal(<DirectionModal direction={item} />)
-                            }}>
+                            <Link href={route('admin.directions.edit', {
+                                direction: direction.id
+                            })} className={`text-violet-500`}>
                                 <Pencil className={`w-6 h-auto`} />
-                            </a>
+                            </Link>
                             <a href="#" className={`text-red-500`} onClick={e => {
                                 e.preventDefault()
-                                destroy(item)
+                                destroy(direction)
                             }}>
                                 <Trash className={`w-6 h-auto`} />
                             </a>

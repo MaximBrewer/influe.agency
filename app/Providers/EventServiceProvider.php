@@ -2,11 +2,9 @@
 
 namespace App\Providers;
 
-use App\Events\MasseurCreated;
 use App\Events\PatientCreated;
 use App\Events\RecieptionCreated;
 use App\Events\SpecialistCreated;
-use App\Listeners\SendMasseurCreatedNotification;
 use App\Listeners\SendPatientCreatedNotification;
 use App\Listeners\SendRecieptionCreatedNotification;
 use App\Listeners\SendSpecialistCreatedNotification;
@@ -29,9 +27,6 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         SpecialistCreated::class => [
             SendSpecialistCreatedNotification::class
-        ],
-        MasseurCreated::class => [
-            SendMasseurCreatedNotification::class
         ],
         RecieptionCreated::class => [
             SendRecieptionCreatedNotification::class

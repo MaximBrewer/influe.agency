@@ -29,7 +29,6 @@ class RedirectIfAuthenticated
                     "branch" => $branch->id
                 ]);
                 if (Auth::user()->role->name === 'specialist') return redirect(RouteServiceProvider::HOME_SPECIALST);
-                if (Auth::user()->role->name === 'masseur') return redirect(RouteServiceProvider::HOME_MASSEUR);
                 return redirect(RouteServiceProvider::HOME_CLIENT);
             }
         }

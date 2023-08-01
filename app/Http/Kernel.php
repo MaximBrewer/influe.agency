@@ -60,7 +60,6 @@ class Kernel extends HttpKernel
         'specialist' => \App\Http\Middleware\Specialist::class,
         'admin' => \App\Http\Middleware\Admin::class,
         'recieption' => \App\Http\Middleware\Recieption::class,
-        'masseur' => \App\Http\Middleware\Masseur::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

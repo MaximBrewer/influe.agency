@@ -95,7 +95,7 @@ export default function Login({ status, canResetPassword }) {
                             onChange={handleOnChange}
                         />
 
-                        <InputError message={errors.phone} className="mt-2" />
+                        <InputError message={errors.email} className="mt-2" />
                     </div>
 
                     <div className="mt-6 px-6">

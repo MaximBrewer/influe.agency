@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DirectionStoreRequest;
 use App\Http\Requests\DirectionUpdateRequest;
+use App\Http\Resources\Direction as ResourcesDirection;
+use App\Http\Resources\Service as ResourcesService;
 use App\Models\Direction;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -48,6 +51,19 @@ class DirectionsController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Direction $direction)
+    {
+        $data = [];
+        $this->getCommonData($data);
+        $data['pagetitle'] = 'Направление';
+        $data['direction'] = new ResourcesDirection($direction);
+        return Inertia::render('Admin/Direction', $data);
+    }
+
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(Direction $direction)
@@ -56,5 +72,9 @@ class DirectionsController extends Controller
             return Redirect::back()->withErrors(['message' => 'Направление имеет привязки']);
         $direction->delete();
         return redirect()->route('admin.directions.index');
+    }
+
+    private function getCommonData(&$data)
+    {
     }
 }

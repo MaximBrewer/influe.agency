@@ -50,7 +50,7 @@ export default (props) => {
                         <Plus className={`w-6 h-auto ml-3`} />
                     </PrimaryButton>
                 </div>
-                <div className={`rounded-lg shadow-block bg-white px-3 py-4 overflow-y-auto`}>
+                <div className={`rounded-lg shadow-block bg-white px-3 pt-5 overflow-y-auto`}>
                     {branches.map((item, ldx) => <div key={ldx} className="flex space-x-5 items-center mb-5 p-5 rounded-lg bg-blue-50 hover:bg-white hover:shadow-block">
                         <div className="grow">
                             <div className="font-medium text-violet-500">{item.title}</div>

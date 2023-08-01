@@ -17,6 +17,7 @@ class Direction extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'services' => Service::collection($this->services),
         ];
     }
 }
