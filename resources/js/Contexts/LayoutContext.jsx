@@ -22,15 +22,14 @@ const LayoutProvider = (props) => {
     const [modal, setModal] = useState(null)
 
     const checkMobile = () => {
-        const windowtinerWidth = window.tinerWidth
-        const windowtinerHeight = window.tinerHeight
-        if (windowtinerWidth < 1024) {
+        const windowInnerWidth = window.innerWidth
+        const windowtInnerHeight = window.innerWidth
+        if (windowInnerWidth < 1024) {
             setMobile(true)
         } else {
             setMobile(false)
         }
     }
-
 
     const getWeekNumber = (currentDate = new Date()) => {
         let startDate = new Date(currentDate.getFullYear(), 0, 1);

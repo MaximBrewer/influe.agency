@@ -50,7 +50,7 @@ const Day = (props) => {
         {open ? <div className={`absolute border bg-white shadow-block z-10 text-left right-0`}>
             <ul className={`whitespace-nowrap`}>
                 {['free', 'cfree', 'rest'].map((status, sdx) => <li key={sdx}>
-                    <label htmlFor={status} className={`flex items-center hover:bg-blue-100 cursor-pointer p-1`}>
+                    <label htmlFor={status} className={`flex items-center hover:bg-slate-100 cursor-pointer p-1`}>
                         <input type={`radio`} id={status} value={status} name={`status`} className={`opacity-0 hidden`} onChange={e => {
                             setData('status', status);
                         }} />
@@ -80,7 +80,7 @@ export default (props) => {
         <Head title={pagetitle} />
         <div className={`shadow-block rounded-lg bg-white text-sm text-center overflow-hidden flex flex-col p-1 mb-3`}>
             <div className='overflow-y-auto'>
-                <div className={`grid grid-cols-[5.25rem_1fr_1fr_1fr_1fr_1fr_1fr_1fr] bg-blue-100`}>
+                <div className={`grid grid-cols-[5.25rem_1fr_1fr_1fr_1fr_1fr_1fr_1fr] bg-slate-100`}>
                     <div className={``}></div>
                     {weekdays.map((weekday, wdx) => <div key={wdx} className={`p-5 border-l border-violet-500`}>{weekday.title}</div>)}
                 </div>

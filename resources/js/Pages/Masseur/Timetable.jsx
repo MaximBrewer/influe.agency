@@ -45,7 +45,7 @@ export default (props) => {
                 </ul>
                 {tab === `today` ? <div className={`shadow-bb rounded-lg bg-white py-5 px-4`}>
                     <div className={`text-lg font-medium mb-5`}>Понедельник, Июнь 13</div>
-                    <div className={`flex items-center bg-blue-100 rounded-lg -mx-3`}>
+                    <div className={`flex items-center bg-slate-100 rounded-lg -mx-3`}>
                         <a href="#" className={`flex items-center shrink-0 py-4 px-4`}>
                             <ChevronLeft className={`h-4 w-auto`} />
                         </a>

@@ -36,6 +36,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     Route::resource('localities', Admin\LocalitiesController::class);
     Route::resource('directions', Admin\DirectionsController::class);
     Route::resource('branches', Admin\BranchesController::class);
+    Route::resource('tasks', Admin\TasksController::class);
+    Route::group(['prefix' => 'tasks', 'as' => 'tasks.'],  function () {
+        Route::patch('{task}/status', [Admin\TasksController::class, 'status'])->name('status');
+        Route::group(['prefix' => '{task}'],  function () {
+            Route::resource('comments', Admin\CommentsController::class);
+        });
+    });
 });
 
 Route::group(['prefix' => 'recieption', 'as' => 'recieption.', 'middleware' => ['auth', 'recieption']],  function () {

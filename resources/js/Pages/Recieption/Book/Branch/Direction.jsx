@@ -69,7 +69,7 @@ export default (props) => {
                         direction: direction.id,
                         date: prevDate
                     })}
-                        className={`py-2.5 px-4 hover:bg-blue-100`}>
+                        className={`py-2.5 px-4 hover:bg-slate-100`}>
                         <ArrowLeft className={`w-2 h-auto`} />
                     </Link>
                     <span>{dateText}</span>
@@ -79,7 +79,7 @@ export default (props) => {
                         direction: direction.id,
                         date: nextDate
                     })}
-                        className={`py-2.5 px-4 hover:bg-blue-100`}>
+                        className={`py-2.5 px-4 hover:bg-slate-100`}>
                         <ArrowRight className={`w-2 h-auto`} />
                     </Link>
                 </div>
@@ -88,7 +88,7 @@ export default (props) => {
                         e.preventDefault();
                         e.stopPropagation();
                         setOpenDirections(prev => !prev)
-                    }} className={`rounded-lg bg-blue-50 hover:bg-blue-100 transition pr-4 flex items-center justify-between min-w-[285px]`}>
+                    }} className={`rounded-lg bg-blue-50 hover:bg-slate-100 transition pr-4 flex items-center justify-between min-w-[285px]`}>
                         <div className={`flex space-x-3 items-center`}>
                             <DirectionOption direction={direction} />
                         </div>
@@ -97,7 +97,7 @@ export default (props) => {
                     {openDirections ? <ul className={`z-20 absolute bg-blue-50 z-10 top-full left-0 rounded-lg py-1 w-full overflow-y-auto max-h-[24rem]`}>
                         {directions.data.map((direction, sdx) => <li key={`direction-${sdx}`} className={``}>
                             <Link
-                                className={`flex space-x-3 pr-4 hover:bg-blue-100 block w-full items-center`}
+                                className={`flex space-x-3 pr-4 hover:bg-slate-100 block w-full items-center`}
                                 href={route(`recieption.book.direction`, {
                                     patient: patient.id,
                                     branch: branch.id,
@@ -115,8 +115,8 @@ export default (props) => {
                     <div className={`grid text-center sticky top-0 z-20`} style={{
                         gridTemplateColumns: `5.25rem repeat(${specialists.data.length}, minmax(154px, max-content))`
                     }}>
-                        <div className={`bg-blue-100`}></div>
-                        {specialists.data.map((specialist, sdx) => <div key={`specialist-${sdx}`} className={`p-5 border-l bg-blue-100 border-l border-violet-500 capitalize`}>{specialist.fio}</div>)}
+                        <div className={`bg-slate-100`}></div>
+                        {specialists.data.map((specialist, sdx) => <div key={`specialist-${sdx}`} className={`p-5 border-l bg-slate-100 border-l border-violet-500 capitalize`}>{specialist.fio}</div>)}
                     </div>
                     <div className={`grid text-center`} style={{
                         gridTemplateColumns: `5.25rem repeat(${specialists.data.length}, minmax(154px, max-content))`

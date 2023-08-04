@@ -17,8 +17,6 @@ export default (props) => {
 
     const direction = props.direction.data
 
-    console.log(direction)
-
     const { data, setData, post, patch, processing, errors, reset, transform } = useForm({
         id: direction ? direction.id : null,
         title: direction && direction.title ? direction.title : ``,

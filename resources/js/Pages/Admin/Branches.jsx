@@ -15,8 +15,6 @@ export default (props) => {
 
     const { pagetitle, branches, errors = {}, localities } = props
 
-    console.log(localities)
-
     const { setModal } = useLayout();
 
     const { data, post } = useForm({

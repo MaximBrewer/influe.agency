@@ -18,6 +18,7 @@ import MapPin from '@/Components/MapPin';
 import { useLayout } from '@/Contexts/LayoutContext';
 import Notifications from './Notifications';
 import Branch from '@/Components/Branch';
+import Tasks from '@/Components/Tasks';
 
 export default function Authenticated({ auth, children, heading = false, scrollpage = false }) {
 
@@ -53,10 +54,10 @@ export default function Authenticated({ auth, children, heading = false, scrollp
                 icon: <Spec className={`w-4 h-auto`} />
             },
             {
-                title: 'Направления',
-                route: `admin.directions.index`,
-                active: `admin.directions`,
-                icon: <Academic className={`w-6 h-auto`} />
+                title: 'Задачи',
+                route: `admin.tasks.index`,
+                active: `admin.tasks`,
+                icon: <Tasks className={`w-6 h-auto`} />
             },
             {
                 title: 'Нас. пункты',
@@ -201,7 +202,7 @@ export default function Authenticated({ auth, children, heading = false, scrollp
                                     setShowNotifications(prev => !prev)
                                 }}>
                                     <Bell className={`w-6 h-auto`} />
-                                    <div className={`w-3 h-3 absolute -right-px -top-1 border-blue-100 rounded-full border-2 bg-green-500`} />
+                                    <div className={`w-3 h-3 absolute -right-px -top-1 border-slate-100 rounded-full border-2 bg-green-500`} />
                                 </a> : ``}
                                 <div className={`w-10 h-10 bg-cover rounded bg-center`} style={{ backgroundImage: `url(/storage/avatar.jpeg)` }}></div>
                                 <div className={`leading-tight`}>

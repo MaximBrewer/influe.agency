@@ -57,7 +57,7 @@ export default (props) => {
                         </div>
                     </div>
                     <div className={`p-[.125rem]`}>
-                        <div className={`rounded-lg overflow-hidden grid grid-cols-[20px_1fr_1fr_1fr_1fr_1fr_1fr_1fr] text-center bg-blue-100`}>
+                        <div className={`rounded-lg overflow-hidden grid grid-cols-[20px_1fr_1fr_1fr_1fr_1fr_1fr_1fr] text-center bg-slate-100`}>
                             <div className={``}></div>
                             <div className={`p-5`}>Понедельник</div>
                             <div className={`p-5 border-l border-gray-400`}>Вторник</div>
@@ -78,7 +78,7 @@ export default (props) => {
                             <div className={`h-2.5 border-l border-gray-400`}></div>
                         </div>
                         <div className={`grid grid-cols-[20px_1fr_1fr_1fr_1fr_1fr_1fr_1fr] rounded-l-lg overflow-hidden text-xl text-gray-600`}>
-                            <div className={`bg-blue-100 border-b border-gray-400`}></div>
+                            <div className={`bg-slate-100 border-b border-gray-400`}></div>
                             <div className={`bg-blue-50 border-b border-gray-400 h-[100px] py-4 px-5`}>26 Апрель</div>
                             <div className={`bg-blue-50 border-l border-b border-gray-400 h-[100px] py-4 px-5`}>27</div>
                             <div className={`bg-blue-50 border-l border-b border-gray-400 h-[100px] py-4 px-5`}>28</div>
@@ -96,7 +96,7 @@ export default (props) => {
                             <div className={`bg-blue-50 border-l border-b border-gray-400 h-[100px] py-4 px-5 text-gray-100`}>7</div>
                             <div className={`bg-blue-50 border-l border-b border-gray-400 h-[100px] py-4 px-5`}>8</div>
 
-                            <div className={`bg-blue-100 border-b border-gray-400`}></div>
+                            <div className={`bg-slate-100 border-b border-gray-400`}></div>
                             <div className={`bg-orange-500 border-b border-gray-400 pb-[.2rem] h-[100px] flex`}>
                                 <div className={`bg-blue-50 mix-blend-luminosity py-4 px-5 grow`}>
                                     <div>9</div>
@@ -132,7 +132,7 @@ export default (props) => {
                             </div>
                             <div className={`bg-blue-50 border-l border-b border-gray-400 h-[100px] py-4 px-5 bg-disabled text-gray-100 bg-cover`}>15</div>
 
-                            <div className={`bg-blue-100 border-b border-gray-400`}></div>
+                            <div className={`bg-slate-100 border-b border-gray-400`}></div>
                             <div className={`bg-violet-600 border-l border-b border-gray-400 pb-[.2rem] h-[100px] flex`}>
                                 <div className={`bg-blue-50 mix-blend-luminosity py-4 px-5 grow`}>
                                     <div>16</div>
@@ -171,7 +171,7 @@ export default (props) => {
                             </div>
                             <div className={`bg-blue-50 border-l border-b border-gray-400 h-[100px] py-4 px-5 bg-disabled text-gray-100 bg-cover`}>22</div>
 
-                            <div className={`bg-blue-100 border-b border-gray-400`}></div>
+                            <div className={`bg-slate-100 border-b border-gray-400`}></div>
                             <div className={`bg-blue-50 border-l border-b border-gray-400 pb-[.2rem] h-[100px] flex py-4 px-5`}>
                                 <div>23</div>
                             </div>
@@ -193,7 +193,7 @@ export default (props) => {
                             <div className={`bg-blue-50 border-l border-b border-gray-400 h-[100px] py-4 px-5 bg-disabled text-gray-100 bg-cover`}>29</div>
 
 
-                            <div className={`bg-blue-100 border-b border-gray-400`}></div>
+                            <div className={`bg-slate-100 border-b border-gray-400`}></div>
                             <div className={`bg-blue-50 border-l border-b border-gray-400 pb-[.2rem] h-[100px] flex py-4 px-5`}>
                                 <div>30</div>
                             </div>

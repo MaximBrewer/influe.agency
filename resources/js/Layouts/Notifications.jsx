@@ -15,7 +15,7 @@ export default (props) => {
                     <div className={`text-sm text-violet-500`}>Имя Фамилия Специалиста</div>
                     <div className={`font-medium`}>Назначение приема</div>
                 </div>
-                <div className={`shrink-0 bg-blue-100 flex items-center justify-center rounded-full w-10 h-10`}>
+                <div className={`shrink-0 bg-slate-100 flex items-center justify-center rounded-full w-10 h-10`}>
                     <Phone className={`w-6 h-6 text-gray-600`} />
                 </div>
             </div>
@@ -38,9 +38,9 @@ export default (props) => {
             </div>
             <div className={`font-medium mb-4`}>Сообщение о готовности стелек/обуви</div>
             <div className={`flex justify-between text-violet-500 text-sm`}>
-                <div className={`bg-blue-100 rounded-lg px-2`}>Подробнее</div>
-                <div className={`bg-blue-100 rounded-lg px-2`}>Телефон пациента</div>
-                <div className={`bg-blue-100 rounded-lg px-2`}>История</div>
+                <div className={`bg-slate-100 rounded-lg px-2`}>Подробнее</div>
+                <div className={`bg-slate-100 rounded-lg px-2`}>Телефон пациента</div>
+                <div className={`bg-slate-100 rounded-lg px-2`}>История</div>
             </div>
 
             <div className={`text-lg font-semibold mb-4`}>Магазин</div>
@@ -50,9 +50,9 @@ export default (props) => {
             </div>
             <div className={`font-medium mb-4`}>Сообщение о готовности стелек/обуви</div>
             <div className={`flex justify-between text-violet-500 text-sm`}>
-                <div className={`bg-blue-100 rounded-lg px-2`}>Подробнее</div>
-                <div className={`bg-blue-100 rounded-lg px-2`}>Телефон пациента</div>
-                <div className={`bg-blue-100 rounded-lg px-2`}>История</div>
+                <div className={`bg-slate-100 rounded-lg px-2`}>Подробнее</div>
+                <div className={`bg-slate-100 rounded-lg px-2`}>Телефон пациента</div>
+                <div className={`bg-slate-100 rounded-lg px-2`}>История</div>
             </div>
 
             <div className={`text-lg font-semibold mb-4`}>Ресепшн</div>
@@ -62,8 +62,8 @@ export default (props) => {
             </div>
             <div className={`font-medium mb-4`}>Имя Фамилия специалиста</div>
             <div className={`flex justify-between text-violet-500 text-sm`}>
-                <div className={`bg-blue-100 rounded-lg px-2`}>Подробнее</div>
-                <div className={`bg-blue-100 rounded-lg px-2`}>Расписание</div>
+                <div className={`bg-slate-100 rounded-lg px-2`}>Подробнее</div>
+                <div className={`bg-slate-100 rounded-lg px-2`}>Расписание</div>
             </div>
         </div>
     </div>

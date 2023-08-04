@@ -1,6 +1,6 @@
 import { forwardRef, useEffect, useRef } from 'react';
 
-export default forwardRef(function TextInput({ type = 'text', bg = 'bg-blue-400 bg-opacity-20', border = "border-0", rounded = 'rounded-xl', className = '', isFocused = false, ...props }, ref) {
+export default forwardRef(function TextArea({ bg = 'bg-blue-400 bg-opacity-20', border = "border-0", rounded = 'rounded-xl', className = '', isFocused = false, ...props }, ref) {
     const input = ref ? ref : useRef();
 
     useEffect(() => {
@@ -13,7 +13,6 @@ export default forwardRef(function TextInput({ type = 'text', bg = 'bg-blue-400 
         <div className="flex flex-col items-start">
             <textarea
                 {...props}
-                type={type}
                 className={
                     `${rounded} ${bg} ${border} ring-0 ${className}`
                 }

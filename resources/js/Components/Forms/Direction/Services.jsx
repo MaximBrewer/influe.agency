@@ -5,8 +5,6 @@ export default (props) => {
 
     const { data, setData } = props;
 
-    console.log(data)
-
     const handleOnChange = (event, index, type) => {
         setData(prev => {
             let services = prev.services.slice()

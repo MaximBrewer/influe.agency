@@ -75,7 +75,7 @@ export default (props) => {
                         e.preventDefault();
                         e.stopPropagation();
                         setOpenWeeks(prev => !prev)
-                    }} className={`rounded-lg bg-blue-50 hover:bg-blue-100 transition py-2.5 px-4 flex items-center justify-between min-w-[285px]`}>
+                    }} className={`rounded-lg bg-blue-50 hover:bg-slate-100 transition py-2.5 px-4 flex items-center justify-between min-w-[285px]`}>
                         <div className={`flex space-x-3 `}>
                             <span>Неделя:</span>
                             <span>{currentWeek.label}</span>
@@ -85,7 +85,7 @@ export default (props) => {
                     {openWeeks ? <ul className={`z-20 absolute bg-blue-50 z-10 top-full left-0 rounded-lg py-1 w-full`}>
                         {weeks.map((week, wdx) => <li key={wdx} className={`text-justify w-full`}>
                             <Link
-                                className={`flex space-x-3 py-2 px-3 hover:bg-blue-100 block w-full text-justify`}
+                                className={`flex space-x-3 py-2 px-3 hover:bg-slate-100 block w-full text-justify`}
                                 href={route(`recieption.book.specialist`, {
                                     patient: patient.id,
                                     branch: branch.id,
@@ -104,7 +104,7 @@ export default (props) => {
                         e.preventDefault();
                         e.stopPropagation();
                         setOpenSpecialists(prev => !prev)
-                    }} className={`rounded-lg bg-blue-50 hover:bg-blue-100 transition pr-4 flex items-center justify-between min-w-[285px]`}>
+                    }} className={`rounded-lg bg-blue-50 hover:bg-slate-100 transition pr-4 flex items-center justify-between min-w-[285px]`}>
                         <div className={`flex space-x-3 items-center`}>
                             <SpecialistOption specialist={specialist} />
                         </div>
@@ -113,7 +113,7 @@ export default (props) => {
                     {openSpecialists ? <ul className={`z-20 absolute bg-blue-50 z-10 top-full left-0 rounded-lg py-1 w-full overflow-y-auto max-h-[24rem]`}>
                         {specialists.map((specialist, sdx) => <li key={sdx} className={``}>
                             <Link
-                                className={`flex space-x-3 pr-4 hover:bg-blue-100 block w-full items-center`}
+                                className={`flex space-x-3 pr-4 hover:bg-slate-100 block w-full items-center`}
                                 href={route(`recieption.book.specialist`, {
                                     patient: patient.id,
                                     branch: branch.id,
@@ -128,7 +128,7 @@ export default (props) => {
                 </div>
             </div>
             <div className='overflow-y-auto'>
-                <div className={`grid grid-cols-[5.25rem_1fr_1fr_1fr_1fr_1fr_1fr_1fr] bg-blue-100 text-center sticky top-0 z-10`}>
+                <div className={`grid grid-cols-[5.25rem_1fr_1fr_1fr_1fr_1fr_1fr_1fr] bg-slate-100 text-center sticky top-0 z-10`}>
                     <div className={``}></div>
                     {currentWeek.days.map((weekday, wdx) => <div key={wdx} className={`p-5 border-l ${weekday.today ? `bg-violet-500 text-white` : ``} border-violet-500 capitalize`}>{weekday.title}</div>)}
                 </div>

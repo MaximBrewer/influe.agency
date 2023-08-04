@@ -101,7 +101,7 @@ export default (props) => {
                 </div>
                 <div className={`shadow-bb rounded-lg bg-white py-5 px-4 overflow-hidden flex flex-col`}>
                     <div className={`text-lg font-medium mb-5 capitalize`}>{dateText}</div>
-                    <div className={`flex items-center bg-blue-100 rounded-lg -mx-3`}>
+                    <div className={`flex items-center bg-slate-100 rounded-lg -mx-3`}>
                         <Link href={route(`recieption.timetable`, {
                             branch: branch,
                             date: prevweek
@@ -158,7 +158,7 @@ export default (props) => {
                         </div>}
                     </div>
                 </div>
-            </div >
+            </div>
         </AuthenticatedLayout >
     );
 }
