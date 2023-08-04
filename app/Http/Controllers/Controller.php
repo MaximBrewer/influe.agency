@@ -28,7 +28,7 @@ class Controller extends BaseController
             // request()->user()->touchOnline();
             $user = Auth::user();
         }
-        Inertia::share('auth', ['user' => new ResourcesUser($user)]);
+        Inertia::share('auth', $user ? ['user' => new ResourcesUser($user)] : []);
         Inertia::share('paymethods', TopUp::getMethodOptions());
         return $this->{$method}(...array_values($parameters));
     }
