@@ -10,9 +10,9 @@ use App\Http\Resources\ExecutorOpton;
 use App\Http\Resources\Task as ResourcesTask;
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class TasksController extends Controller
@@ -43,7 +43,9 @@ class TasksController extends Controller
             ],
         ];
 
-        $data['executors'] = ExecutorOpton::collection(User::all());
+        $data['executors'] = ExecutorOpton::collection(User::whereHas('role', function (Builder $query) {
+            $query->whereIn('name', User::$canTask['admin']);
+        })->get());
 
         return Inertia::render('Admin/Tasks', $data);
     }

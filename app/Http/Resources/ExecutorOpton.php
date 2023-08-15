@@ -18,7 +18,8 @@ class ExecutorOpton extends JsonResource
         $array = parent::toArray($request);
         $array = [
             'id' => $this->id,
-            'name' => $this->name,
+            'name' => trim($this->lastname . ' ' . $this->name . ' ' . $this->surname),
+            'role' => $this->role->display_name,
             'avatar' => Storage::url($this->avatar)
         ];
         return $array;

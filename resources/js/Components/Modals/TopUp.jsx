@@ -25,7 +25,7 @@ const customStyles = {
 
 export default (props) => {
 
-    const { user, paymethods } = props
+    const { user, paymethods, role = `recieption` } = props
 
     const { setModal } = useLayout()
 
@@ -41,7 +41,7 @@ export default (props) => {
 
     const submit = (e) => {
         e.preventDefault();
-        patch(route('recieption.patient.topup', {
+        patch(route(`${role}.patient.topup`, {
             patient: user.id
         }), {
             onSuccess: () => {

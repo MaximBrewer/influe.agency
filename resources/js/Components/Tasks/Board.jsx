@@ -11,7 +11,7 @@ import { Inertia } from '@inertiajs/inertia';
 
 export default (props) => {
 
-    const { lists } = useTasks();
+    const { lists, auth } = useTasks();
 
     const [isDragging, setIsDragging] = useState(false);
     const [currentItem, setCurrentItem] = useState(false);
@@ -44,7 +44,7 @@ export default (props) => {
                 newLists.find(el => el.status_id === data.status_id).tasks.data.push(data.item)
                 return newLists;
             })
-            patch(route(`admin.tasks.status`, {
+            patch(route(`${auth.user.role.name}.tasks.status`, {
                 task: data.item.id
             }), {
                 onSuccess: ({ props }) => {

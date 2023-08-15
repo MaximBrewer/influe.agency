@@ -12,7 +12,7 @@ class PatientTopUpRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::check() && Auth::user()->role->name === 'recieption';
+        return Auth::check() && in_array(Auth::user()->role->name, ['recieption', 'senior']);
     }
 
     /**

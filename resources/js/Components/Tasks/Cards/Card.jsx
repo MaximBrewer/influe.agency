@@ -46,10 +46,10 @@ export default (props) => {
           <Sheet className="w-4 h-4 shrink-0" />
           <div className="">Есть прикрепленные файлы</div>
         </div> : ``}
-        <div className="justify-start items-center gap-2 flex">
+        {item.comments ? <div className="justify-start items-center gap-2 flex">
           <Chat className="w-4 h-4 shrink-0" />
-          <div className="">1</div>
-        </div>
+          <div className="">{item.comments}</div>
+        </div> : ``}
       </div>
     </div>
   );

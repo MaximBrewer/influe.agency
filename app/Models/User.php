@@ -162,6 +162,7 @@ class User extends Authenticatable
         'lastname',
         'tin',
         'addon',
+        'balance',
         'gender',
         'birthdate',
         'schedule',
@@ -187,6 +188,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'schedule' => 'array'
+    ];
+
+
+    public static $canTask = [
+        'admin' => [
+            'recieption',
+            'specialist',
+            'manager',
+            'sale',
+            'nurse',
+            'senior',
+            'supervisor',
+        ],
     ];
 
     /**

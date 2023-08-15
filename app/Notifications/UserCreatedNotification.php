@@ -18,7 +18,6 @@ class UserCreatedNotification extends Notification implements ShouldQueue
      */
     public function __construct()
     {
-        
     }
 
     /**
@@ -40,9 +39,7 @@ class UserCreatedNotification extends Notification implements ShouldQueue
         $notifiable->password = Hash::make($password);
         $notifiable->saveQuietly();
         return (new MailMessage)
-            ->line('Ваш пароль: ' . $password)
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->line('Ваш пароль: ' . $password);
     }
 
     /**

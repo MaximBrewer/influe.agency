@@ -26,12 +26,11 @@ const Status = ({ status_id }) => {
 export default (props) => {
 
     const { task } = props
-    console.log(task)
 
     const { setModal, setLists, executors, auth, dropTask } = useTasks()
 
     return <div className="w-[40rem]">
-        <Close className="w-6 h-6 right-5 top-5 absolute" onClick={e => setModal(null)} />
+        <Close className="w-6 h-6 right-5 top-5 absolute cursor-pointer" onClick={e => setModal(null)} />
         <div className="flex items-center gap-3 mb-6 text-sm text-zinc-500">
             <div className="w-6 h-6 bg-cover rounded-full bg-center" style={{ backgroundImage: `url('${task.user.avatar}')` }}></div>
             <div>

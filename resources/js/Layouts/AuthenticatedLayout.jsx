@@ -19,6 +19,10 @@ import { useLayout } from '@/Contexts/LayoutContext';
 import Notifications from './Notifications';
 import Branch from '@/Components/Branch';
 import Tasks from '@/Components/Tasks';
+import Supervisor from '@/Components/Menu/Supervisor';
+import Senior from '@/Components/Menu/Senior';
+import Sale from '@/Components/Menu/Sale';
+import Nurse from '@/Components/Menu/Nurse';
 
 export default function Authenticated({ auth, children, heading = false, scrollpage = false }) {
 
@@ -42,16 +46,40 @@ export default function Authenticated({ auth, children, heading = false, scrollp
     const menuItems = {
         admin: [
             {
+                title: 'Старший администратор',
+                route: `admin.supervisors.index`,
+                active: `admin.supervisors`,
+                icon: <Supervisor className={`w-6 h-auto ml-px`} />
+            },
+            {
                 title: 'Ресепшн',
                 route: `admin.recieptions.index`,
                 active: `admin.recieptions`,
                 icon: <Calendar className={`w-6 h-auto ml-px`} />
             },
             {
+                title: 'Медсестра',
+                route: `admin.nurses.index`,
+                active: `admin.nurses`,
+                icon: <Nurse className={`w-6 h-auto ml-px`} />
+            },
+            {
                 title: 'Специалисты',
                 route: `admin.specialists.index`,
                 active: `admin.specialists`,
                 icon: <Spec className={`w-4 h-auto`} />
+            },
+            {
+                title: 'Старший менеджер',
+                route: `admin.seniors.index`,
+                active: `admin.seniors`,
+                icon: <Senior className={`w-6 h-auto ml-px`} />
+            },
+            {
+                title: 'Продавцы-консультанты',
+                route: `admin.sales.index`,
+                active: `admin.sales`,
+                icon: <Sale className={`w-6 h-auto ml-px`} />
             },
             {
                 title: 'Задачи',
@@ -140,7 +168,20 @@ export default function Authenticated({ auth, children, heading = false, scrollp
                 route: `client.finance`,
                 icon: <Finance className={`w-5 h-auto`} />
             },
-        ]
+        ],
+        senior: [
+            {
+                title: 'Пациенты',
+                route: `senior.patients`,
+                icon: <Patients className={`w-5 h-auto`} />
+            },
+            {
+                title: 'Задачи',
+                route: `senior.tasks.index`,
+                active: `senior.tasks`,
+                icon: <Tasks className={`w-6 h-auto`} />
+            },
+        ],
     }
 
     return (

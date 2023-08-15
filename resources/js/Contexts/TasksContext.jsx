@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import moment from 'moment';
 import ru from "./moment.ru"
-import { useLayout } from "./LayoutContext";
 import Task from "@/Components/Modals/TaskForm";
-import { Inertia } from "@inertiajs/inertia";
-import { useForm } from "@inertiajs/react";
+import { router, useForm } from "@inertiajs/react";
 moment.locale('ru', ru);
 
 const TasksContext = React.createContext();
@@ -42,6 +40,21 @@ const TasksProvider = (props) => {
             }
         });
     }
+
+    useEffect(() => {
+        setInterval(() => {
+            router.reload({ only: ['lists'] }, {
+                onSuccess: (props) => {
+                    console.loe(props)
+                    setLists(props.lists)
+                }
+            })
+        }, 10000)
+    }, [])
+
+    useEffect(() => {
+        setLists(props.lists)
+    }, [props.lists])
 
     return <TasksContext.Provider
         value={{

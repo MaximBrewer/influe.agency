@@ -25,7 +25,7 @@ export default (props) => {
     const submit = (e) => {
         e.preventDefault();
         axios
-            .post(route('admin.tasks.comments.store', {
+            .post(route(`${auth.user.role.name}.tasks.comments.store`, {
                 task: task.id
             }), data)
             .then(({ data }) => {
@@ -36,10 +36,11 @@ export default (props) => {
 
     useEffect(() => {
         axios
-            .get(route('admin.tasks.comments.index', {
+            .get(route(`${auth.user.role.name}.tasks.comments.index`, {
                 task: task.id
             }), data)
             .then(({ data }) => {
+                setComments(data.data)
                 setData('comment', ``)
             })
     }, [task])

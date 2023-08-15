@@ -217,9 +217,12 @@ export default (props) => {
                     <div className="mb-4">
                         <InputLabel htmlFor="locality_id" value="Населенный пункт" color={`text-gray-200`} weight={`normal`} />
                         <select value={data.locality_id} onChange={e => {
-                            let locality = localities.data.find(l => l.id === e.target.value);
-                            setData('locality_id', e.target.value)
-                            setData('branch_id', locality && locality.branches.length ? locality.branches[0].id : ``)
+                            let locality = localities.data.find(l => l.id == e.target.value);
+                            setData(prev => ({
+                                ...prev,
+                                'locality_id': e.target.value,
+                                'branch_id': locality && locality.branches.length ? locality.branches[0].id : ``
+                            }))
                         }} className={`w-full rounded bg-white border border-gray-900 border-opacity-[.12] ring-0 mt-1 block w-full`}>
                             {localities.data.map((locality, ldx) => <option value={locality.id} key={ldx}>{locality.title}</option>)}
                         </select>

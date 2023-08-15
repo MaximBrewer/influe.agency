@@ -2,12 +2,20 @@
 
 namespace App\Providers;
 
+use App\Events\NurseCreated;
 use App\Events\PatientCreated;
 use App\Events\RecieptionCreated;
+use App\Events\SaleCreated;
+use App\Events\SeniorCreated;
+use App\Events\SupervisorCreated;
 use App\Events\SpecialistCreated;
+use App\Listeners\SendNurseCreatedNotification;
 use App\Listeners\SendPatientCreatedNotification;
 use App\Listeners\SendRecieptionCreatedNotification;
+use App\Listeners\SendSaleCreatedNotification;
+use App\Listeners\SendSeniorCreatedNotification;
 use App\Listeners\SendSpecialistCreatedNotification;
+use App\Listeners\SendSupervisorCreatedNotification;
 use App\Models\Payment;
 use App\Models\TopUp;
 use App\Observers\Payment as ObserversPayment;
@@ -25,6 +33,18 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
+        NurseCreated::class => [
+            SendNurseCreatedNotification::class
+        ],
+        SaleCreated::class => [
+            SendSaleCreatedNotification::class
+        ],
+        SeniorCreated::class => [
+            SendSeniorCreatedNotification::class
+        ],
+        SupervisorCreated::class => [
+            SendSupervisorCreatedNotification::class
+        ],
         SpecialistCreated::class => [
             SendSpecialistCreatedNotification::class
         ],

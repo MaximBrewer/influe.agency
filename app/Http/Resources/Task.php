@@ -25,7 +25,8 @@ class Task extends JsonResource
             'status_id' => $this->status_id,
             'user' => new TaskUser($this->user),
             'users' => TaskUser::collection($this->users),
-            'oldfiles' => TaskFile::collection($this->files)
+            'oldfiles' => TaskFile::collection($this->files),
+            'comments' => $this->comments()->count(),
         ];
         return $array;
     }

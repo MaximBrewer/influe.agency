@@ -4,6 +4,7 @@ use App\Http\Controllers\Client;
 use App\Http\Controllers\Specialist;
 use App\Http\Controllers\Recieption;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\Senior;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
@@ -31,7 +32,11 @@ Route::get('/', function () {
 })->middleware('guest');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'admin']],  function () {
+    Route::resource('supervisors', Admin\SupervisorsController::class);
+    Route::resource('seniors', Admin\SeniorsController::class);
+    Route::resource('sales', Admin\SalesController::class);
     Route::resource('recieptions', Admin\RecieptionsController::class);
+    Route::resource('nurses', Admin\NursesController::class);
     Route::resource('specialists', Admin\SpecialistsController::class);
     Route::resource('localities', Admin\LocalitiesController::class);
     Route::resource('directions', Admin\DirectionsController::class);
@@ -86,6 +91,26 @@ Route::group(['prefix' => 'specialist', 'as' => 'specialist.', 'middleware' => [
     Route::get('patients', Specialist\PatientsController::class)->name('patients');
     Route::get('specialists', Specialist\SpecialistsController::class)->name('specialists');
     Route::get('finance', Specialist\FinanceController::class)->name('finance');
+});
+
+
+// Магазин
+
+Route::group(['prefix' => 'senior', 'as' => 'senior.', 'middleware' => ['auth', 'senior']],  function () {
+    Route::get('patients', Senior\PatientsController::class)->name('patients');
+    Route::get('patient/create', [Senior\PatientsController::class, 'create'])->name('patient.create');
+    Route::get('patient/edit/{patient}', [Senior\PatientsController::class, 'edit'])->name('patient.edit');
+    Route::post('patient', [Senior\PatientsController::class, 'store'])->name('patients.store');
+    Route::patch('patient/topup/{patient}', [Senior\PatientsController::class, 'topup'])->name('patient.topup');
+    Route::patch('patient/{patient}', [Senior\PatientsController::class, 'update'])->name('patients.update');
+    Route::get('patient/card/{patient}', [Senior\PatientsController::class, 'card'])->name('patient.card');
+    Route::resource('tasks', Senior\TasksController::class);
+    Route::group(['prefix' => 'tasks', 'as' => 'tasks.'],  function () {
+        Route::patch('{task}/status', [Senior\TasksController::class, 'status'])->name('status');
+        Route::group(['prefix' => '{task}'],  function () {
+            Route::resource('comments', Senior\CommentsController::class);
+        });
+    });
 });
 
 Route::middleware('auth')->group(function () {

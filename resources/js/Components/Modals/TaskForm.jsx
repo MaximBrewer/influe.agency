@@ -53,7 +53,7 @@ export default (props) => {
     const submit = (e) => {
         e.preventDefault();
         if (task && task.id)
-            post(route('admin.tasks.update', {
+            post(route(`${auth.user.role.name}.tasks.update`, {
                 task: task.id
             }), {
                 onSuccess: ({ props }) => {
@@ -62,7 +62,7 @@ export default (props) => {
                 }
             });
         else
-            post(route('admin.tasks.store'), {
+            post(route(`${auth.user.role.name}.tasks.store`), {
                 onSuccess: ({ props }) => {
                     props && props.lists && setLists(props.lists)
                     setModal(null)
@@ -191,7 +191,10 @@ export default (props) => {
                                                     <path d="M6.60984 3.48483L4.375 5.71967L3.39016 4.73483C3.24372 4.58839 3.00628 4.58839 2.85983 4.73483C2.71339 4.88128 2.71339 5.11872 2.85983 5.26516L4.10984 6.51516C4.25628 6.66161 4.49372 6.66161 4.64016 6.51516L7.14017 4.01516C7.28661 3.86872 7.28661 3.63128 7.14017 3.48483C6.99372 3.33839 6.75628 3.33839 6.60984 3.48483Z" fill="white" />
                                                 </svg> : ``}
                                             </div>
-                                            <div className="text-gray-700 text-sm">{item.name}</div>
+                                            <div className="text-gray-700 text-sm">
+                                                <div>{item.name}</div>
+                                                <div>{item.role}</div>
+                                            </div>
                                         </div>
                                     </li> : ``}
                                 </Fragment>)}
