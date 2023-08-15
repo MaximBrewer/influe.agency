@@ -99,6 +99,12 @@ export default function Authenticated({ auth, children, heading = false, scrollp
                 active: `admin.branches`,
                 icon: <Branch className={`w-6 h-auto`} />
             },
+            {
+                title: 'Направления',
+                route: `admin.directions.index`,
+                active: `admin.directions`,
+                icon: <Academic className={`w-6 h-auto`} />
+            },
         ],
         recieption: [
             {

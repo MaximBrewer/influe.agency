@@ -5,7 +5,7 @@ import InputLabel from "../InputLabel";
 import PrimaryButton from "../PrimaryButton";
 import Select from "react-select"
 import TextInput from "../TextInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { router } from '@inertiajs/react'
 
 const customStyles = {
@@ -25,16 +25,29 @@ const customStyles = {
 
 export default (props) => {
 
-    const { user, localities } = props
+    const { user, localities, auth } = props
 
     const { setModal } = useLayout()
 
-    const [locality, setLocality] = useState(localities.data[0])
+    const [locality, setLocality] = useState(auth.user && auth.user.locality ? localities.data.find(el => el.id === auth.user.locality.id) : localities.data[0])
 
     const { data, setData, setError, get, post, patch, processing, errors, reset, transform } = useForm({
         user: user.id,
         branch: null,
     });
+
+    useEffect(() => {
+        setData(prev => {
+            return {
+                ...prev,
+                branch: locality && locality.branches.length ? (
+                    auth.user && auth.user.branch
+                        ? locality.branches.find(el => el.id === auth.user.branch.id)
+                        : locality.branches[0]
+                ) : null
+            }
+        })
+    }, [locality, auth])
 
     transform((data) => ({
         user: data.user.id,
@@ -78,7 +91,7 @@ export default (props) => {
             <InputLabel htmlFor="branch" value="Филиал" color={`text-gray-200`} weight={`normal`} />
             <Select
                 styles={customStyles}
-                defaultValue={data.branch}
+                value={data.branch}
                 isSearchable={false}
                 isClearable={false}
                 name="branch"

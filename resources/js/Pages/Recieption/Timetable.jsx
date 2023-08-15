@@ -135,7 +135,7 @@ export default (props) => {
                                         <div className={`bg-white px-2 relative z-1 text-xs uppercase font-medium`}>{time.label}</div>
                                     </div>
                                 </div>
-                                {books.data.filter(book => book.start == time.value).map((book, bdx) => <div key={bdx} className={`flex space-x-5 items-center mb-5 rounded-lg overflow-hidden py-3 bg-blue-50 hover:bg-white hover:shadow-block`}>
+                                {books.data.filter(book => book.start == time.value && book.start == book.time).map((book, bdx) => <div key={bdx} className={`flex space-x-5 items-center mb-5 rounded-lg overflow-hidden py-3 bg-blue-50 hover:bg-white hover:shadow-block`}>
                                     <div className={`w-[40%] flex space-x-5 items-center pl-5`}>
                                         <div className={`grow`}>
                                             <div className={`font-medium`}>{book.patient.fullName}</div>

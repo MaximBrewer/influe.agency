@@ -43,7 +43,7 @@ export default (props) => {
         ...data,
         time: data.time ? data.time.value : null,
         duration: data.duration ? data.duration.value : null,
-        service: data.service ? data.service.value : null,
+        service: data.service ? data.service.id : null,
     }))
 
     const submit = (e) => {
@@ -127,8 +127,10 @@ export default (props) => {
                     name="service"
                     maxMenuHeight={200}
                     value={data.service}
-                    options={services.data}
+                    options={specialist.directions}
                     placeholder={``}
+                    getOptionLabel={item => item.title}
+                    getOptionValue={item => item.id}
                     onChange={(value) => setData('service', value)}
                 // className="basic-multi-select"
                 // classNamePrefix="select"

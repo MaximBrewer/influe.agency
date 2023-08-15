@@ -201,6 +201,15 @@ class User extends Authenticatable
             'senior',
             'supervisor',
         ],
+        'supervisor' => [
+            'recieption',
+            'nurse',
+            'specialist',
+        ],
+        'senior' => [
+            'sale',
+            'specialist',
+        ],
     ];
 
     /**

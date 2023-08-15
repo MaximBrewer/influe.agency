@@ -16,7 +16,7 @@ use App\Models\Branch;
 use App\Models\Direction;
 use App\Models\Locality;
 use App\Models\User;
-use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;

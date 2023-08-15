@@ -90,6 +90,7 @@ class SpecialistsController extends Controller
         $data = $request->all();
         $specialist->update($data);
         $specialist->schedule = User::getDayArray();
+        dd($specialist->schedule);
         $specialist->save();
         $specialist->directions()->sync($request->directions);
         return redirect()->route('admin.specialists.index');

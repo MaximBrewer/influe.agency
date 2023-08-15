@@ -29,6 +29,11 @@ module.exports = {
                 200: 200,
                 300: 300
             },
+            gridRow: {
+                'span-6': 'span 6 / span 6',
+                'span-7': 'span 7 / span 7',
+                'span-8': 'span 8 / span 8',
+            },
             colors: {
                 blue: {
                     20: "#99A1A6",
