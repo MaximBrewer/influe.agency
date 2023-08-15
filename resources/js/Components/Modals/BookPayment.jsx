@@ -10,7 +10,9 @@ import TextInput from "../TextInput"
 
 export default (props) => {
 
-    const { book, actionRoute = 'recieption.book.payment' } = props
+    const { book, auth } = props
+
+    const actionRoute = `${auth.user.role.name}.book.payment`;
 
     const { setModal, priceFormat } = useLayout()
 

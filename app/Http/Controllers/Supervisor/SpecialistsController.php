@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Recieption;
+namespace App\Http\Controllers\Supervisor;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -16,7 +16,7 @@ class SpecialistsController extends Controller
     {
         $data['pagetitle'] = 'Специалисты';
         $data['specialists'] = User::where('role_id', 4)->get();
-        return Inertia::render('Recieption/Specialists', $data);
+        return Inertia::render('Supervisor/Specialists', $data);
     }
 
     /**
@@ -30,7 +30,7 @@ class SpecialistsController extends Controller
             $specialist->save();
         }
         $data['specialist'] = $specialist;
-        return Inertia::render('Recieption/Specialist/Schedule', $data);
+        return Inertia::render('Supervisor/Specialist/Schedule', $data);
     }
 
     /**

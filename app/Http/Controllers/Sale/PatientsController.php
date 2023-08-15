@@ -32,7 +32,7 @@ class PatientsController extends Controller
         $this->getCommonData($data);
         $data['pagetitle'] = 'Пациенты';
         $data['patients'] = User::where('role_id', 2)->get();
-        return Inertia::render('Senior/Patients', $data);
+        return Inertia::render('Sale/Patients', $data);
     }
 
     /**
@@ -44,7 +44,7 @@ class PatientsController extends Controller
         $this->getCommonData($data);
         $data['pagetitle'] = 'Новый пациент';
         $data['patient'] = null;
-        return Inertia::render('Senior/Patient/Form', $data);
+        return Inertia::render('Sale/Patient/Form', $data);
     }
 
     /**
@@ -58,7 +58,7 @@ class PatientsController extends Controller
         $patient->role_id = 2;
         $patient->save();
         event(new PatientCreated($patient));
-        return redirect()->route('recieption.patient.card', [
+        return redirect()->route('sale.patient.card', [
             'patient' => $patient->id
         ]);
     }
@@ -72,7 +72,7 @@ class PatientsController extends Controller
         $this->getCommonData($data);
         $data['patient'] = $patient;
         $data['pagetitle'] = 'Карточка пациента';
-        return Inertia::render('Senior/Patient/Card', $data);
+        return Inertia::render('Sale/Patient/Card', $data);
     }
 
     /**
@@ -84,7 +84,7 @@ class PatientsController extends Controller
         $this->getCommonData($data);
         $data['pagetitle'] = 'Редактирование пациента';
         $data['patient'] = $patient;
-        return Inertia::render('Senior/Patient/Form', $data);
+        return Inertia::render('Sale/Patient/Form', $data);
     }
 
 
@@ -94,7 +94,7 @@ class PatientsController extends Controller
     public function topup(PatientTopUpRequest $request, User $patient)
     {
         TopUp::create([
-            'recieption_id' => Auth::id(),
+            'sale_id' => Auth::id(),
             'user_id' => $patient->id,
             'sum' => $request->sum,
             'paymethod' => $request->paymethod
@@ -110,7 +110,7 @@ class PatientsController extends Controller
     {
         $data = $request->all();
         $patient->update($data);
-        return redirect()->route('recieption.patient.card', [
+        return redirect()->route('sale.patient.card', [
             'patient' => $patient->id
         ]);
     }

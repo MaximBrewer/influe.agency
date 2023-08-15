@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class PaymentStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::check() && in_array(Auth::user()->role->name, ['recieption']);
+        return Auth::check() && in_array(Auth::user()->role->name, User::$canPay);
     }
 
     /**

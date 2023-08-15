@@ -38,7 +38,7 @@ const Payment = (props) => {
 
 export default (props) => {
 
-    const { pagetitle, dateText, weekdays, prevweek, nextweek, books } = props
+    const { pagetitle, dateText, weekdays, prevweek, nextweek, books, auth } = props
 
     const [open, setOpen] = useState(false)
 
@@ -107,8 +107,8 @@ export default (props) => {
                                     </div>
                                     <div className={`text-sm w-[20%] flex justify-end -my-3`}>
                                         <div className={`pr-5`}>
-                                            <Status book={book} />
-                                            <Payment book={book} />
+                                            <Status book={book} auth={auth} />
+                                            <Payment book={book} auth={auth} />
                                         </div>
                                     </div>
                                 </Link>)}

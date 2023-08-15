@@ -38,7 +38,7 @@ class BookController extends Controller
         $data['branch'] = $branch;
         $data['week'] = Carbon::now()->startOfWeek()->format('W');
         $data['specialists'] = $branch->specialists;
-        return Inertia::render('Recieption/Book/Branch/Index', $data);
+        return Inertia::render('Nurse/Book/Branch/Index', $data);
     }
 
     /**
@@ -90,7 +90,7 @@ class BookController extends Controller
         $data['week'] = $week;
         $data['year'] = $year;
         $data['weeks'] = $weeks;
-        return Inertia::render('Recieption/Book/Branch/Specialist', $data);
+        return Inertia::render('Nurse/Book/Branch/Specialist', $data);
     }
 
     /**
@@ -118,7 +118,7 @@ class BookController extends Controller
         $data['dateText'] = $date->isoFormat('dddd, MMMM, D');
         $data['prevDate'] = (new Carbon($date))->subDay()->format('d.m.Y');
         $data['nextDate'] = (new Carbon($date))->addDay()->format('d.m.Y');
-        return Inertia::render('Recieption/Book/Branch/Direction', $data);
+        return Inertia::render('Nurse/Book/Branch/Direction', $data);
     }
 
     /**
@@ -185,7 +185,7 @@ class BookController extends Controller
             'branch_id' => $request->branch->id,
             'patient_id' => $patient->id,
             'specialist_id' => $specialist->id,
-            'recieption_id' => Auth::id(),
+            'nurse_id' => Auth::id(),
         ];
 
         try {

@@ -10,7 +10,9 @@ import TextInput from "../TextInput"
 
 export default (props) => {
 
-    const { book, actionRoute = 'recieption.book.status' } = props
+    const { book, auth } = props
+
+    const actionRoute = `${auth.user.role.name}.book.status`;
 
     const status = statuses.data.find(s => s.code == book.status);
 

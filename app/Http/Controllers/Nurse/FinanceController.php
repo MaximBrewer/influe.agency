@@ -14,6 +14,6 @@ class FinanceController extends Controller
     public function __invoke(Request $request)
     {
         $data['pagetitle'] = 'Финансы';
-        return Inertia::render('Recieption/Finance', $data);
+        return Inertia::render('Nurse/Finance', $data);
     }
 }

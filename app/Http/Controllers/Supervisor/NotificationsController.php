@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Recieption;
+namespace App\Http\Controllers\Supervisor;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Branch as ResourcesBranch;
@@ -34,6 +34,6 @@ class NotificationsController extends Controller
         $data['prevyear'] = $date->format('m') < 7 ? '01.' . ($date->format('Y') - 1) : '06.' . ($date->format('Y'));
         $data['nextyear'] = $date->format('m') < 7 ? '07.' . ($date->format('Y')) : '01.' . ($date->format('Y') + 1);
 
-        return Inertia::render('Recieption/Notifications', $data);
+        return Inertia::render('Supervisor/Notifications', $data);
     }
 }

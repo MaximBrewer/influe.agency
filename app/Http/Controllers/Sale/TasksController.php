@@ -88,7 +88,7 @@ class TasksController extends Controller
     {
         $task->status_id = $request->status_id;
         $task->save();
-        return redirect()->route('senior.tasks.index', [], 303);
+        return redirect()->route('sale.tasks.index', [], 303);
     }
 
     /**

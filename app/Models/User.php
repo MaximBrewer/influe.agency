@@ -190,6 +190,18 @@ class User extends Authenticatable
         'schedule' => 'array'
     ];
 
+    
+    public static $canBook = [
+        'recieption',
+        'nurse'
+    ];
+
+    
+    public static $canPay = [
+        'recieption',
+        'nurse'
+    ];
+
 
     public static $canTask = [
         'admin' => [

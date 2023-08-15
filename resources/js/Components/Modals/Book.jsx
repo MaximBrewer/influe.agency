@@ -25,7 +25,7 @@ const customStyles = {
 
 export default (props) => {
 
-    const { branch, patient, specialist, book = null, day = null, date = null, week = null, year, item } = props
+    const { auth, branch, patient, specialist, book = null, day = null, date = null, week = null, year, item } = props
 
     const { setModal } = useLayout()
 
@@ -49,7 +49,7 @@ export default (props) => {
     const submit = (e) => {
         e.preventDefault();
         // if (id)
-        //     patch(route('recieption.book.update', {
+        //     patch(route(`${auth.user.role.name}.book.update`, {
         //         branch: branch.id
         //     }), {
         //         onSuccess: () => {
@@ -57,7 +57,7 @@ export default (props) => {
         //         }
         //     });
         // else
-        post(route('recieption.book.store', {
+        post(route(`${auth.user.role.name}.book.store`, {
             branch: branch.id,
             patient: patient.id,
             specialist: specialist.id

@@ -14,7 +14,7 @@ import { Head, Link } from '@inertiajs/react';
 import { Fragment, useState } from 'react';
 
 const Status = (props) => {
-    const { book } = props;
+    const { auth, book } = props;
     const { setModal } = useLayout();
     const status = statuses.data.find(s => s.code == book.status)
 
@@ -23,7 +23,7 @@ const Status = (props) => {
         <a href={`#`}
             onClick={e => {
                 e.preventDefault();
-                setModal(<BookStatus book={book} />)
+                setModal(<BookStatus book={book} auth={auth} />)
             }}>
             <Pencil className={`w-4 h-auto`} />
         </a>
@@ -31,7 +31,7 @@ const Status = (props) => {
 }
 
 const Payment = (props) => {
-    const { book } = props;
+    const { auth, book } = props;
     const { setModal, priceFormat } = useLayout();
 
     let sum = 0;
@@ -42,7 +42,7 @@ const Payment = (props) => {
         <a href={`#`}
             onClick={e => {
                 e.preventDefault();
-                setModal(<BookPayment book={book} />)
+                setModal(<BookPayment book={book} auth={auth} />)
             }}>
             <Pencil className={`w-4 h-auto`} />
         </a>
@@ -52,7 +52,7 @@ const Payment = (props) => {
 
 export default (props) => {
 
-    const { pagetitle, dateText, weekdays, prevweek, nextweek, books, branch, branches } = props
+    const { pagetitle, dateText, weekdays, prevweek, nextweek, books, branch, branches, auth } = props
 
     const [open, setOpen] = useState(false)
 
@@ -147,8 +147,8 @@ export default (props) => {
                                     </div>
                                     <div className={`text-sm w-[20%] flex justify-end -my-3`}>
                                         <div className={`pr-5`}>
-                                            <Status book={book} />
-                                            <Payment book={book} />
+                                            <Status book={book} auth={auth} />
+                                            <Payment book={book} auth={auth} />
                                         </div>
                                     </div>
                                 </div>)}

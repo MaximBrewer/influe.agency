@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Nurse;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaymentStoreRequest;
-use App\Http\Resources\BookRecieption;
+use App\Http\Resources\BookRecieption as BookNurse;
 use App\Http\Resources\Branch as ResourcesBranch;
 use App\Models\Book;
 use App\Models\Branch;
@@ -38,7 +38,7 @@ class TimetableController extends Controller
             $weekday->addDay();
         }
 
-        $data['books'] = BookRecieption::collection($branch->books()->where('date', $date)->orderBy('time', 'asc')->get());
+        $data['books'] = BookNurse::collection($branch->books()->where('date', $date)->orderBy('time', 'asc')->get());
         $data['branch'] = $branch;
         $data['branches'] = ResourcesBranch::collection(Branch::all());
         $data['weekdays'] = $weekdays;
@@ -47,6 +47,6 @@ class TimetableController extends Controller
         $data['date'] = $date->format('d.m.Y');
         $data['dateText'] = $date->isoFormat('dddd, MMMM, D');
         $data['pagetitle'] = 'Расписание';
-        return Inertia::render('Recieption/Timetable', $data);
+        return Inertia::render('Nurse/Timetable', $data);
     }
 }

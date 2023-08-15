@@ -16,7 +16,7 @@ class SpecialistsController extends Controller
     {
         $data['pagetitle'] = 'Специалисты';
         $data['specialists'] = User::where('role_id', 4)->get();
-        return Inertia::render('Recieption/Specialists', $data);
+        return Inertia::render('Nurse/Specialists', $data);
     }
 
     /**
@@ -30,7 +30,7 @@ class SpecialistsController extends Controller
             $specialist->save();
         }
         $data['specialist'] = $specialist;
-        return Inertia::render('Recieption/Specialist/Schedule', $data);
+        return Inertia::render('Nurse/Specialist/Schedule', $data);
     }
 
     /**

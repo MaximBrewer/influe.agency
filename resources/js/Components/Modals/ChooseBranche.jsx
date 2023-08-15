@@ -60,7 +60,7 @@ export default (props) => {
             setError('branch', "Выберите филиал")
         else {
             setModal(null)
-            router.visit(route('recieption.book.branch', {
+            router.visit(route(`${auth.user.role.name}.book.branch`, {
                 patient: user.id,
                 branch: data.branch.id
             }));

@@ -58,7 +58,7 @@ class PatientsController extends Controller
         $patient->role_id = 2;
         $patient->save();
         event(new PatientCreated($patient));
-        return redirect()->route('recieption.patient.card', [
+        return redirect()->route('supervisor.patient.card', [
             'patient' => $patient->id
         ]);
     }
@@ -94,7 +94,7 @@ class PatientsController extends Controller
     public function topup(PatientTopUpRequest $request, User $patient)
     {
         TopUp::create([
-            'recieption_id' => Auth::id(),
+            'supervisor_id' => Auth::id(),
             'user_id' => $patient->id,
             'sum' => $request->sum,
             'paymethod' => $request->paymethod
@@ -110,7 +110,7 @@ class PatientsController extends Controller
     {
         $data = $request->all();
         $patient->update($data);
-        return redirect()->route('recieption.patient.card', [
+        return redirect()->route('supervisor.patient.card', [
             'patient' => $patient->id
         ]);
     }
