@@ -41,8 +41,8 @@ export default (props) => {
         users: task ? task.users : [],
         files: [],
         oldfiles: task ? task.oldfiles : [],
-        start: task ? task.start : moment.now(),
-        deadline: task ? task.deadline : moment.now(),
+        start: task ? task.start : new Date(),
+        deadline: task ? task.deadline : new Date(),
         range: task ? task.range : false,
     });
 
@@ -79,6 +79,7 @@ export default (props) => {
     }, [data])
 
     return <div className="w-[40rem]" onClick={e => checkRootExecutors(e)}>
+        <Close className="w-6 h-6 right-5 top-5 absolute cursor-pointer" onClick={e => setModal(null)} />
         <div className="flex items-center gap-3  mb-6">
             <div className="w-8 h-8 bg-cover rounded-full bg-center" style={{ backgroundImage: `url('${auth.user.avatar}')` }}></div>
             <div>
@@ -224,7 +225,10 @@ export default (props) => {
                             <div className="text-center mb-2">Дата</div>
                             <div className="mb-2">
                                 <Calendar
-                                    value={data.range ? [data.start, data.deadline] : data.deadline}
+                                    value={data.range ? [
+                                        moment(data.start).isValid() ? data.start : new Date(),
+                                        moment(data.deadline).isValid() ? data.deadline : new Date()
+                                    ] : moment(data.deadline).isValid() ? data.deadline : new Date()}
                                     onChange={(val) => {
                                         setData(prev => {
                                             return data.range ? {
@@ -238,7 +242,7 @@ export default (props) => {
                                         })
                                     }}
                                     returnValue={data.range ? `range` : `start`}
-                                    selectRange={data.range}
+                                    selectRange={!!data.range}
                                 />
                             </div>
                             <div className="mb-2">
@@ -269,7 +273,7 @@ export default (props) => {
                                         }}
                                         clockIcon={null}
                                         clearIcon={null}
-                                        value={moment(data.deadline).format('HH:mm')}
+                                        value={moment(data.deadline).isValid() ? moment(data.deadline).format('HH:mm') : new Date()}
                                         disableClock={true}
                                     />
                                 </div>

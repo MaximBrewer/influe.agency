@@ -6,6 +6,7 @@ use App\Http\Controllers\Recieption;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Sale;
 use App\Http\Controllers\Senior;
+use App\Http\Controllers\Nurse;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
@@ -80,6 +81,39 @@ Route::group(['prefix' => 'recieption', 'as' => 'recieption.', 'middleware' => [
         Route::patch('{task}/status', [Recieption\TasksController::class, 'status'])->name('status');
         Route::group(['prefix' => '{task}'],  function () {
             Route::resource('comments', Recieption\CommentsController::class);
+        });
+    });
+});
+
+Route::group(['prefix' => 'nurse', 'as' => 'nurse.', 'middleware' => ['auth', 'nurse']],  function () {
+    Route::get('{branch}/timetable/{date?}', [Nurse\TimetableController::class, 'index'])->name('timetable');
+    Route::get('{branch}/notifications/{date?}', [Nurse\NotificationsController::class, 'index'])->name('notifications');
+    Route::get('patients', Nurse\PatientsController::class)->name('patients');
+    Route::get('patient/create', [Nurse\PatientsController::class, 'create'])->name('patient.create');
+    Route::get('patient/edit/{patient}', [Nurse\PatientsController::class, 'edit'])->name('patient.edit');
+    Route::post('patient', [Nurse\PatientsController::class, 'store'])->name('patients.store');
+    Route::patch('patient/topup/{patient}', [Nurse\PatientsController::class, 'topup'])->name('patient.topup');
+    Route::patch('patient/{patient}', [Nurse\PatientsController::class, 'update'])->name('patients.update');
+    Route::get('patient/card/{patient}', [Nurse\PatientsController::class, 'card'])->name('patient.card');
+    Route::get('specialists', Nurse\SpecialistsController::class)->name('specialists');
+    Route::get('finance', Nurse\FinanceController::class)->name('finance');
+
+    Route::get('specialist/{specialist}/schedule', [Nurse\SpecialistsController::class, 'schedule'])->name('specialist.schedule');
+    Route::patch('specialist/{specialist}/schedule', [Nurse\SpecialistsController::class, 'updateSchedule'])->name('specialist.schedule.update');
+
+    Route::get('book/{patient}/{branch}', [Nurse\BookController::class, 'branch'])->name('book.branch');
+    Route::get('book/{patient}/{branch}/direction/{direction}/{date}', [Nurse\BookController::class, 'direction'])->name('book.direction');
+    Route::get('book/{patient}/{branch}/specialist/{specialist}/{year}/{week}', [Nurse\BookController::class, 'specialist'])->name('book.specialist');
+    Route::post('book/{patient}/{branch}/{specialist}', [Nurse\BookController::class, 'store'])->name('book.store');
+    Route::patch('book/{book}/{patient}/{branch}/{specialist}', [Nurse\BookController::class, 'update'])->name('book.update');
+    Route::patch('book/{book}/status', [Nurse\BookController::class, 'status'])->name('book.status');
+    Route::post('book/{book}/payment', [Nurse\BookController::class, 'payment'])->name('book.payment');
+
+    Route::resource('tasks', Nurse\TasksController::class);
+    Route::group(['prefix' => 'tasks', 'as' => 'tasks.'],  function () {
+        Route::patch('{task}/status', [Nurse\TasksController::class, 'status'])->name('status');
+        Route::group(['prefix' => '{task}'],  function () {
+            Route::resource('comments', Nurse\CommentsController::class);
         });
     });
 });

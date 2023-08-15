@@ -27,7 +27,7 @@ export default (props) => {
 
     const { task } = props
 
-    const { setModal, setLists, executors, auth, dropTask } = useTasks()
+    const { setModal, setLists, executors, auth, dropTask, editTask } = useTasks()
 
     return <div className="w-[40rem]">
         <Close className="w-6 h-6 right-5 top-5 absolute cursor-pointer" onClick={e => setModal(null)} />
@@ -121,7 +121,10 @@ export default (props) => {
                 </div>
             </div> */}
         <div className="flex gap-2.5 items-center">
-            <SuccessButton className="rounded-[.5rem]">
+            <SuccessButton className="rounded-[.5rem]" onClick={e => {
+                e.stopPropagation();
+                editTask(task)
+            }}>
                 <span className="text-sm leading-none">Редактировать</span>
             </SuccessButton>
             <DefaultButton className="rounded-[.5rem]">

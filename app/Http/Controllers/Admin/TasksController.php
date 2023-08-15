@@ -45,7 +45,7 @@ class TasksController extends Controller
 
         $data['executors'] = ExecutorOpton::collection(User::whereHas('role', function (Builder $query) {
             $query->whereIn('name', User::$canTask['admin']);
-        })->get());
+        })->whereNot('id', Auth::id())->get());
 
         return Inertia::render('Admin/Tasks', $data);
     }
