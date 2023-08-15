@@ -4,6 +4,7 @@ use App\Http\Controllers\Client;
 use App\Http\Controllers\Specialist;
 use App\Http\Controllers\Recieption;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\Sale;
 use App\Http\Controllers\Senior;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -73,6 +74,14 @@ Route::group(['prefix' => 'recieption', 'as' => 'recieption.', 'middleware' => [
     Route::patch('book/{book}/{patient}/{branch}/{specialist}', [Recieption\BookController::class, 'update'])->name('book.update');
     Route::patch('book/{book}/status', [Recieption\BookController::class, 'status'])->name('book.status');
     Route::post('book/{book}/payment', [Recieption\BookController::class, 'payment'])->name('book.payment');
+
+    Route::resource('tasks', Recieption\TasksController::class);
+    Route::group(['prefix' => 'tasks', 'as' => 'tasks.'],  function () {
+        Route::patch('{task}/status', [Recieption\TasksController::class, 'status'])->name('status');
+        Route::group(['prefix' => '{task}'],  function () {
+            Route::resource('comments', Recieption\CommentsController::class);
+        });
+    });
 });
 
 Route::group(['prefix' => 'client', 'as' => 'client.', 'middleware' => ['auth', 'client']],  function () {
@@ -91,6 +100,14 @@ Route::group(['prefix' => 'specialist', 'as' => 'specialist.', 'middleware' => [
     Route::get('patients', Specialist\PatientsController::class)->name('patients');
     Route::get('specialists', Specialist\SpecialistsController::class)->name('specialists');
     Route::get('finance', Specialist\FinanceController::class)->name('finance');
+
+    Route::resource('tasks', Specialist\TasksController::class);
+    Route::group(['prefix' => 'tasks', 'as' => 'tasks.'],  function () {
+        Route::patch('{task}/status', [Specialist\TasksController::class, 'status'])->name('status');
+        Route::group(['prefix' => '{task}'],  function () {
+            Route::resource('comments', Specialist\CommentsController::class);
+        });
+    });
 });
 
 
@@ -104,11 +121,30 @@ Route::group(['prefix' => 'senior', 'as' => 'senior.', 'middleware' => ['auth', 
     Route::patch('patient/topup/{patient}', [Senior\PatientsController::class, 'topup'])->name('patient.topup');
     Route::patch('patient/{patient}', [Senior\PatientsController::class, 'update'])->name('patients.update');
     Route::get('patient/card/{patient}', [Senior\PatientsController::class, 'card'])->name('patient.card');
+
     Route::resource('tasks', Senior\TasksController::class);
     Route::group(['prefix' => 'tasks', 'as' => 'tasks.'],  function () {
         Route::patch('{task}/status', [Senior\TasksController::class, 'status'])->name('status');
         Route::group(['prefix' => '{task}'],  function () {
             Route::resource('comments', Senior\CommentsController::class);
+        });
+    });
+});
+
+Route::group(['prefix' => 'sale', 'as' => 'sale.', 'middleware' => ['auth', 'sale']],  function () {
+    Route::get('patients', Sale\PatientsController::class)->name('patients');
+    Route::get('patient/create', [Sale\PatientsController::class, 'create'])->name('patient.create');
+    Route::get('patient/edit/{patient}', [Sale\PatientsController::class, 'edit'])->name('patient.edit');
+    Route::post('patient', [Sale\PatientsController::class, 'store'])->name('patients.store');
+    Route::patch('patient/topup/{patient}', [Sale\PatientsController::class, 'topup'])->name('patient.topup');
+    Route::patch('patient/{patient}', [Sale\PatientsController::class, 'update'])->name('patients.update');
+    Route::get('patient/card/{patient}', [Sale\PatientsController::class, 'card'])->name('patient.card');
+
+    Route::resource('tasks', Sale\TasksController::class);
+    Route::group(['prefix' => 'tasks', 'as' => 'tasks.'],  function () {
+        Route::patch('{task}/status', [Sale\TasksController::class, 'status'])->name('status');
+        Route::group(['prefix' => '{task}'],  function () {
+            Route::resource('comments', Sale\CommentsController::class);
         });
     });
 });

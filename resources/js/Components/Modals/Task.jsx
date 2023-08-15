@@ -73,15 +73,16 @@ export default (props) => {
             {task.oldfiles.length ? <div className="mb-6">
                 <div className="text-gray-700 text-sm mb-3">Прикрепленные файлы:</div>
                 <ul className="grid grid-cols-3 gap-2">
-                    {task.oldfiles.map((file, fdx) => <li key={fdx} className="p-2 bg-neutral-100 rounded-lg items-center gap-2 flex relative">
-                        <div className="bg-white rounded-lg justify-center items-center flex h-10 min-w-[2.5rem]">
-                            <div className="">{file.title.split('.').splice(-1)}</div>
-                        </div>
-                        <div className="text-xs leading-tight max-w-[12rem] overflow-hidden">
-                            <div className="text-gray-700 font-bold whitespace-nowrap overflow-hidden text-ellipsis w-full">{file.title}</div>
-                            <div className="text-zinc-500 whitespace-nowrap overflow-hidden text-ellipsis w-full">{moment(file.created_at).fromNow()}</div>
-                        </div>
-                        {/* <div className="absolute cursor-pointer right-1 top-1" onClick={e => {
+                    {task.oldfiles.map((file, fdx) => <li key={fdx}>
+                        <a href={file.link} target="_blank" className="p-2 bg-neutral-100 rounded-lg items-center gap-2 flex relative">
+                            <div className="bg-white rounded-lg justify-center items-center flex h-10 min-w-[2.5rem]">
+                                <div className="">{file.title.split('.').splice(-1)}</div>
+                            </div>
+                            <div className="text-xs leading-tight max-w-[12rem] overflow-hidden">
+                                <div className="text-gray-700 font-bold whitespace-nowrap overflow-hidden text-ellipsis w-full">{file.title}</div>
+                                <div className="text-zinc-500 whitespace-nowrap overflow-hidden text-ellipsis w-full">{moment(file.created_at).fromNow()}</div>
+                            </div>
+                            {/* <div className="absolute cursor-pointer right-1 top-1" onClick={e => {
                             setData(prev => {
                                 const newdata = { ...prev }
                                 newdata.oldfiles.splice(fdx, 1)
@@ -92,6 +93,7 @@ export default (props) => {
                                 <path fillRule="evenodd" clipRule="evenodd" d="M2.46967 2.46967C2.76256 2.17678 3.23744 2.17678 3.53033 2.46967L6 4.93934L8.46967 2.46967C8.76256 2.17678 9.23744 2.17678 9.53033 2.46967C9.82322 2.76256 9.82322 3.23744 9.53033 3.53033L7.06066 6L9.53033 8.46967C9.82322 8.76256 9.82322 9.23744 9.53033 9.53033C9.23744 9.82322 8.76256 9.82322 8.46967 9.53033L6 7.06066L3.53033 9.53033C3.23744 9.82322 2.76256 9.82322 2.46967 9.53033C2.17678 9.23744 2.17678 8.76256 2.46967 8.46967L4.93934 6L2.46967 3.53033C2.17678 3.23744 2.17678 2.76256 2.46967 2.46967Z" fill="#808080" />
                             </svg>
                         </div> */}
+                        </a>
                     </li>)}
                 </ul>
             </div> : ``}

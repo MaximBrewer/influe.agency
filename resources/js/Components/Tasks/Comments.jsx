@@ -3,12 +3,14 @@ import { useForm } from "@inertiajs/react";
 import TextArea from "../TextArea";
 import { Inertia } from "@inertiajs/inertia";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import moment from "moment";
 
 export default (props) => {
 
     const { task } = props;
+
+    const timeoutRef = useRef();
 
     const { setModal, setLists, executors, auth } = useTasks()
 
@@ -29,21 +31,30 @@ export default (props) => {
                 task: task.id
             }), data)
             .then(({ data }) => {
+                setData('comment', ``)
                 setComments(data.data)
                 reset()
             })
     }
 
-    useEffect(() => {
+    const reloadComments = () => {
         axios
             .get(route(`${auth.user.role.name}.tasks.comments.index`, {
                 task: task.id
             }), data)
             .then(({ data }) => {
                 setComments(data.data)
-                setData('comment', ``)
+                timeoutRef.current = setTimeout(() => reloadComments(), 10000)
             })
+    }
+
+    useEffect(() => {
+        reloadComments();
     }, [task])
+
+    useEffect(() => {
+        clearTimeout(timeoutRef)
+    }, [])
 
     return <div className="mb-6">
         <div className="flex gap-3 mb-6">

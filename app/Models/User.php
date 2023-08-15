@@ -210,6 +210,17 @@ class User extends Authenticatable
             'sale',
             'specialist',
         ],
+        'sale' => [
+            'specialist',
+        ],
+        'specialis' => [],
+        'recieption' => [
+            'nurse',
+            'specialist',
+        ],
+        'nurse' => [
+            'specialist',
+        ],
     ];
 
     /**

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import moment from 'moment';
 import ru from "./moment.ru"
@@ -13,6 +13,8 @@ TasksContext.propTypes = {
 };
 
 const TasksProvider = (props) => {
+
+    const intervalRef = useRef(null);
 
     const { children, executors, auth } = props
 
@@ -31,7 +33,7 @@ const TasksProvider = (props) => {
     }
 
     const dropTask = (id) => {
-        destroy(route('admin.tasks.destroy', {
+        destroy(route(`${auth.user.role.name}.tasks.destroy`, {
             task: id
         }), {
             onSuccess: ({ props }) => {
@@ -42,14 +44,16 @@ const TasksProvider = (props) => {
     }
 
     useEffect(() => {
-        setInterval(() => {
+        intervalRef.current = setInterval(() => {
             router.reload({ only: ['lists'] }, {
                 onSuccess: (props) => {
-                    console.loe(props)
                     setLists(props.lists)
                 }
             })
-        }, 10000)
+        }, 15000)
+        return () => {
+            clearInterval(intervalRef.current)
+        }
     }, [])
 
     useEffect(() => {

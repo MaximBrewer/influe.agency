@@ -106,6 +106,37 @@ export default function Authenticated({ auth, children, heading = false, scrollp
                 icon: <Academic className={`w-6 h-auto`} />
             },
         ],
+        supervisor: [
+            {
+                title: 'Расписание',
+                route: `supervisor.timetable`,
+                params: {
+                    branch: 1
+                },
+                icon: <Calendar className={`w-6 h-auto`} />
+            },
+            {
+                title: 'Пациенты',
+                route: `supervisor.patients`,
+                icon: <Patients className={`w-5 h-auto`} />
+            },
+            {
+                title: 'Специалисты',
+                route: `supervisor.specialists`,
+                icon: <Spec className={`w-4 h-auto`} />
+            },
+            {
+                title: 'Задачи',
+                route: `supervisor.tasks.index`,
+                active: `supervisor.tasks`,
+                icon: <Tasks className={`w-6 h-auto`} />
+            },
+            {
+                title: 'Финансы',
+                route: `supervisor.finance`,
+                icon: <Finance className={`w-5 h-auto`} />
+            },
+        ],
         recieption: [
             {
                 title: 'Расписание',
@@ -126,9 +157,41 @@ export default function Authenticated({ auth, children, heading = false, scrollp
                 icon: <Spec className={`w-4 h-auto`} />
             },
             {
+                title: 'Задачи',
+                route: `recieption.tasks.index`,
+                active: `recieption.tasks`,
+                icon: <Tasks className={`w-6 h-auto`} />
+            },
+            {
                 title: 'Финансы',
                 route: `recieption.finance`,
                 icon: <Finance className={`w-5 h-auto`} />
+            },
+        ],
+        nurse: [
+            {
+                title: 'Расписание',
+                route: `nurse.timetable`,
+                params: {
+                    branch: 1
+                },
+                icon: <Calendar className={`w-6 h-auto`} />
+            },
+            {
+                title: 'Пациенты',
+                route: `nurse.patients`,
+                icon: <Patients className={`w-5 h-auto`} />
+            },
+            {
+                title: 'Специалисты',
+                route: `nurse.specialists`,
+                icon: <Spec className={`w-4 h-auto`} />
+            },
+            {
+                title: 'Задачи',
+                route: `nurse.tasks.index`,
+                active: `nurse.tasks`,
+                icon: <Tasks className={`w-6 h-auto`} />
             },
         ],
         specialist: [
@@ -148,9 +211,41 @@ export default function Authenticated({ auth, children, heading = false, scrollp
                 icon: <Spec className={`w-4 h-auto`} />
             },
             {
+                title: 'Задачи',
+                route: `specialist.tasks.index`,
+                active: `specialist.tasks`,
+                icon: <Tasks className={`w-6 h-auto`} />
+            },
+            {
                 title: 'Финансы',
                 route: `specialist.finance`,
                 icon: <Finance className={`w-5 h-auto`} />
+            },
+        ],
+        senior: [
+            {
+                title: 'Клиенты',
+                route: `senior.patients`,
+                icon: <Patients className={`w-5 h-auto`} />
+            },
+            {
+                title: 'Задачи',
+                route: `senior.tasks.index`,
+                active: `senior.tasks`,
+                icon: <Tasks className={`w-6 h-auto`} />
+            },
+        ],
+        sale: [
+            {
+                title: 'Клиенты',
+                route: `sale.patients`,
+                icon: <Patients className={`w-5 h-auto`} />
+            },
+            {
+                title: 'Задачи',
+                route: `sale.tasks.index`,
+                active: `sale.tasks`,
+                icon: <Tasks className={`w-6 h-auto`} />
             },
         ],
         client: [
@@ -173,19 +268,6 @@ export default function Authenticated({ auth, children, heading = false, scrollp
                 title: 'Финансы',
                 route: `client.finance`,
                 icon: <Finance className={`w-5 h-auto`} />
-            },
-        ],
-        senior: [
-            {
-                title: 'Пациенты',
-                route: `senior.patients`,
-                icon: <Patients className={`w-5 h-auto`} />
-            },
-            {
-                title: 'Задачи',
-                route: `senior.tasks.index`,
-                active: `senior.tasks`,
-                icon: <Tasks className={`w-6 h-auto`} />
             },
         ],
     }

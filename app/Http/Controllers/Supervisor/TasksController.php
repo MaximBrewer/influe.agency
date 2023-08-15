@@ -52,7 +52,7 @@ class TasksController extends Controller
             $query->whereIn('name', User::$canTask['supervisor']);
         })->get());
 
-        return Inertia::render('Admin/Tasks', $data);
+        return Inertia::render('Supervisor/Tasks', $data);
     }
 
     /**
@@ -148,6 +148,6 @@ class TasksController extends Controller
     {
         $task = Task::findOrFail($id);
         $task->delete();
-        return redirect()->route('admin.tasks.index', [], 303);
+        return redirect()->route('supervisor.tasks.index', [], 303);
     }
 }
