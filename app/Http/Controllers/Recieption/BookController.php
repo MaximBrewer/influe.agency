@@ -190,8 +190,8 @@ class BookController extends Controller
 
         try {
             DB::transaction(function () use ($request, $date, $data, $specialist) {
-                for ($i = 0; ceil($i < ($request->duration / 15)); ++$i) {
-                    $sdate = (new Carbon($date))->addMinutes($i * 15);
+                for ($i = 0; ceil($i < ($request->duration / 5)); ++$i) {
+                    $sdate = (new Carbon($date))->addMinutes($i * 5);
                     $times = array_filter($specialist->schedule, function ($item) use ($sdate) {
                         return ($sdate->format('H:i') == $item['time']);
                     });

@@ -56,7 +56,7 @@ export default (props) => {
 
     return <form onSubmit={submit} className={`min-w-[20rem]`}>
         <h2 className={`font-bold text-xl text-center mb-4`}>{`Филиал`}</h2>
-        <div className="mb-4 hidden">
+        <div className="mb-4">
             <InputLabel htmlFor="locality" value="Город" color={`text-gray-200`} weight={`normal`} />
             <Select
                 styles={customStyles}
@@ -82,6 +82,7 @@ export default (props) => {
                 isSearchable={false}
                 isClearable={false}
                 name="branch"
+                noOptionsMessage={() => <>Нет филиалов</>}
                 options={locality.branches}
                 placeholder={``}
                 getOptionLabel={item => item.title}

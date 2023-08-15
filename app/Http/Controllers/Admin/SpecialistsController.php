@@ -51,9 +51,9 @@ class SpecialistsController extends Controller
         $data['password'] = Hash::make(Str::random(8));
         $specialist = User::create($data);
         $specialist->role_id = 4;
+        $specialist->schedule = User::getDayArray();
         $specialist->save();
         $specialist->directions()->sync($request->directions);
-        $specialist->schedule = User::getDayArray();
         event(new SpecialistCreated($specialist));
         return redirect()->route('admin.specialists.index');
     }
@@ -89,6 +89,8 @@ class SpecialistsController extends Controller
     {
         $data = $request->all();
         $specialist->update($data);
+        $specialist->schedule = User::getDayArray();
+        $specialist->save();
         $specialist->directions()->sync($request->directions);
         return redirect()->route('admin.specialists.index');
     }
