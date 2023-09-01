@@ -129,7 +129,7 @@ Route::group(['prefix' => 'specialist', 'as' => 'specialist.', 'middleware' => [
     Route::get('timetable/{date?}', [Specialist\TimetableController::class, 'index'])->name('timetable');
     Route::get('patient/{patient}', [Specialist\PatientsController::class, 'show'])->name('patient.show');
     Route::get('appointment/{book}', [Specialist\PatientsController::class, 'appointment'])->name('appointment');
-
+    Route::post('appointment/{book}', [Specialist\PatientsController::class, 'appointmentUpdate'])->name('appointment.update');
 
     Route::get('patients', Specialist\PatientsController::class)->name('patients');
     Route::get('specialists', Specialist\SpecialistsController::class)->name('specialists');

@@ -97,9 +97,9 @@ class Product extends Model implements \Bigperson\Exchange1C\Interfaces\ProductI
      */
     public function setGroup1c($group)
     {
-        // $category = Category::where('accounting_id', $group->id)->first();
-        // $category && $this->category_id = $category->id;
-        // $this->save();
+        $category = Category::where('accounting_id', $group->id)->first();
+        $category && $this->category_id = $category->id;
+        $this->save();
     }
 
     /**

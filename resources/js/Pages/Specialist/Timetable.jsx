@@ -86,14 +86,14 @@ export default (props) => {
                     </div>
                     <div className={`overflow-y-auto -mr-3 pr-3`}>
                         {books.data.length ? times.data.map((time, tdx) => <div className={`overflow-hidden`} key={tdx}>
-                            {books.data.filter(book => book.start == time.value).length ? <>
+                            {books.data.filter(book => book.start == time.value && book.start == book.time).length ? <>
                                 <div className={`relative my-4`}>
                                     <div className={`absolute -left-4 -right-4 top-1/2 border border-dashed border-blue-200`}></div>
                                     <div className={`flex`}>
                                         <div className={`bg-white px-2 relative z-1 text-xs uppercase font-medium`}>{time.label}</div>
                                     </div>
                                 </div>
-                                {books.data.filter(book => book.start == time.value).map((book, bdx) => <Link href={route('specialist.appointment', {
+                                {books.data.filter(book => book.start == time.value && book.start == book.time).map((book, bdx) => <Link href={route('specialist.appointment', {
                                     book: book.id
                                 })} key={bdx} className={`flex space-x-5 items-center mb-5 rounded-lg overflow-hidden py-3 bg-blue-50 hover:bg-white hover:shadow-block`}>
                                     <div className={`w-[40%] flex space-x-5 items-center pl-5`}>

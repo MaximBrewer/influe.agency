@@ -41,9 +41,6 @@ export default (props) => {
                         <div className={`shrink-0 w-10 h-10 bg-cover rounded bg-center`} style={{ backgroundImage: `url(/storage/avatar.jpeg)` }}></div>
                         <div className={`grow`}>
                             <div className={`font-medium text-violet-500`}>{sale.lastname} {sale.name} {sale.surname}</div>
-                            <ul className={`text-sm flex space-x-3`}>
-                                {sale.directions.map((dir, ddx) => <li key={ddx}>{dir.title}</li>)}
-                            </ul>
                         </div>
                         <div className={`flex items-center space-x-4`}>
                             <Link href={route('admin.sales.edit', {

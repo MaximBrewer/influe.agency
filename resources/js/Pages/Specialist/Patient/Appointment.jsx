@@ -61,13 +61,7 @@ export default (props) => {
 
     const { pagetitle } = props
 
-    const [tab, setTab] = useState(menu.data[0])
-
-    const { data, setData, errors } = useForm({});
-
-    const handleOnChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
-    };
+    const [tab, setTab] = useState(menu.data[1])
 
     return (
         <AuthenticatedLayout
@@ -88,18 +82,18 @@ export default (props) => {
                         <div className="absolute top-full h-2 left-0 w-full bg-white"></div>
                     </li>)}
                 </ul>
-                <form className={`shadow-bb rounded-lg bg-white py-5 px-6`}>
-                    {tab.code === `ods` ? <Ods {...props} setTab={setTab} data={data} setData={setData} errors={errors} handleOnChange={handleOnChange} /> : ``}
-                    {tab.code === `addon` ? <Addon {...props} setTab={setTab} data={data} setData={setData} errors={errors} handleOnChange={handleOnChange} /> : ``}
-                    {tab.code === `kinesio` ? <Kinesio {...props} setTab={setTab} data={data} setData={setData} errors={errors} handleOnChange={handleOnChange} /> : ``}
-                    {tab.code === `manual` ? <Manual {...props} setTab={setTab} data={data} setData={setData} errors={errors} handleOnChange={handleOnChange} /> : ``}
-                    {tab.code === `other` ? <Other {...props} setTab={setTab} data={data} setData={setData} errors={errors} handleOnChange={handleOnChange} /> : ``}
-                    {tab.code === `painmap` ? <Painmap {...props} setTab={setTab} data={data} setData={setData} errors={errors} handleOnChange={handleOnChange} /> : ``}
-                    {tab.code === `plan` ? <Plan {...props} setTab={setTab} data={data} setData={setData} errors={errors} handleOnChange={handleOnChange} /> : ``}
-                    {tab.code === `podiatry` ? <Podiatry {...props} setTab={setTab} data={data} setData={setData} errors={errors} handleOnChange={handleOnChange} /> : ``}
-                    {tab.code === `taping` ? <Taping {...props} setTab={setTab} data={data} setData={setData} errors={errors} handleOnChange={handleOnChange} /> : ``}
-                    {tab.code === `consult` ? <Consult {...props} setTab={setTab} data={data} setData={setData} errors={errors} handleOnChange={handleOnChange} /> : ``}
-                </form>
+                <div className={`shadow-bb rounded-lg bg-white py-5 px-6`}>
+                    {tab.code === `ods` ? <Ods {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
+                    {tab.code === `addon` ? <Addon {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
+                    {tab.code === `kinesio` ? <Kinesio {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
+                    {tab.code === `manual` ? <Manual {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
+                    {tab.code === `other` ? <Other {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
+                    {tab.code === `painmap` ? <Painmap {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
+                    {tab.code === `plan` ? <Plan {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
+                    {tab.code === `podiatry` ? <Podiatry {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
+                    {tab.code === `taping` ? <Taping {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
+                    {tab.code === `consult` ? <Consult {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
+                </div>
             </div>
         </AuthenticatedLayout >
     );

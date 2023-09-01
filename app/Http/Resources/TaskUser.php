@@ -20,6 +20,7 @@ class TaskUser extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'avatar' => Storage::url($this->avatar),
+            'fullName' => $this->fullName,
             // 'role' => $this->role
         ];
         return $array;

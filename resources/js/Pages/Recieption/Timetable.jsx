@@ -128,7 +128,7 @@ export default (props) => {
                     </div>
                     <div className={`overflow-y-auto -mr-3 pr-3`}>
                         {books.data.length ? times.data.map((time, tdx) => <div className={`overflow-hidden`} key={tdx}>
-                            {books.data.filter(book => book.start == time.value).length ? <>
+                            {books.data.filter(book => book.start == time.value && book.start == book.time).length ? <>
                                 <div className={`relative my-4`}>
                                     <div className={`absolute -left-4 -right-4 top-1/2 border border-dashed border-blue-200`}></div>
                                     <div className={`flex`}>

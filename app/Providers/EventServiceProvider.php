@@ -9,6 +9,7 @@ use App\Events\SaleCreated;
 use App\Events\SeniorCreated;
 use App\Events\SupervisorCreated;
 use App\Events\SpecialistCreated;
+use App\Models\User;
 use App\Listeners\SendNurseCreatedNotification;
 use App\Listeners\SendPatientCreatedNotification;
 use App\Listeners\SendRecieptionCreatedNotification;
@@ -20,6 +21,7 @@ use App\Models\Payment;
 use App\Models\TopUp;
 use App\Observers\Payment as ObserversPayment;
 use App\Observers\TopUp as ObserversTopUp;
+use App\Observers\User as ObserversUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -62,6 +64,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         TopUp::observe(ObserversTopUp::class);
+        User::observe(ObserversUser::class);
         Payment::observe(ObserversPayment::class);
     }
 

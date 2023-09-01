@@ -10,6 +10,7 @@ use App\Http\Resources\ExecutorOpton;
 use App\Http\Resources\Task as ResourcesTask;
 use App\Models\Task;
 use App\Models\User;
+use App\Traits\TaskTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,36 +18,15 @@ use Inertia\Inertia;
 
 class TasksController extends Controller
 {
+    use TaskTrait;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $data['pagetitle'] = 'Задачи';
-        $user = User::find(Auth::id());
-
-        $data['lists'] = [
-            [
-                'status_id' => 1,
-                'title' => 'К работе',
-                'tasks' => ResourcesTask::collection($user->tasks()->where('status_id', 1)->get())
-            ],
-            [
-                'status_id' => 2,
-                'title' => 'На проверке',
-                'tasks' => ResourcesTask::collection($user->tasks()->where('status_id', 2)->get())
-            ],
-            [
-                'status_id' => 3,
-                'title' => 'Выполненные',
-                'tasks' => ResourcesTask::collection($user->tasks()->where('status_id', 3)->get())
-            ],
-        ];
-
-        $data['executors'] = ExecutorOpton::collection(User::whereHas('role', function (Builder $query) {
-            $query->whereIn('name', User::$canTask['recieption']);
-        })->whereNot('id', Auth::id())->get());
-
+        $data['lists'] = $this->getTasks();
+        $data['executors'] = $this->getExecutors();
         return Inertia::render('Recieption/Tasks', $data);
     }
 

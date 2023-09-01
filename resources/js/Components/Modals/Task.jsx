@@ -50,7 +50,9 @@ export default (props) => {
                 <div className="gap-1 flex">
                     {task.users.map((item, udx) => <div
                         key={item.id}
-                        className="w-8 h-8 rounded-lg border bg-cover bg-center relative" style={{ backgroundImage: `url('${item.avatar}')` }}
+                        className="w-8 h-8 rounded-lg border bg-cover bg-center relative"
+                        data-tooltip-id="modaltooltip" data-tooltip-content={item.fullName}
+                        style={{ backgroundImage: `url('${item.avatar}')` }}
                     >
                     </div>)}
                 </div>

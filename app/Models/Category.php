@@ -35,14 +35,14 @@ class Category extends Model implements \Bigperson\Exchange1C\Interfaces\GroupIn
      */
     public static function createTree1c($groups)
     {
-        // foreach ($groups as $group) {
-        //     if ($group->name) {
-        //         self::createByML($group);
-        //         if ($children = $group->getChildren()) {
-        //             self::createTree1c($children);
-        //         }
-        //     }
-        // }
+        foreach ($groups as $group) {
+            if ($group->name) {
+                self::createByML($group);
+                if ($children = $group->getChildren()) {
+                    self::createTree1c($children);
+                }
+            }
+        }
     }
     /**
      * Создаём группу по модели группы CommerceML
@@ -53,23 +53,23 @@ class Category extends Model implements \Bigperson\Exchange1C\Interfaces\GroupIn
      */
     public static function createByML(\Zenwalker\CommerceML\Model\Group $group)
     {
-        // /**
-        //  * @var \Zenwalker\CommerceML\Model\Group $parent
-        //  */
-        // if (!$model = Category::where('accounting_id', $group->id)->first()) {
-        //     $model = new self;
-        //     $model->accounting_id = $group->id;
-        // }
-        // $model->name = $group->name;
-        // $model->slug = Str::slug($group->name);
-        // if ($parent = $group->getParent()) {
-        //     $parentModel = self::createByML($parent);
-        //     $model->parent_id = $parentModel->id;
-        //     unset($parentModel);
-        // } else {
-        //     $model->parent_id = null;
-        // }
-        // $model->save();
-        // return $model;
+        /**
+         * @var \Zenwalker\CommerceML\Model\Group $parent
+         */
+        if (!$model = Category::where('accounting_id', $group->id)->first()) {
+            $model = new self;
+            $model->accounting_id = $group->id;
+        }
+        $model->name = $group->name;
+        $model->slug = Str::slug($group->name);
+        if ($parent = $group->getParent()) {
+            $parentModel = self::createByML($parent);
+            $model->parent_id = $parentModel->id;
+            unset($parentModel);
+        } else {
+            $model->parent_id = null;
+        }
+        $model->save();
+        return $model;
     }
 }

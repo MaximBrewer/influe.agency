@@ -190,13 +190,13 @@ class User extends Authenticatable
         'schedule' => 'array'
     ];
 
-    
+
     public static $canBook = [
         'recieption',
         'nurse'
     ];
 
-    
+
     public static $canPay = [
         'recieption',
         'nurse'
@@ -225,7 +225,7 @@ class User extends Authenticatable
         'sale' => [
             'specialist',
         ],
-        'specialis' => [],
+        'specialist' => [],
         'recieption' => [
             'nurse',
             'specialist',
@@ -328,7 +328,7 @@ class User extends Authenticatable
     {
         return Attribute::make(
             get: function () {
-                return $this->lastname . ' ' . $this->name . ' ' . $this->surname;
+                return trim($this->lastname . ' ' . $this->name . ' ' . $this->surname);
             }
         );
     }

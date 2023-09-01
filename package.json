@@ -25,6 +25,9 @@
         "date-fns": "^2.30.0",
         "faker": "^5.5.3",
         "moment": "^2.29.4",
+        "moveable-helper": "^0.4.0",
+        "react-canvas-draw": "^1.2.1",
+        "react-content-loader": "^6.2.1",
         "react-date-picker": "^10.5.0",
         "react-date-range": "^1.4.0",
         "react-datepicker": "^4.16.0",
@@ -33,7 +36,9 @@
         "react-dnd-html5-backend": "^16.0.1",
         "react-imask": "^6.4.3",
         "react-ios-time-picker": "^0.2.2",
+        "react-moveable": "^0.54.1",
         "react-select": "^5.7.0",
-        "react-time-picker": "^5.2.0"
+        "react-time-picker": "^5.2.0",
+        "react-tooltip": "^5.21.1"
     }
 }

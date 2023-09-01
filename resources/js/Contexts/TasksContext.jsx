@@ -4,6 +4,8 @@ import moment from 'moment';
 import ru from "./moment.ru"
 import Task from "@/Components/Modals/TaskForm";
 import { router, useForm } from "@inertiajs/react";
+import { Tooltip } from 'react-tooltip'
+
 moment.locale('ru', ru);
 
 const TasksContext = React.createContext();
@@ -72,7 +74,7 @@ const TasksProvider = (props) => {
             executors
         }}
     >
-        <div className={``}>
+        <div className={`h-full overflow-y-auto`}>
             {children}
         </div>
         {
@@ -84,10 +86,12 @@ const TasksProvider = (props) => {
                 }}>
                     <div>
                         {modal}
+                        <Tooltip id="modaltooltip" />
                     </div>
                 </div>
             </div> : ``
         }
+        <Tooltip id="tooltip" />
     </TasksContext.Provider>
 }
 
