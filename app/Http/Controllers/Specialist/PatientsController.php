@@ -54,6 +54,7 @@ class PatientsController extends Controller
             'id',
             'book_id',
             'tab',
+            'pain',
             'ods'
         ]));
 

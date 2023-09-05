@@ -125,7 +125,9 @@ export default (props) => {
         data,
         setData,
         errors,
-        transform
+        transform,
+        setTab,
+        menu
     } = props;
 
     const canvaRef = useRef(null)
@@ -361,7 +363,7 @@ export default (props) => {
                 ]
             }
 
-            ].map((formitem) => <div key={`ods-${formitem.name}`} className={`${tableClassses.grid} transition ${common ? `max-h-none` : `max-h-0 overflow-hidden`}`}>
+            ].map((formitem, fdx) => <div key={fdx} className={`${tableClassses.grid} transition ${common ? `max-h-none` : `max-h-0 overflow-hidden`}`}>
                 <Td className={`${formitem.type === 'heading' ? `col-span-4` : ``}`}>{parse(formitem.title ?? ``)}</Td>
                 {formitem.type === 'select' ? <Td padding={false}>
                     <Select
@@ -887,9 +889,9 @@ export default (props) => {
                         },
                     ]
                 },
-            ].map(row => <div className={`${tableClassses.grid} transition ${tonus ? `max-h-none` : `max-h-0 overflow-hidden`}`}>
+            ].map((row, rdx) => <div key={rdx} className={`${tableClassses.grid} transition ${tonus ? `max-h-none` : `max-h-0 overflow-hidden`}`}>
                 <Td className={`font-bold ${row.className}`}>{row.title}</Td>
-                {row.items.map(formitem => <>
+                {row.items.map((formitem, fdx) => <Fragment key={fdx}>
                     <Td className="text-sm small-select">
                         {formitem.type === 'select' ? <div className="grid grid-cols-2 gap-2">
                             <div className="grid grid-cols-2 gap-2">
@@ -922,7 +924,7 @@ export default (props) => {
                             formitem.type === 'selects' ? <div>
                                 {formitem.title ? <div>{formitem.title}</div> : ``}
                                 <div className="grid grid-cols-2 gap-2">
-                                    {formitem.subitems.map(subitem => <div className="grid grid-cols-2 gap-2">
+                                    {formitem.subitems.map((subitem, sdx) => <div key={sdx} className="grid grid-cols-2 gap-2">
                                         <div>{subitem.title}</div>
                                         <Select
                                             styles={customStylesII}
@@ -990,7 +992,7 @@ export default (props) => {
                             className="w-full block border-0 bg-transparent resize-none h-[2.5rem] focus:outline-none"
                         />
                     </Td>
-                </>)}
+                </Fragment>)}
             </div>)}
 
             <Heading toggleOpen={setChest} opened={chest}>Со стороны груди</Heading>
@@ -1170,14 +1172,14 @@ export default (props) => {
                         }
                     ]
                 },
-            ].map(row => <div className={`${tableClassses.grid} transition ${chest ? `max-h-none` : `max-h-0 overflow-hidden`}`}>
+            ].map((row, rdx) => <div key={rdx} className={`${tableClassses.grid} transition ${chest ? `max-h-none` : `max-h-0 overflow-hidden`}`}>
                 <Td className={`font-bold ${row.className}`}>{row.title}</Td>
-                {row.items.map(formitem => <>
+                {row.items.map((formitem, fdx) => <Fragment key={fdx}>
                     <Td className="text-sm small-select">
                         {formitem.type === 'selects' ? <div>
                             {formitem.title ? <div className="font-bold">{formitem.title}</div> : ``}
                             <div className="grid grid-cols-2 gap-2">
-                                {formitem.subitems.map(subitem => <div className="grid grid-cols-2 gap-2">
+                                {formitem.subitems.map((subitem, sdx) => <div key={(sdx)} className="grid grid-cols-2 gap-2">
                                     <div>{subitem.title}</div>
                                     <Select
                                         styles={customStylesII}
@@ -1217,7 +1219,7 @@ export default (props) => {
                             </div> : (
                                 formitem.type === 'radios' ? <div>
                                     <div className="grid grid-cols-2 gap-2">
-                                        {formitem.subitems.map(subitem => <label className="flex items-center gap-2">
+                                        {formitem.subitems.map((subitem, sdx) => <label key={sdx} className="flex items-center gap-2">
                                             <div className="flex items-center">
                                                 <input type="radio"
                                                     className={'border-gray-300 text-purple-900 shadow-sm focus:ring-purple-900 '}
@@ -1260,7 +1262,7 @@ export default (props) => {
                             className="w-full block border-0 bg-transparent resize-none h-[2.5rem] focus:outline-none"
                         />
                     </Td>
-                </>)}
+                </Fragment>)}
             </div>)}
 
             <Heading toggleOpen={setTests} opened={tests}>Тесты</Heading>
@@ -1336,9 +1338,9 @@ export default (props) => {
                         }
                     ]
                 },
-            ].map(row => <div className={`${tableClassses.grid} transition ${tests ? `max-h-none` : `max-h-0 overflow-hidden`}`}>
+            ].map((row, rdx) => <div key={rdx} className={`${tableClassses.grid} transition ${tests ? `max-h-none` : `max-h-0 overflow-hidden`}`}>
                 <Td className={`font-bold ${row.className}`}>{row.title}</Td>
-                {row.items.map(formitem => <>
+                {row.items.map((formitem, fdx) => <Fragment key={fdx}>
                     <Td className="text-sm small-select">
                         {formitem.type === 'select' ? <div className="grid grid-cols-2 gap-2">
                             <div className="grid grid-cols-2 gap-2">
@@ -1371,7 +1373,7 @@ export default (props) => {
                             formitem.type === 'selects' ? <div>
                                 {formitem.title ? <div className="font-bold">{formitem.title}</div> : ``}
                                 <div className="grid grid-cols-2 gap-2">
-                                    {formitem.subitems.map(subitem => <div className="grid grid-cols-2 gap-2">
+                                    {formitem.subitems.map((subitem, sdx) => <div key={sdx} className="grid grid-cols-2 gap-2">
                                         <div>{subitem.title}</div>
                                         <Select
                                             styles={customStylesII}
@@ -1426,7 +1428,7 @@ export default (props) => {
                                     </div> : (
                                         formitem.type === 'radios' ? <div>
                                             <div className="grid grid-cols-2 gap-2">
-                                                {formitem.subitems.map(subitem => <label className="flex items-center gap-2">
+                                                {formitem.subitems.map((subitem, sdx) => <label key={sdx} className="flex items-center gap-2">
                                                     <div className="flex items-center">
                                                         <input type="radio"
                                                             className={'border-gray-300 text-purple-900 shadow-sm focus:ring-purple-900 '}
@@ -1471,7 +1473,7 @@ export default (props) => {
                             className="w-full block border-0 bg-transparent resize-none h-[2.5rem] focus:outline-none"
                         />
                     </Td>
-                </>)}
+                </Fragment>)}
             </div>)}
             <Heading toggleOpen={setNotes} opened={notes} className={`${notes ? `` : `rounded-b-lg`}`}>Примечания</Heading>
             <div className={`${tableClassses.grid} transition overflow-hidden ${notes ? `max-h-none` : `max-h-0`}`}>
@@ -1489,9 +1491,9 @@ export default (props) => {
                     />
                 </div>
             </div>
-        </div >
+        </div>
         <div className={`flex justify-end py-8`}>
-            <PrimaryButton size="sm" type="submit">Далее</PrimaryButton>
+            <PrimaryButton size="sm" onClick={e => setTab(menu.data[2])}>Далее</PrimaryButton>
         </div>
     </>
 }

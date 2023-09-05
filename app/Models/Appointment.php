@@ -22,10 +22,16 @@ class Appointment extends Model
         'consultspecialists',
         'conclusion',
         'recommendations',
+        'other',
     ];
 
     public function ods(): HasOne
     {
         return $this->hasOne(Ods::class);
+    }
+
+    public function pain(): HasOne
+    {
+        return $this->hasOne(Pain::class);
     }
 }

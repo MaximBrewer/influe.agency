@@ -62,7 +62,7 @@ const elements = [
 
 export default (props) => {
 
-    const { data, setData, errors } = props;
+    const { data, setData, errors, setTab, menu } = props;
 
     const handleOnChange = (event) => {
         setData(prev => {
@@ -107,7 +107,7 @@ export default (props) => {
             </div>)}
         </div>
         <div className={`flex justify-end py-8`}>
-            <PrimaryButton size="sm" type="submit">Далее</PrimaryButton>
+            <PrimaryButton size="sm" onClick={e => setTab(menu.data[1])}>Далее</PrimaryButton>
         </div>
     </>
 }

@@ -50,7 +50,7 @@ const menu = {
             code: "taping",
         },
         {
-            title: "Мануальная терапия",
+            title: "ОДА",
             code: "manual",
         },
         {
@@ -67,13 +67,14 @@ export default (props) => {
 
     const formRef = useRef(null)
 
-    const [tab, setTab] = useState(menu.data[1])
+    const [tab, setTab] = useState(menu.data[0])
     const tabRef = useRef(tab.code)
 
 
     const { data, setData, post, processing, errors, reset, transform } = useForm({
         ...appointment.data,
-        ods: appointment.data.ods ?? {}
+        ods: appointment.data.ods ?? {},
+        pain: appointment.data.pain ?? {}
     });
 
     transform(data => ({
@@ -122,22 +123,30 @@ export default (props) => {
                             data={data}
                             setData={setData}
                             errors={errors}
+                            setTab={setTab}
+                            menu={menu}
                         /> : ``}
                         {tab.code === `ods` ? <Ods
                             data={data}
                             setData={setData}
                             transform={transform}
                             errors={errors}
+                            setTab={setTab}
+                            menu={menu}
                         /> : ``}
                         {tab.code === `painmap` ? <Painmap
                             data={data}
                             setData={setData}
                             errors={errors}
+                            setTab={setTab}
+                            menu={menu}
                         /> : ``}
                         {tab.code === `addon` ? <Addon
                             data={data}
                             setData={setData}
                             errors={errors}
+                            setTab={setTab}
+                            menu={menu}
                         /> : ``}
                         {tab.code === `kinesio` ? <Kinesio
                             data={data}
@@ -148,26 +157,36 @@ export default (props) => {
                             data={data}
                             setData={setData}
                             errors={errors}
+                            setTab={setTab}
+                            menu={menu}
                         /> : ``}
                         {tab.code === `other` ? <Other
                             data={data}
                             setData={setData}
                             errors={errors}
+                            setTab={setTab}
+                            menu={menu}
                         /> : ``}
                         {tab.code === `plan` ? <Plan
                             data={data}
                             setData={setData}
                             errors={errors}
+                            setTab={setTab}
+                            menu={menu}
                         /> : ``}
                         {tab.code === `podiatry` ? <Podiatry
                             data={data}
                             setData={setData}
                             errors={errors}
+                            setTab={setTab}
+                            menu={menu}
                         /> : ``}
                         {tab.code === `taping` ? <Taping
                             data={data}
                             setData={setData}
                             errors={errors}
+                            setTab={setTab}
+                            menu={menu}
                         /> : ``}
                     </form>
                 </div>
