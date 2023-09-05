@@ -195,3 +195,10 @@ Route::get('/migrate', function () {
     Artisan::call('migrate');
     return redirect('/');
 });
+
+Route::get('/clear', function () {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    return redirect('/');
+});
