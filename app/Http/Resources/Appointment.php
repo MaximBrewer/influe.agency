@@ -29,6 +29,9 @@ class Appointment extends JsonResource
             'consultspecialists' => $this->consultspecialists ?? '',
             'conclusion' => $this->conclusion ?? '',
             'recommendations' => $this->recommendations ?? '',
+            
+            'ods' => new Ods($this->ods),
+
         ];
         return $array;
     }

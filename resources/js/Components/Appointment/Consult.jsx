@@ -62,29 +62,7 @@ const elements = [
 
 export default (props) => {
 
-    const { setTab, appointment, menu } = props;
-
-    const formRef = useRef(null)
-    const dataRef = useRef({})
-
-    const { data, setData, post, patch, processing, errors, reset, transform } = useForm({
-        ...appointment.data
-    });
-
-    const submit = (e) => {
-        e.preventDefault()
-        post(route('specialist.appointment.update', {
-            book: appointment.data.book_id
-        }), {
-            body: dataRef.current,
-            onSuccess: () => {
-                setTab(menu.data[1]);
-            },
-            onError: () => {
-                setTab(menu.data[0]);
-            }
-        });
-    };
+    const { data, setData, errors } = props;
 
     const handleOnChange = (event) => {
         setData(prev => {
@@ -104,16 +82,12 @@ export default (props) => {
     }, [])
 
     useEffect(() => {
-        dataRef.current = data
-    }, [data])
-
-    useEffect(() => {
         () => {
             formRef.current && formRef.current.submit()
         }
-    }, [formRef])
+    }, [])
 
-    return <form onSubmit={submit} ref={formRef}>
+    return <>
         <div className={`bg-blue-80 rounded-lg p-5`}>
             {elements.map((el, edx) => <div key={edx} className="mb-4">
                 <InputLabel htmlFor={el.code} value={el.title} color={`text-black`} weight={`font-semibold`} size={`text-sm`} />
@@ -135,6 +109,6 @@ export default (props) => {
         <div className={`flex justify-end py-8`}>
             <PrimaryButton size="sm" type="submit">Далее</PrimaryButton>
         </div>
-    </form>
+    </>
 }
 

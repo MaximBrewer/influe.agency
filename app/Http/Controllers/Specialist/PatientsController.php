@@ -52,8 +52,14 @@ class PatientsController extends Controller
     {
         $book->appointment()->update($request->except([
             'id',
-            'book_id'
+            'book_id',
+            'tab',
+            'ods'
         ]));
+
+        if (!$book->appointment->ods) $book->appointment->ods()->create([]);
+        $book->appointment->ods()->update($request->ods);
+
         return redirect()->route('specialist.appointment', [
             'book' => $book->id
         ]);

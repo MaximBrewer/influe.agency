@@ -11,6 +11,8 @@ import Taping from '@/Components/Appointment/Taping';
 import PrimaryButton from '@/Components/PrimaryButton';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, useForm } from '@inertiajs/react';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 import { useState } from 'react';
 
 const menu = {
@@ -59,9 +61,41 @@ const menu = {
 }
 export default (props) => {
 
-    const { pagetitle } = props
+    const { pagetitle, appointment } = props
+
+    console.log(appointment)
+
+    const formRef = useRef(null)
 
     const [tab, setTab] = useState(menu.data[1])
+    const tabRef = useRef(tab.code)
+
+
+    const { data, setData, post, processing, errors, reset, transform } = useForm({
+        ...appointment.data,
+        ods: appointment.data.ods ?? {}
+    });
+
+    transform(data => ({
+        ...data,
+        tab: tab.code
+    }))
+
+    const submit = (e) => {
+        e && e.preventDefault()
+        post(route('specialist.appointment.update', {
+            book: appointment.data.book_id
+        }));
+    };
+
+    useEffect(() => {
+        tab.code == tabRef.current || submit()
+        tabRef.current = tab.code
+    }, [tab])
+
+    useEffect(() => {
+        console.log(data)
+    }, [data])
 
     return (
         <AuthenticatedLayout
@@ -83,18 +117,61 @@ export default (props) => {
                     </li>)}
                 </ul>
                 <div className={`shadow-bb rounded-lg bg-white py-5 px-6`}>
-                    {tab.code === `ods` ? <Ods {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
-                    {tab.code === `addon` ? <Addon {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
-                    {tab.code === `kinesio` ? <Kinesio {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
-                    {tab.code === `manual` ? <Manual {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
-                    {tab.code === `other` ? <Other {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
-                    {tab.code === `painmap` ? <Painmap {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
-                    {tab.code === `plan` ? <Plan {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
-                    {tab.code === `podiatry` ? <Podiatry {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
-                    {tab.code === `taping` ? <Taping {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
-                    {tab.code === `consult` ? <Consult {...props} setTab={setTab} menu={menu} tab={tab} /> : ``}
+                    <form onSubmit={submit} ref={formRef}>
+                        {tab.code === `consult` ? <Consult
+                            data={data}
+                            setData={setData}
+                            errors={errors}
+                        /> : ``}
+                        {tab.code === `ods` ? <Ods
+                            data={data}
+                            setData={setData}
+                            transform={transform}
+                            errors={errors}
+                        /> : ``}
+                        {tab.code === `painmap` ? <Painmap
+                            data={data}
+                            setData={setData}
+                            errors={errors}
+                        /> : ``}
+                        {tab.code === `addon` ? <Addon
+                            data={data}
+                            setData={setData}
+                            errors={errors}
+                        /> : ``}
+                        {tab.code === `kinesio` ? <Kinesio
+                            data={data}
+                            setData={setData}
+                            errors={errors}
+                        /> : ``}
+                        {tab.code === `manual` ? <Manual
+                            data={data}
+                            setData={setData}
+                            errors={errors}
+                        /> : ``}
+                        {tab.code === `other` ? <Other
+                            data={data}
+                            setData={setData}
+                            errors={errors}
+                        /> : ``}
+                        {tab.code === `plan` ? <Plan
+                            data={data}
+                            setData={setData}
+                            errors={errors}
+                        /> : ``}
+                        {tab.code === `podiatry` ? <Podiatry
+                            data={data}
+                            setData={setData}
+                            errors={errors}
+                        /> : ``}
+                        {tab.code === `taping` ? <Taping
+                            data={data}
+                            setData={setData}
+                            errors={errors}
+                        /> : ``}
+                    </form>
                 </div>
             </div>
-        </AuthenticatedLayout >
+        </AuthenticatedLayout>
     );
 }

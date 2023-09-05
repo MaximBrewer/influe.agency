@@ -33,3 +33,11 @@
     scrollbar-color: #ccc transparent;
     scrollbar-width: thin;
 }
+
+.small-select [class*=ValueContainer2] {
+    padding: 0 !important;
+}
+
+.small-select [class*=indicatorContainer] {
+    padding: 0px 4px 0px 0px !important;
+}
