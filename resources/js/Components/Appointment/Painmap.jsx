@@ -12,6 +12,65 @@ import Select, { components } from 'react-select';
 import { useState } from "react";
 import PrimaryButton from "../PrimaryButton";
 
+const customStyles = {
+    control: (styles, { data, isDisabled, isFocused, isSelected }) => {
+        return ({
+            ...styles,
+            borderRadius: `.25rem`,
+            minHeight: `1.125rem`,
+            outline: `none`,
+            borderColor: `transparent`,
+            boxShadow: `none`,
+            flexWrap: `nowrap`
+        })
+    },
+    placeholder: (styles, { data, isDisabled, isFocused, isSelected }) => {
+        return ({
+            ...styles,
+            whiteSpace: `nowrap`,
+        })
+    },
+    singleValue: (styles, { data, isDisabled, isFocused, isSelected }) => {
+        return ({
+            ...styles,
+            fontWeight: 500,
+        })
+    },
+    indicatorContainer: (styles, { data, isDisabled, isFocused, isSelected }) => {
+        return ({
+            ...styles,
+            padding: 2
+        })
+    },
+    ValueContainer2: (styles, { data, isDisabled, isFocused, isSelected }) => {
+        return ({
+            ...styles,
+            padding: 0
+        })
+    },
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+        return ({
+            ...styles,
+            paddingTop: `2px`,
+            paddingBottom: `2px`,
+        })
+    },
+    indicatorSeparator: (styles, { data, isDisabled, isFocused, isSelected }) => ({
+        ...styles,
+        backgroundColor: `transparent`
+    }),
+};
+
+const DropdownIndicator = (props) => {
+    return (
+        <components.DropdownIndicator {...props}>
+            <svg width="16" height="6" className="text-purple-900" viewBox="0 0 16 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.63656 5.35044L0.214103 0.86339C-0.241616 0.545002 0.0811491 0.000608444 0.725521 0.000608444L14.5935 0.000608444C15.238 0.000608444 15.5607 0.545002 15.105 0.86339L8.68252 5.35044C8.11757 5.74517 7.2015 5.74517 6.63656 5.35044Z" fill="currentColor" />
+            </svg>
+        </components.DropdownIndicator>
+    );
+};
+
 const levels = [
     Level1,
     Level2,
@@ -35,15 +94,57 @@ const characters = [
     `Другое`
 ]
 
-const PainMetter = ({ painData, setPainData, setPainDatas = () => { } }) => {
+const departments = [
+    { label: 'Шейный отдел', value: 'cervical' },
+    { label: 'Грудной отдел', value: 'thoracic' },
+    { label: 'Грудопоясничный отдел', value: 'thoracolumbar' },
+    { label: 'Поясничный отдел', value: 'lumbar' },
+    { label: 'Пояснично-крестцовый отдел', value: 'lumbosacral' },
+    { label: 'Крестцово-копчиковой отдел', value: 'sacrococcygeal' },
+]
+
+const painlevels = [
+    { label: 'Боли нет', value: 'nop' },
+    { label: 'Боль незначительная', value: 'minor' },
+    { label: 'Боль умеренная', value: 'moderate' },
+    { label: 'Боль выраженная', value: 'expressed' },
+    { label: 'Боль невыносимая', value: 'unbearable' },
+]
+
+const painnumlevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => (
+    { label: i, value: i }
+))
+
+
+const PainMetter = ({ painData, setPainData, setPainDatas = () => { }, top = false, index = -1 }) => {
 
     return <div className="grow">
         <div className="flex gap-4 items-center mb-8">
             <div className="font-semibold shrink-0">Уровень боли</div>
-            <div className="grid grid-cols-3 gap-4">
-                <Select />
-                <Select />
-                <Select />
+            <div className={`grid grid-cols-3 gap-4 text-sm ${top ? `grow` : ``}`}>
+                <Select
+                    styles={customStyles}
+                    components={{ DropdownIndicator }}
+                    options={departments}
+                    defaultValue={painData.department ? departments.find(el => el.value == painData.department) : departments[0]}
+                    onChange={value => setPainData(prev => ({ ...prev, department: value.value }))}
+                />
+                <Select
+                    styles={customStyles}
+                    components={{ DropdownIndicator }}
+                    options={painlevels}
+                    defaultValue={painlevels.find(el => el.value == painData.painlevel)}
+                    onChange={value => setPainData(prev => ({ ...prev, painlevel: value.value }))}
+                    placeholder="Выбрать из списка"
+                />
+                <Select
+                    styles={customStyles}
+                    components={{ DropdownIndicator }}
+                    options={painnumlevels}
+                    defaultValue={painnumlevels.find(el => el.value == painData.painnumlevel)}
+                    onChange={value => setPainData(prev => ({ ...prev, painnumlevel: value.value }))}
+                    placeholder="Выберите от 0 до 10"
+                />
             </div>
             <svg className="w-4 h-4 shrink-0 cursor-pointer" onClick={e => setPainDatas(prev => [...prev, painData])} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 17" fill="none">
                 <rect width="17" height="17" rx="4" fill="#56326E" />
@@ -51,7 +152,7 @@ const PainMetter = ({ painData, setPainData, setPainDatas = () => { } }) => {
             </svg>
         </div>
         <div className="flex gap-6 grow mb-8">
-            {[1, 2, 3, 4, 5, 6].map(item => <label key={item} htmlFor={`painlevel-${item}`} className="flex flex-col gap-4 items-center">
+            {[1, 2, 3, 4, 5, 6].map(item => <label key={item} htmlFor={`painlevel-${item}${index > -1 ? `-${index}` : ``}`} className="flex flex-col gap-4 items-center">
                 <img src={levels[item - 1]} alt={``} className="w-24 h-auto" />
                 <input
                     type="radio"
@@ -59,7 +160,7 @@ const PainMetter = ({ painData, setPainData, setPainDatas = () => { } }) => {
                     value={item}
                     checked={painData.level ? item == painData.level : item == 1}
                     onChange={e => e.target.checked && setPainData(prev => ({ ...prev, level: item }))}
-                    id={`painlevel-${item}`}
+                    id={`painlevel-${item}${index > -1 ? `-${index}` : ``}`}
                     className={'border-gray-300 text-purple-900 shadow-sm focus:ring-purple-900 '}
                 />
             </label>)}
@@ -67,14 +168,14 @@ const PainMetter = ({ painData, setPainData, setPainDatas = () => { } }) => {
         <div className="mb-8">
             <div className="font-semibold mb-4">Характер боли</div>
             <div className="flex flex-wrap gap-4 items-center">
-                {characters.map((item, index) => <label key={index} htmlFor={`character-${index}`} className="flex gap-2 items-center">
+                {characters.map((item, idx) => <label key={index} htmlFor={`character-${idx}${index > -1 ? `-${index}` : ``}`} className="flex gap-2 items-center">
                     <input
                         type="radio"
                         name="character"
-                        value={1 + index}
-                        onChange={e => e.target.checked && setPainData(prev => ({ ...prev, character: 1 + index }))}
-                        checked={painData.character ? index == painData.character - 1 : index == 0}
-                        id={`character-${index}`}
+                        value={1 + idx}
+                        onChange={e => e.target.checked && setPainData(prev => ({ ...prev, character: 1 + idx }))}
+                        checked={painData.character ? idx == painData.character - 1 : idx == 0}
+                        id={`character-${idx}${index > -1 ? `-${index}` : ``}`}
                         className={'border-gray-300 text-purple-900 shadow-sm focus:ring-purple-900 '}
                     />
                     <div>{item}</div>
@@ -122,6 +223,16 @@ export default (props) => {
         }
     }, [canvaRef])
 
+    const setPainDataByIndex = prev => {
+        console.log({ ...prev })
+    }
+
+    // painData => setPainDatas(prev => {
+    //     console.log(prev)
+    //     const painDatas = [...prev];
+    //     painDatas[index] = painData;
+    //     return painData;
+    // })
 
     return <>
         <div className={`bg-blue-80 rounded-lg p-5`}>
@@ -158,11 +269,11 @@ export default (props) => {
                         </button>
                     </div>
                 </div>
-                <PainMetter painData={painData} setPainData={setPainData} setPainDatas={setPainDatas} />
+                <PainMetter painData={painData} setPainData={setPainData} setPainDatas={setPainDatas} top={true} />
             </div>
             <ul>
                 {painDatas.map((item, index) => <li key={index}>
-                    <PainMetter painData={item} setPainData={() => { }} />
+                    <PainMetter painData={item} setPainData={setPainDataByIndex} index={index} />
                 </li>)}
             </ul>
         </div>

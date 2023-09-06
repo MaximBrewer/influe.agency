@@ -29,45 +29,44 @@ const menu = {
             title: "Карта боли",
             code: "painmap",
         },
-        {
-            title: "Доп. исследования",
-            code: "addon",
-        },
-        {
-            title: "Подиатрия",
-            code: "podiatry",
-        },
-        {
-            title: "План реабилитации",
-            code: "plan",
-        },
-        {
-            title: "Кинезотерапия",
-            code: "kinesio",
-        },
-        {
-            title: "Тейпирование",
-            code: "taping",
-        },
-        {
-            title: "ОДА",
-            code: "manual",
-        },
+        // {
+        //     title: "Доп. исследования",
+        //     code: "addon",
+        // },
+        // {
+        //     title: "Подиатрия",
+        //     code: "podiatry",
+        // },
+        // {
+        //     title: "План реабилитации",
+        //     code: "plan",
+        // },
+        // {
+        //     title: "Кинезотерапия",
+        //     code: "kinesio",
+        // },
+        // {
+        //     title: "Тейпирование",
+        //     code: "taping",
+        // },
+        // {
+        //     title: "ОДА",
+        //     code: "manual",
+        // },
         {
             title: "Другое",
             code: "other",
         },
     ]
 }
+
 export default (props) => {
 
     const { pagetitle, appointment } = props
 
-    console.log(appointment)
-
     const formRef = useRef(null)
 
-    const [tab, setTab] = useState(menu.data[0])
+    const [tab, setTab] = useState(menu.data[2])
     const tabRef = useRef(tab.code)
 
 
