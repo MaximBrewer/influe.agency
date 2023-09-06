@@ -9,18 +9,15 @@ use Illuminate\Support\Facades\Storage;
 
 class User
 {
-    public function created(ModelsUser $model)
+    public function creating(ModelsUser $model)
     {
-        if ($model->role->name === 'client') {
-            $this->sendUserTo1c($model);
-        }
         return true;
     }
 
     public function updated(ModelsUser $model)
     {
-        if ($model->role->name === 'client') {
-            if ($model->wasChanged(['name', 'tin', 'phone'])) {
+        if ($model->role && $model->role->name === 'client') {
+            if ($model->wasChanged(['name', 'tin', 'phone']) || $model->getOriginal('user_id') === null) {
                 $this->sendUserTo1c($model);
             }
         }
