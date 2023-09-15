@@ -1,7 +1,11 @@
+import PrimaryButton from "../PrimaryButton";
 
 export default (props) => {
-    const { data, setData, handleOnChange, errors } = props;
-    return <div className={`bg-blue-80 rounded-lg p-5`}>
-        Man
-    </div>
+    const { data, setData, errors, nextTab  } = props;
+    return <>
+        <div className={`bg-blue-80 rounded-lg p-5`}>
+            Man
+        </div>
+        <PrimaryButton size="sm" onClick={() => nextTab()}>Далее</PrimaryButton>
+    </>
 }

@@ -1,7 +1,9 @@
 import PrimaryButton from "../PrimaryButton";
 
 export default (props) => {
-    const { data, setData, setTab, menu, errors } = props;
+
+    const { data, setData, errors, nextTab  } = props;
+    
     return <>
         <div className={`bg-blue-80 rounded-lg p-5`}>
             <svg width="1129" height="750" viewBox="0 0 1129 750" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -134,7 +136,7 @@ export default (props) => {
 
         </div>
         <div className={`flex justify-end py-8`}>
-            <PrimaryButton size="sm" onClick={e => setTab(menu.data[4])}>Далее</PrimaryButton>
+            <PrimaryButton size="sm" onClick={() => nextTab()}>Далее</PrimaryButton>
         </div>
     </>
 }

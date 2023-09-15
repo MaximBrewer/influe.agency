@@ -1,7 +1,7 @@
 import DangerButton from "../DangerButton";
 
 export default (props) => {
-    const { data, setData, handleOnChange, errors, setTab, menu } = props;
+    const { data, setData, errors, nextTab } = props;
     return <>
         <div className={`bg-blue-80 rounded-lg p-5`}>
             <textarea
@@ -11,7 +11,7 @@ export default (props) => {
             />
         </div>
         <div className={`flex justify-end py-8`}>
-            <DangerButton size="sm" onClick={e => setTab(menu.data[3])}>Завершить</DangerButton>
+            <DangerButton size="sm" onClick={e => nextTab()}>Завершить</DangerButton>
         </div>
     </>
 }

@@ -1,11 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import InputError from "../InputError";
 import InputLabel from "../InputLabel";
 import PrimaryButton from "../PrimaryButton";
 import TextArea from "../TextArea";
-import TextInput from "../TextInput";
-import { useForm } from "@inertiajs/react";
-import { router } from '@inertiajs/react'
 
 const elements = [
     {
@@ -62,7 +59,7 @@ const elements = [
 
 export default (props) => {
 
-    const { data, setData, errors, setTab, menu } = props;
+    const { data, setData, errors, nextTab  } = props;
 
     const handleOnChange = (event) => {
         setData(prev => {
@@ -107,7 +104,7 @@ export default (props) => {
             </div>)}
         </div>
         <div className={`flex justify-end py-8`}>
-            <PrimaryButton size="sm" onClick={e => setTab(menu.data[1])}>Далее</PrimaryButton>
+            <PrimaryButton size="sm" onClick={() => nextTab()}>Далее</PrimaryButton>
         </div>
     </>
 }

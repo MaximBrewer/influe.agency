@@ -30,8 +30,18 @@ class Appointment extends Model
         return $this->hasOne(Ods::class);
     }
 
-    public function pain(): HasOne
+    public function oda(): HasOne
     {
-        return $this->hasOne(Pain::class);
+        return $this->hasOne(Oda::class);
+    }
+
+    public function painmap(): HasOne
+    {
+        return $this->hasOne(Painmap::class);
+    }
+
+    public function kinesio(): HasOne
+    {
+        return $this->hasOne(Kinesio::class);
     }
 }

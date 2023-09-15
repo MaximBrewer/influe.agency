@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class Kinesio extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        $arr = parent::toArray($request);
+        $arr['interview'] = new Interview($this->interview);
+        $arr['observation'] = json_decode($arr['observation']) ?? [
+            'date1' =>  null,
+            'date2' =>  null,
+            'date3' =>  null,
+            'table' =>  null,
+        ];
+        $arr['sensivity'] = json_decode($arr['sensivity']) ?? null;
+        $arr['gmfcs'] = json_decode($arr['gmfcs']) ?? null;
+        
+        return $arr;
+    }
+}

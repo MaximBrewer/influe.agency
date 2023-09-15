@@ -121,14 +121,7 @@ const Heading = ({ children, toggleOpen, opened, className = "" }) => {
 
 export default (props) => {
 
-    const {
-        data,
-        setData,
-        errors,
-        transform,
-        setTab,
-        menu
-    } = props;
+    const { data, setData, errors, nextTab  } = props;
 
     const canvaRef = useRef(null)
 
@@ -284,7 +277,7 @@ export default (props) => {
             }, {
                 type: `select`,
                 name: 'deviation_axis_chest',
-                title: '<div class="pl-8">- в грудном</div>',
+                title: '<div className="pl-8">- в грудном</div>',
                 options: [
                     'Вправо',
                     'Влево'
@@ -292,7 +285,7 @@ export default (props) => {
             }, {
                 type: `select`,
                 name: 'deviation_axis_lumbar',
-                title: '<div class="pl-8">- в поясничном</div>',
+                title: '<div className="pl-8">- в поясничном</div>',
                 options: [
                     'Вправо',
                     'Влево'
@@ -1493,7 +1486,7 @@ export default (props) => {
             </div>
         </div>
         <div className={`flex justify-end py-8`}>
-            <PrimaryButton size="sm" onClick={e => setTab(menu.data[2])}>Далее</PrimaryButton>
+            <PrimaryButton size="sm" onClick={() => nextTab()}>Далее</PrimaryButton>
         </div>
     </>
 }

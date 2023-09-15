@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateAppointmentRequest;
 use App\Http\Resources\Appointment;
 use App\Http\Resources\PatientCardSpecialist;
+use App\Models\Appointment as ModelsAppointment;
 use App\Models\Book;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,10 +38,31 @@ class PatientsController extends Controller
      */
     public function appointment(Request $request, Book $book)
     {
-        $book->appointment()->firstOrCreate([]);
+        $appointment = $book->appointment()->firstOrCreate([]);
+
+        if (!$appointment->ods) {
+            $appointment->ods()->create([]);
+            $appointment = $book->appointment()->first();
+        }
+        if (!$appointment->painmap) {
+            $book->appointment->painmap()->create([]);
+            $appointment = $book->appointment()->first();
+        }
+        if (!$appointment->oda) {
+            $book->appointment->oda()->create([]);
+            $appointment = $book->appointment()->first();
+        }
+        if (!$appointment->kinesio) {
+            $book->appointment->kinesio()->create([]);
+            $appointment = $book->appointment()->first();
+        }
+        if (!$appointment->kinesio->interview) {
+            $book->appointment->kinesio->interview()->create([]);
+            $appointment = $book->appointment()->first();
+        }
         $data['pagetitle'] = 'Запись №-(Жолжаксинов Арман Тасбулатович)';
         $data['patient'] = new PatientCardSpecialist($book->patient);
-        $data['appointment'] = new Appointment($book->appointment);
+        $data['appointment'] = new Appointment($appointment);
         $data['scrollpage'] = true;
         return Inertia::render('Specialist/Patient/Appointment', $data);
     }
@@ -54,12 +76,21 @@ class PatientsController extends Controller
             'id',
             'book_id',
             'tab',
-            'pain',
-            'ods'
+            'painmap',
+            'ods',
+            'kinesio',
+            'oda'
         ]));
 
-        if (!$book->appointment->ods) $book->appointment->ods()->create([]);
-        $book->appointment->ods()->update($request->ods);
+        $book->appointment->oda->update($request->oda);
+
+        $book->appointment->ods->update($request->ods);
+
+        $book->appointment->painmap->update($request->painmap);
+
+        $book->appointment->kinesio->update($request->kinesio);
+
+        $book->appointment->kinesio->interview->update($request->kinesio['interview']);
 
         return redirect()->route('specialist.appointment', [
             'book' => $book->id

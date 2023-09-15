@@ -2,6 +2,7 @@ import Addon from '@/Components/Appointment/Addon';
 import Consult from '@/Components/Appointment/Consult';
 import Kinesio from '@/Components/Appointment/Kinesio';
 import Manual from '@/Components/Appointment/Manual';
+import Oda from '@/Components/Appointment/Oda';
 import Ods from '@/Components/Appointment/Ods';
 import Other from '@/Components/Appointment/Other';
 import Painmap from '@/Components/Appointment/Painmap';
@@ -29,6 +30,14 @@ const menu = {
             title: "Карта боли",
             code: "painmap",
         },
+        {
+            title: "Кинезотерапия",
+            code: "kinesio",
+        },
+        {
+            title: "ОДА",
+            code: "oda",
+        },
         // {
         //     title: "Доп. исследования",
         //     code: "addon",
@@ -42,16 +51,8 @@ const menu = {
         //     code: "plan",
         // },
         // {
-        //     title: "Кинезотерапия",
-        //     code: "kinesio",
-        // },
-        // {
         //     title: "Тейпирование",
         //     code: "taping",
-        // },
-        // {
-        //     title: "ОДА",
-        //     code: "manual",
         // },
         {
             title: "Другое",
@@ -66,26 +67,33 @@ export default (props) => {
 
     const formRef = useRef(null)
 
-    const [tab, setTab] = useState(menu.data[2])
+    const [tab, setTab] = useState(menu.data[3])
     const tabRef = useRef(tab.code)
 
 
     const { data, setData, post, processing, errors, reset, transform } = useForm({
         ...appointment.data,
         ods: appointment.data.ods ?? {},
-        pain: appointment.data.pain ?? {}
+        painmap: appointment.data.painmap ?? {}
     });
 
-    transform(data => ({
-        ...data,
-        tab: tab.code
-    }))
+    const dataRef = useRef(data)
+
+    transform(() => {
+        return ({
+            ...dataRef.current,
+            tab: tab.code
+        })
+    })
 
     const submit = (e) => {
         e && e.preventDefault()
         post(route('specialist.appointment.update', {
             book: appointment.data.book_id
-        }));
+        }), {
+            preserveScroll: true,
+            preserveState: true
+        });
     };
 
     useEffect(() => {
@@ -95,7 +103,23 @@ export default (props) => {
 
     useEffect(() => {
         console.log(data)
+        dataRef.current = data
     }, [data])
+
+    const intervalRef = useRef(null);
+
+    useEffect(() => {
+        intervalRef.current = setInterval(() => submit(), 5000)
+        return () => clearInterval(intervalRef.current)
+    }, [])
+
+    const nextTab = () => {
+        setTab(prev => {
+            let index = menu.data.findIndex(el => el.code == prev.code)
+            if (index == length - 1) return prev
+            return menu.data[index + 1]
+        })
+    }
 
     return (
         <AuthenticatedLayout
@@ -122,70 +146,59 @@ export default (props) => {
                             data={data}
                             setData={setData}
                             errors={errors}
-                            setTab={setTab}
-                            menu={menu}
                         /> : ``}
                         {tab.code === `ods` ? <Ods
                             data={data}
                             setData={setData}
                             transform={transform}
                             errors={errors}
-                            setTab={setTab}
-                            menu={menu}
                         /> : ``}
                         {tab.code === `painmap` ? <Painmap
                             data={data}
                             setData={setData}
                             errors={errors}
-                            setTab={setTab}
-                            menu={menu}
                         /> : ``}
                         {tab.code === `addon` ? <Addon
                             data={data}
                             setData={setData}
                             errors={errors}
-                            setTab={setTab}
-                            menu={menu}
                         /> : ``}
                         {tab.code === `kinesio` ? <Kinesio
                             data={data}
                             setData={setData}
+                            transform={transform}
                             errors={errors}
+                            nextTab={nextTab}
                         /> : ``}
                         {tab.code === `manual` ? <Manual
                             data={data}
                             setData={setData}
                             errors={errors}
-                            setTab={setTab}
-                            menu={menu}
                         /> : ``}
                         {tab.code === `other` ? <Other
                             data={data}
                             setData={setData}
                             errors={errors}
-                            setTab={setTab}
-                            menu={menu}
                         /> : ``}
                         {tab.code === `plan` ? <Plan
                             data={data}
                             setData={setData}
                             errors={errors}
-                            setTab={setTab}
-                            menu={menu}
+                        /> : ``}
+                        {tab.code === `oda` ? <Oda
+                            data={data}
+                            setData={setData}
+                            errors={errors}
                         /> : ``}
                         {tab.code === `podiatry` ? <Podiatry
                             data={data}
                             setData={setData}
                             errors={errors}
-                            setTab={setTab}
-                            menu={menu}
                         /> : ``}
                         {tab.code === `taping` ? <Taping
                             data={data}
                             setData={setData}
                             errors={errors}
-                            setTab={setTab}
-                            menu={menu}
                         /> : ``}
                     </form>
                 </div>
