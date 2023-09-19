@@ -19,3 +19,4 @@ yarn-error.log
 /.docker
 。DS_Store
 /.exchange
+/.ssh
