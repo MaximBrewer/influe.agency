@@ -4,43 +4,43 @@ import { Head } from '@inertiajs/react';
 import Select from 'react-select'
 
 
+const styles = {
+    control: (baseStyles, state) => ({
+        ...baseStyles,
+        borderWidth: 0,
+        backgroundColor: `#FAFBFD`,
+        borderRadius: `.5rem`,
+        minHeight: `40px`,
+        boxShadow: `none`
+    }),
+    indicatorSeparator: (baseStyles, state) => ({
+        ...baseStyles,
+        display: `none`
+    }),
+    singleValue: (baseStyles, state) => ({
+        ...baseStyles,
+        color: `#414D55`
+    }),
+}
+
+const options = [
+    { value: 'Январь 2023', label: 'Январь 2023' },
+    { value: 'Февраль 2023', label: 'Февраль 2023' },
+    { value: 'Март 2023', label: 'Март 2023' },
+    { value: 'Апрель 2023', label: 'Апрель 2023' },
+    { value: 'Май 2023', label: 'Май 2023' },
+    { value: 'Июнь 2023', label: 'Июнь 2023' },
+    { value: 'Июль 2023', label: 'Июль 2023' },
+    { value: 'Август 2023', label: 'Август 2023' },
+    { value: 'Сентябрь 2023', label: 'Сентябрь 2023' },
+    { value: 'Октябрь 2023', label: 'Октябрь 2023' },
+    { value: 'Ноябрь 2023', label: 'Ноябрь 2023' },
+    { value: 'Декабрь 2023', label: 'Декабрь 2023' },
+]
+
 export default (props) => {
 
     const { pagetitle } = props
-
-    const styles = {
-        control: (baseStyles, state) => ({
-            ...baseStyles,
-            borderWidth: 0,
-            backgroundColor: `#FAFBFD`,
-            borderRadius: `.5rem`,
-            minHeight: `40px`,
-            boxShadow: `none`
-        }),
-        indicatorSeparator: (baseStyles, state) => ({
-            ...baseStyles,
-            display: `none`
-        }),
-        singleValue: (baseStyles, state) => ({
-            ...baseStyles,
-            color: `#414D55`
-        }),
-    }
-
-    const options = [
-        { value: 'Январь 2023', label: 'Январь 2023' },
-        { value: 'Февраль 2023', label: 'Февраль 2023' },
-        { value: 'Март 2023', label: 'Март 2023' },
-        { value: 'Апрель 2023', label: 'Апрель 2023' },
-        { value: 'Май 2023', label: 'Май 2023' },
-        { value: 'Июнь 2023', label: 'Июнь 2023' },
-        { value: 'Июль 2023', label: 'Июль 2023' },
-        { value: 'Август 2023', label: 'Август 2023' },
-        { value: 'Сентябрь 2023', label: 'Сентябрь 2023' },
-        { value: 'Октябрь 2023', label: 'Октябрь 2023' },
-        { value: 'Ноябрь 2023', label: 'Ноябрь 2023' },
-        { value: 'Декабрь 2023', label: 'Декабрь 2023' },
-    ]
 
     return (
         <AuthenticatedLayout
