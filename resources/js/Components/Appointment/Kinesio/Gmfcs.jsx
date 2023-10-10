@@ -85,55 +85,53 @@ export default (props) => {
         <div className="font-medium mb-4">VI. GMFCS</div>
         <div className="flex items-center gap-16 my-4">
             <div className="flex items-center gap-2">
-                <div className="">В точке F**††</div>
+                <div className="">В точке F</div>
                 <Select
                     styles={customStyles}
                     components={{ DropdownIndicator }}
                     isSearchable={false}
                     isClearable={false}
                     placeholder="1-5"
-                    // defaultValue={data.ods[`${row.name}_${formitem.name}_${subitem.name}`] ? {
-                    //     value: data.ods[`${row.name}_${formitem.name}_${subitem.name}`],
-                    //     label: data.ods[`${row.name}_${formitem.name}_${subitem.name}`]
-                    // } : {
-                    //     value: '-',
-                    //     label: '-'
-                    // }}
+                    defaultValue={data.kinesio.gmfcs && data.kinesio.gmfcs.indotf ? {
+                        value: data.kinesio.gmfcs.indotf,
+                        label: data.kinesio.gmfcs.indotf
+                    } : null}
                     options={[1, 2, 3, 4, 5].map(el => ({
                         value: el,
                         label: el
                     }))}
-                // onChange={(value) => setData(prev => {
-                //     const data = { ...prev }
-                //     data.ods[`${row.name}_${formitem.name}_${subitem.name}`] = value ? value.value : ``
-                //     return data
-                // })}
+                    onChange={value => setData(prev => {
+                        const data = { ...prev }
+                        const kinesio = data.kinesio
+                        if (!kinesio.gmfcs) kinesio.gmfcs = {}
+                        kinesio.gmfcs.indotf = value.value
+                        return data
+                    })}
                 />
             </div>
             <div className="flex items-center gap-2">
-                <div className="">Текущий ***</div>
+                <div className="">Текущий</div>
                 <Select
                     styles={customStyles}
                     components={{ DropdownIndicator }}
                     isSearchable={false}
                     isClearable={false}
                     placeholder="1-5"
-                    // defaultValue={data.ods[`${row.name}_${formitem.name}_${subitem.name}`] ? {
-                    //     value: data.ods[`${row.name}_${formitem.name}_${subitem.name}`],
-                    //     label: data.ods[`${row.name}_${formitem.name}_${subitem.name}`]
-                    // } : {
-                    //     value: '-',
-                    //     label: '-'
-                    // }}
+                    defaultValue={data.kinesio.gmfcs && data.kinesio.gmfcs.current ? {
+                        value: data.kinesio.gmfcs.current,
+                        label: data.kinesio.gmfcs.current
+                    } : null}
                     options={[1, 2, 3, 4, 5].map(el => ({
                         value: el,
                         label: el
                     }))}
-                // onChange={(value) => setData(prev => {
-                //     const data = { ...prev }
-                //     data.ods[`${row.name}_${formitem.name}_${subitem.name}`] = value ? value.value : ``
-                //     return data
-                // })}
+                    onChange={value => setData(prev => {
+                        const data = { ...prev }
+                        const kinesio = data.kinesio
+                        if (!kinesio.gmfcs) kinesio.gmfcs = {}
+                        kinesio.gmfcs[`current`] = value.value
+                        return data
+                    })}
                 />
             </div>
         </div>

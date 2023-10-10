@@ -7,6 +7,8 @@ import Observation from "./Kinesio/Observation";
 import SensivityAssessing from "./Kinesio/SensivityAssessing";
 import Mobility from "./Kinesio/Mobility";
 import Gmfcs from "./Kinesio/Gmfcs";
+import Tonus from "./Kinesio/Tonus";
+import StaticPelvis from "./Kinesio/StaticPelvis";
 
 const types = [
     {
@@ -29,7 +31,7 @@ export default (props) => {
     const { data, setData, errors, nextTab } = props;
 
     return <>
-        {/* <div className={`p-5`}>
+        <div className={`p-5`}>
             <div className="flex gap-8">
                 {types.map((type, tdx) => <label key={tdx} className="flex items-center gap-2">
                     <input type="radio"
@@ -58,10 +60,12 @@ export default (props) => {
             )
         ) : ``}
         <Observation {...props} />
-        <PatternsAssessing {...props} /> */}
-        {/* <SensivityAssessing {...props} />
-        <Mobility {...props} /> */}
+        <PatternsAssessing {...props} />
+        <SensivityAssessing {...props} />
+        <Mobility {...props} />
         <Gmfcs {...props} />
+        <Tonus {...props} />
+        <StaticPelvis {...props} />
 
         <div className={`flex justify-end py-8`}>
             <PrimaryButton size="sm" onClick={() => nextTab()}>Далее</PrimaryButton>

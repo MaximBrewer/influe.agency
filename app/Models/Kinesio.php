@@ -15,7 +15,9 @@ class Kinesio extends Model
         'observation',
         'sensivity',
         'observationtext',
-        'gmfcs'
+        'gmfcs',
+        'tonus',
+        'sp'
     ];
 
     public function interview(): HasOne
