@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('categories', function (Blueprint $table) {
+        Schema::create('statistics', function (Blueprint $table) {
+            $table->id();
             $table->string('icon')->nullable();
-            $table->string('icondark')->nullable();
-            $table->string('bg', 1023)->nullable();
+            $table->string('title')->nullable();
+            $table->string('link')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -23,10 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('icon');
-            $table->dropColumn('icondark');
-            $table->dropColumn('bg');
-        });
+        Schema::dropIfExists('statistics');
     }
 };
