@@ -67,7 +67,7 @@ export default (props) => {
 
     const formRef = useRef(null)
 
-    const [tab, setTab] = useState(menu.data[6])
+    const [tab, setTab] = useState(menu.data[0])
     const tabRef = useRef(tab.code)
 
 
