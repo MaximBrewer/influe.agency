@@ -26,7 +26,11 @@ class Kinesio extends JsonResource
         $arr['gmfcs'] = json_decode($arr['gmfcs']) ?? null;
         $arr['tonus'] = json_decode($arr['tonus']) ?? null;
         $arr['sp'] = json_decode($arr['sp']) ?? null;
-        
+        $arr['local'] = json_decode($arr['local']) ?? null;
+        $arr['global'] = json_decode($arr['global']) ?? null;
+        $arr['walking'] = json_decode($arr['walking']) ?? null;
+        $arr['patterns'] = json_decode($arr['patterns']) ?? null;
+
         return $arr;
     }
 }

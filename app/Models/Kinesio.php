@@ -17,7 +17,13 @@ class Kinesio extends Model
         'observationtext',
         'gmfcs',
         'tonus',
-        'sp'
+        'sp',
+        'local',
+        'global',
+        'walking',
+        'doptest',
+        'forecast',
+        'patterns'
     ];
 
     public function interview(): HasOne

@@ -9,6 +9,11 @@ import Mobility from "./Kinesio/Mobility";
 import Gmfcs from "./Kinesio/Gmfcs";
 import Tonus from "./Kinesio/Tonus";
 import StaticPelvis from "./Kinesio/StaticPelvis";
+import Local from "./Kinesio/Local";
+import Global from "./Kinesio/Global";
+import Walking from "./Kinesio/Walking";
+import Doptest from "./Kinesio/Doptest";
+import Forecast from "./Kinesio/Forecast";
 
 const types = [
     {
@@ -66,6 +71,13 @@ export default (props) => {
         <Gmfcs {...props} />
         <Tonus {...props} />
         <StaticPelvis {...props} />
+
+        <Local {...props} />
+        <Global {...props} />
+        <Walking {...props} />
+        <Doptest {...props} />
+        <Forecast {...props} />
+
 
         <div className={`flex justify-end py-8`}>
             <PrimaryButton size="sm" onClick={() => nextTab()}>Далее</PrimaryButton>

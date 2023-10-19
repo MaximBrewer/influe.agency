@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Appointment extends Model
 {
@@ -35,6 +36,11 @@ class Appointment extends Model
         return $this->hasOne(Oda::class);
     }
 
+    public function addon(): HasOne
+    {
+        return $this->hasOne(Addon::class);
+    }
+
     public function painmap(): HasOne
     {
         return $this->hasOne(Painmap::class);
@@ -43,5 +49,15 @@ class Appointment extends Model
     public function kinesio(): HasOne
     {
         return $this->hasOne(Kinesio::class);
+    }
+
+    public function reabilitation(): HasOne
+    {
+        return $this->hasOne(Reabilitation::class);
+    }
+
+    public function files(): MorphMany
+    {
+        return $this->morphMany(File::class, 'entity');
     }
 }

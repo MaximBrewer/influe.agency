@@ -1,30 +1,63 @@
-import Select, { components } from 'react-select';
 import Person from "@/../img/card/kinesio/i2.png"
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
-const Field = ({ data, setData, fields, rounded, className = `` }) => {
+
+const FieldItem = ({ data, setData, fields, rounded, field, setZIndex }) => {
+
+    const [opened, setOpened] = useState(false)
+
+    const ref = useRef(null)
+
+    useEffect(() => {
+        setZIndex(opened ? `z-10` : `z-0`)
+    }, [opened])
+
+    const checkClick = (e) => {
+        if (!ref.current.contains(e.target)) setOpened(false)
+    }
+
+    useEffect(() => {
+        document.addEventListener('click', checkClick)
+        return () => {
+            document.removeEventListener('click', checkClick)
+        }
+    }, [opened])
+
+    return <div ref={ref} className={`cursor-pointer relative text-sm flex gap-1 items-center leading-none ${rounded && fields.length > 2 ? `justify-center` : ``}`} onClick={e => setOpened(prev => !prev)}>
+        <span>{field.label}</span>
+        <div className="">
+            <div className="text-center min-w-[1.5rem] py-1 font-medium">{data.kinesio.tonus && data.kinesio.tonus[field.name] ? ['__', 'Го', 'Гр', '+', '0'][data.kinesio.tonus[field.name]] : '__'}</div>
+        </div>
+        {opened ? <ul className="absolute top-full -translate-x-1/2 left-1/2 lex flex-col -translate-y-[2px] bg-white rounded z-20">
+            {['__', 'Го', 'Гр', '+', '0'].map((el, edx) => <li key={edx} onClick={e => setData(prev => {
+                const data = { ...prev }
+                const kinesio = data.kinesio
+                if (!kinesio.tonus) kinesio.tonus = {}
+                kinesio.tonus[field.name] = edx
+                console.log(data)
+                return data
+            })} className="px-4 text-center py-1 hover:bg-gray-50">{el}</li>)}
+        </ul> : <></>}
+    </div>
+}
+
+
+const Field = (props) => {
+
+    const { fields, rounded, className = `` } = props;
+
+    const [zIndex, setZIndex] = useState(`z-0`);
 
     const classNames = {
         wrapper: rounded ? (fields.length > 2 ? `bg-zinc-300 border border-black rounded-[100%] flex items-center justify-center px-2.5 pt-1 pb-3` : `bg-zinc-300 rounded-full border border-black w-[3.75rem] h-[3.75rem] flex items-center justify-center`) : `bg-white border border-black px-1.5 py-1.5`,
         inner: rounded ? (fields.length > 2 ? `grid grid-cols-2 gap-x-2` : `flex flex-col`) : (fields.length > 2 ? `grid grid-cols-2 gap-x-2` : (fields.length > 1 ? `flex gap-2` : ``))
     }
 
-    return <div className={`${classNames.wrapper} ${className}`}>
-        <div className={classNames.inner}>
-            {fields.map((f, fdx) => <div key={fdx} className={`text-sm flex gap-1 items-center leading-none ${rounded && fields.length > 2 ? `justify-center` : ``}`}>
-                <span>{f.label}</span>
-                <input
-                    type="kinesio"
-                    onChange={e => setData(prev => {
-                        const data = { ...prev }
-                        const kinesio = data.kinesio
-                        if (!kinesio.tonus) kinesio.tonus = {}
-                        kinesio.tonus[f.name] = e.target.value
-                        return data
-                    })}
-                    value={data.kinesio.tonus && data.kinesio.tonus[f.name] ? data.kinesio.tonus[f.name] : ``}
-                    className={'p-0 w-6 border-0 box-shadow-none border-b leading-none outline-none text-center bg-transparent'}
-                />
-            </div>)}
+    return <div className={`${classNames.wrapper} ${className} ${zIndex}`}>
+        <div className={`${classNames.inner}`}>
+            {fields.map((f, fdx) => <FieldItem key={fdx} {...props} field={f} setZIndex={setZIndex} />)}
         </div>
     </div>
 }
@@ -32,6 +65,20 @@ const Field = ({ data, setData, fields, rounded, className = `` }) => {
 export default (props) => {
 
     const { data, setData, errors } = props;
+
+    const [tonus, setTonus] = useState([0, 0, 0, 0, 0])
+
+    useEffect(() => {
+        if (data.kinesio && data.kinesio.tonus) {
+            let tonus = [0, 0, 0, 0, 0];
+            for (let [key, value] of Object.entries(data.kinesio.tonus)) {
+                if (Number.isInteger(value)) {
+                    ++tonus[value]
+                }
+            }
+            setTonus(tonus)
+        }
+    }, [data])
 
     return <div className={`bg-blue-80 rounded-lg p-5 mb-8`}>
 
@@ -64,19 +111,19 @@ export default (props) => {
 
                 <div className="font-medium mt-4 mb-2">Сумма </div>
                 <label className="flex items-center gap-2 mb-2">
-                    <span className="w-8">Го</span> 5
+                    <span className="w-8">Го</span> {tonus[1]}
                 </label>
                 <label className="flex items-center gap-2 mb-2">
-                    <span className="w-8">Гр</span> 6
+                    <span className="w-8">Гр</span> {tonus[2]}
                 </label>
                 <label className="flex items-center gap-2 mb-2">
-                    <span className="w-8">+</span> 6
+                    <span className="w-8">+</span> {tonus[3]}
                 </label>
                 <label className="flex items-center gap-2 mb-2">
-                    <span className="w-8">0</span> 6
+                    <span className="w-8">0</span> {tonus[4]}
                 </label>
                 <label className="flex items-center gap-2 mb-2">
-                    <span className="w-8">Тип</span> Гр
+                    <span className="w-8">Тип</span> {['__', 'Го', 'Гр', '+', '0'][tonus.indexOf(Math.max.apply(null, tonus))]}
                 </label>
             </div>
             <div className="shrink-0 p-24">

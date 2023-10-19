@@ -6,8 +6,8 @@ import Oda from '@/Components/Appointment/Oda';
 import Ods from '@/Components/Appointment/Ods';
 import Other from '@/Components/Appointment/Other';
 import Painmap from '@/Components/Appointment/Painmap';
-import Plan from '@/Components/Appointment/Plan';
 import Podiatry from '@/Components/Appointment/Podiatry';
+import Reabilitation from '@/Components/Appointment/Reabilitation';
 import Taping from '@/Components/Appointment/Taping';
 import PrimaryButton from '@/Components/PrimaryButton';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
@@ -31,6 +31,10 @@ const menu = {
             code: "painmap",
         },
         {
+            title: "Доп. исследования",
+            code: "addon",
+        },
+        {
             title: "Кинезотерапия",
             code: "kinesio",
         },
@@ -39,17 +43,13 @@ const menu = {
             code: "oda",
         },
         // {
-        //     title: "Доп. исследования",
-        //     code: "addon",
-        // },
-        // {
         //     title: "Подиатрия",
         //     code: "podiatry",
         // },
-        // {
-        //     title: "План реабилитации",
-        //     code: "plan",
-        // },
+        {
+            title: "План реабилитации",
+            code: "reabilitation",
+        },
         // {
         //     title: "Тейпирование",
         //     code: "taping",
@@ -67,7 +67,7 @@ export default (props) => {
 
     const formRef = useRef(null)
 
-    const [tab, setTab] = useState(menu.data[3])
+    const [tab, setTab] = useState(menu.data[6])
     const tabRef = useRef(tab.code)
 
 
@@ -162,6 +162,7 @@ export default (props) => {
                             data={data}
                             setData={setData}
                             errors={errors}
+                            appointment={appointment}
                         /> : ``}
                         {tab.code === `kinesio` ? <Kinesio
                             data={data}
@@ -180,7 +181,7 @@ export default (props) => {
                             setData={setData}
                             errors={errors}
                         /> : ``}
-                        {tab.code === `plan` ? <Plan
+                        {tab.code === `reabilitation` ? <Reabilitation
                             data={data}
                             setData={setData}
                             errors={errors}

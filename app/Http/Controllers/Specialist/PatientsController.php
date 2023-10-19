@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Specialist;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FileAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
 use App\Http\Resources\Appointment;
 use App\Http\Resources\PatientCardSpecialist;
@@ -52,6 +53,14 @@ class PatientsController extends Controller
             $book->appointment->oda()->create([]);
             $appointment = $book->appointment()->first();
         }
+        if (!$appointment->reabilitation) {
+            $book->appointment->reabilitation()->create([]);
+            $appointment = $book->appointment()->first();
+        }
+        if (!$appointment->addon) {
+            $book->appointment->addon()->create([]);
+            $appointment = $book->appointment()->first();
+        }
         if (!$appointment->kinesio) {
             $book->appointment->kinesio()->create([]);
             $appointment = $book->appointment()->first();
@@ -79,6 +88,9 @@ class PatientsController extends Controller
             'painmap',
             'ods',
             'kinesio',
+            'files',
+            'addon',
+            'reabilitation',
             'oda'
         ]));
 
@@ -88,10 +100,31 @@ class PatientsController extends Controller
 
         $book->appointment->painmap->update($request->painmap);
 
+        $book->appointment->addon->update($request->addon);
+
+        $book->appointment->reabilitation->update($request->reabilitation);
+
         $book->appointment->kinesio->update($request->kinesio);
 
         $book->appointment->kinesio->interview->update($request->kinesio['interview']);
 
+        return redirect()->route('specialist.appointment', [
+            'book' => $book->id
+        ]);
+    }
+
+    /**
+     * Handle the incoming request.
+     */
+    public function appointmentFile(FileAppointmentRequest $request, Book $book)
+    {
+        $file = $request->file('file');
+        $book->appointment->files()->create([
+            'sort' => 100,
+            'title' => $request->get('filename'),
+            'category_id' => $request->get('category_id'),
+            'link' => $file->store('appointments/' . $book->appointment->id)
+        ]);
         return redirect()->route('specialist.appointment', [
             'book' => $book->id
         ]);

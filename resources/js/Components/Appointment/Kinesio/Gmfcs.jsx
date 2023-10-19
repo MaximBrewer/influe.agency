@@ -183,6 +183,20 @@ export default (props) => {
                                 </td>
                                 <td className="py-1 px-1">
                                     <input
+                                        name={`gmfcs-${field.name}-text`}
+                                        value={data.kinesio.gmfcs && data.kinesio.gmfcs[`${field.name}text`] ? data.kinesio.gmfcs[`${field.name}text`] : ``}
+                                        onChange={e => setData(prev => {
+                                            const data = { ...prev }
+                                            const kinesio = data.kinesio
+                                            if (!kinesio.gmfcs) kinesio.gmfcs = {}
+                                            kinesio.gmfcs[`${field.name}text`] = e.target.value
+                                            return data
+                                        })}
+                                        className="ounded text-sm w-[81px] rounded-md border border-purple-900 py-0.5 leading-none"
+                                    />
+                                </td>
+                                <td className="py-1 px-1">
+                                    <input
                                         type="checkbox"
                                         id={`gmfcs-${field.name}`}
                                         onChange={e => setData(prev => {
@@ -194,20 +208,6 @@ export default (props) => {
                                         })}
                                         defaultChecked={data.kinesio.gmfcs && data.kinesio.gmfcs[field.name]}
                                         className={'block border-gray-300 text-purple-900 shadow-sm focus:ring-purple-900 rounded-sm'}
-                                    />
-                                </td>
-                                <td className="py-1 px-1">
-                                    <input
-                                        name={`gmfcs-${field.name}-text`}
-                                        value={data.kinesio.gmfcs && data.kinesio.gmfcs[`${field.name}text`] ? data.kinesio.gmfcs[`${field.name}text`] : ``}
-                                        onChange={e => setData(prev => {
-                                            const data = { ...prev }
-                                            const kinesio = data.kinesio
-                                            if (!kinesio.gmfcs) kinesio.gmfcs = {}
-                                            kinesio.gmfcs[`${field.name}text`] = e.target.value
-                                            return data
-                                        })}
-                                        className="ounded text-sm w-[81px] rounded-md border border-purple-900 py-0.5 leading-none"
                                     />
                                 </td>
                             </tr>)}

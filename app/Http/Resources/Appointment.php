@@ -30,14 +30,19 @@ class Appointment extends JsonResource
             'conclusion' => $this->conclusion ?? '',
             'recommendations' => $this->recommendations ?? '',
             'other' => $this->other ?? '',
+            'files' => AppointmentFile::collection($this->files),
 
             'ods' => new Ods($this->ods),
+
+            'addon' => new Addon($this->addon),
 
             'oda' => new Oda($this->oda),
 
             'kinesio' => new Kinesio($this->kinesio),
 
             'painmap' => new Painmap($this->painmap),
+
+            'reabilitation' => new Reabilitation($this->reabilitation),
 
 
         ];

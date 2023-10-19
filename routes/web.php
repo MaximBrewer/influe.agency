@@ -130,6 +130,7 @@ Route::group(['prefix' => 'specialist', 'as' => 'specialist.', 'middleware' => [
     Route::get('patient/{patient}', [Specialist\PatientsController::class, 'show'])->name('patient.show');
     Route::get('appointment/{book}', [Specialist\PatientsController::class, 'appointment'])->name('appointment');
     Route::post('appointment/{book}', [Specialist\PatientsController::class, 'appointmentUpdate'])->name('appointment.update');
+    Route::post('appointment/{book}/file', [Specialist\PatientsController::class, 'appointmentFile'])->name('appointment.file');
 
     Route::get('patients', Specialist\PatientsController::class)->name('patients');
     Route::get('specialists', Specialist\SpecialistsController::class)->name('specialists');
@@ -142,8 +143,9 @@ Route::group(['prefix' => 'specialist', 'as' => 'specialist.', 'middleware' => [
             Route::resource('comments', Specialist\CommentsController::class);
         });
     });
-});
 
+    Route::delete('file/{file}', [Specialist\FilesController::class, 'destroy'])->name('file.delete');
+});
 
 // Магазин
 

@@ -12,12 +12,12 @@ const fields1 = [
         fields: fields
     },
     {
-        label: `Верхние конечности`,
+        label: `Лицо`,
         name: `face`,
         fields: fields
     },
     {
-        label: `Верхние конечности`,
+        label: `Нижние конечности`,
         name: `bottom`,
         fields: fields
     }
